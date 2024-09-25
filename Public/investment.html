@@ -18,6 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="../src/css/js/script.js"></script>
 
 <body>
     <div class="dashboard">
@@ -61,6 +62,46 @@
                         class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
 
             </header>
+
+            <div id="popup" class="popup-overlay">
+
+                <div class="transfer-container">
+                    <div class="transfer-header">
+                        <h3>Help Me Transfer Money</h3>
+                        <button id="close-popup" class="close-btn">&times;</button>
+                    </div>
+
+                    <form class="transfer-form">
+                        <label for="transfer-from">Transfer From</label>
+                        <select id="transfer-from" class="input-field">
+                            <option>Select an Account</option>
+                            <option>Account 1</option>
+                            <option>Account 2</option>
+                        </select>
+
+                        <label for="transfer-to">Transfer To</label>
+                        <select id="transfer-to" class="input-field">
+                            <option>Select an Account</option>
+                            <option>Account 1</option>
+                            <option>Account 2</option>
+                        </select>
+
+                        <div class="button-group">
+                            <button id="cancel-popup" type="button" class="cancel-btn">Cancel</button>
+                            <button type="submit" class="continue-btn">Continue</button>
+                        </div>
+
+                        <div class="extra-options">
+                            <a href="#" class="paypal-link">Send money with <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"
+                                    class="paypal-logo"></a>
+                            <a href="./card.html" class="bank-link">Add a bank account</a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
 
 
             <!-- pop up -->
@@ -170,21 +211,9 @@
         </main>
         <button id="signout-button" class="sticky-signout-button">Sign Out</button>
     </div>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-            authDomain: "orion-investment-2b141.firebaseapp.com",
-            projectId: "orion-investment-2b141",
-            storageBucket: "orion-investment-2b141.appspot.com",
-            messagingSenderId: "911866094162",
-            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-            measurementId: "G-12SQKBDR1S"
-        };
 
-
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-    </script>
+    <script src="../src/css/js/script.js"></script>
+    
 </body>
 
 </html>
@@ -235,6 +264,9 @@
     cancelPopupBtn.addEventListener("click", function () {
         popup.style.display = "none";
     });
+
+
+    
 
 
 </script>

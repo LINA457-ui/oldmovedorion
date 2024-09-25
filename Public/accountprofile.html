@@ -18,7 +18,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
+  
 </head>
 <style>
   .profile-container {
@@ -83,6 +83,46 @@
         <button id="open-popup" class="filter"><i style="margin-right: 10px;"
             class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
       </header>
+
+      <div id="popup" class="popup-overlay">
+
+        <div class="transfer-container">
+          <div class="transfer-header">
+            <h3>Help Me Transfer Money</h3>
+            <button id="close-popup" class="close-btn">&times;</button>
+          </div>
+
+          <form class="transfer-form">
+            <label for="transfer-from">Transfer From</label>
+            <select id="transfer-from" class="input-field">
+              <option>Select an Account</option>
+              <option>Account 1</option>
+              <option>Account 2</option>
+            </select>
+
+            <label for="transfer-to">Transfer To</label>
+            <select id="transfer-to" class="input-field">
+              <option>Select an Account</option>
+              <option>Account 1</option>
+              <option>Account 2</option>
+            </select>
+
+            <div class="button-group">
+              <button id="cancel-popup" type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="continue-btn">Continue</button>
+            </div>
+
+            <div class="extra-options">
+              <a href="#" class="paypal-link">Send money with <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"
+                  class="paypal-logo"></a>
+              <a href="./card.html" class="bank-link">Add a bank account</a>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
 
       <div class="bg-blue-700 flex items-center justify-center bg-red p-10">
         <div class="profile-container">
@@ -199,21 +239,9 @@
   </main>
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
   </div>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-      authDomain: "orion-investment-2b141.firebaseapp.com",
-      projectId: "orion-investment-2b141",
-      storageBucket: "orion-investment-2b141.appspot.com",
-      messagingSenderId: "911866094162",
-      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-      measurementId: "G-12SQKBDR1S"
-    };
 
+  <script src="../src/css/js/script.js"></script>
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
 </body>
 
 </html>
@@ -243,6 +271,26 @@
 
   // Initial call to display time immediately on load
   updateTime();
+
+  const popup = document.getElementById("popup");
+  const openPopupBtn = document.getElementById("open-popup");
+  const closePopupBtn = document.getElementById("close-popup");
+  const cancelPopupBtn = document.getElementById("cancel-popup");
+
+  // Open popup on button click
+  openPopupBtn.addEventListener("click", function () {
+    popup.style.display = "flex";
+  });
+
+  // Close popup when 'X' button is clicked
+  closePopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+  // Close popup when 'Cancel' button is clicked
+  cancelPopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
 
 </script>
 <script>
@@ -321,30 +369,30 @@
   const signout = document.getElementById("signout-button");
 
   signout.addEventListener('click', (e) => {
-      auth.signOut().then(() => {
-          // Sign-out successful.
-          Toastify({
-              text: "You have successfully signed out.",
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-              close: true
-          }).showToast();
+    auth.signOut().then(() => {
+      // Sign-out successful.
+      Toastify({
+        text: "You have successfully signed out.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+        close: true
+      }).showToast();
 
-          // Optionally, redirect to a login page or another page
-          window.location.href = "login.html"; // Change this to your login page
-      }).catch((error) => {
-          // An error happened.
-          Toastify({
-              text: `Error signing out: ${error.message}`,
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
-              close: true
-          }).showToast();
-      });
+      // Optionally, redirect to a login page or another page
+      window.location.href = "login.html"; // Change this to your login page
+    }).catch((error) => {
+      // An error happened.
+      Toastify({
+        text: `Error signing out: ${error.message}`,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+        close: true
+      }).showToast();
+    });
   })
 
 </script>
