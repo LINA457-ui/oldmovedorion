@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Dashboard</title>
+  <link rel="stylesheet" href="../src/css/css/outputt.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  
+</head>
+<style>
+  /* Custom styles */
+  .transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .transaction-table th {
+    background-color: #1e40af;
+    color: #fff;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .transaction-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* .transaction-table tr:nth-child(even) {
+    background-color: #f3f4f6;
+  } */
+
+  .transaction-table tr:hover {
+    background-color: #e2e8f0;
+  }
+
+  .status {
+    font-weight: bold;
+    padding: 0.25rem 0.75rem;
+    /* border-radius: 0.375rem; */
+    text-align: center;
+  }
+
+  .receive {
+    /* background-color: #d1fae5; */
+    color: white;
+  }
+
+  .transfer {
+    /* background-color: #e0e7ff; */
+    color: white;
+  }
+
+  .payment {
+    /* background-color: #fee2e2; */
+    color: white;
+  }
+
+  .withdraw {
+    /* background-color: #fef3c7; */
+    color: white;
+  }
+
+  .add-money {
+    /* background-color: #dbf4ff; */
+    color: white;
+  }
+</style>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="./dashboard.html">
+        <div class="logo-wrap"><img class="logoo" src="./assests/images/logo.png" alt=""></div>
+      </a>
+      <ul class="nav">
+        <a href="./dashboard.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-house"></i>Dashboard</li>
+        </a>
+        <a href="./card.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-address-card"></i>Card</li>
+        </a>
+        <a href="./accounthistory.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-credit-card"></i>Transaction</li>
+        </a>
+        <a href="./investment.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-dollar-sign"></i>Investment</li>
+        </a>
+        <a href="./accountprofile.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-user"></i>Account Profile</li>
+        </a>
+      </ul>
+      <div class="user">
+        <div class="user">
+          <img id="" src="./assests/images/icon image.png" alt="User">
+          <div class="user-info">
+            <h3 id="fullNameDisplay">Bruce James</h3>
+            <p id="emailDisplay"></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="header">
+        <h2>Investment Dashboard</h2>
+        <input type="search" placeholder="Search" class="search">
+        <div style="color: white;" class="live-time" id="liveTime">
+          <p id="timeElement"></p>
+        </div>
+        <button id="open-popup" class="filter"><i style="margin-right: 10px;"
+            class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
+      </header>
+
+      <!-- pop up -->
+      <div id="popup" class="popup-overlay">
+
+        <div class="transfer-container">
+          <div class="transfer-header">
+            <h3>Help Me Transfer Money</h3>
+            <button id="close-popup" class="close-btn">&times;</button>
+          </div>
+
+          <form class="transfer-form">
+            <label for="transfer-from">Transfer From</label>
+            <select id="transfer-from" class="input-field">
+              <option>Select an Account</option>
+              <option>Account 1</option>
+              <option>Account 2</option>
+            </select>
+
+            <label for="transfer-to">Transfer To</label>
+            <select id="transfer-to" class="input-field">
+              <option>Select an Account</option>
+              <option>Account 1</option>
+              <option>Account 2</option>
+            </select>
+
+            <div class="button-group">
+              <button id="cancel-popup" type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="continue-btn">Continue</button>
+            </div>
+
+            <div class="extra-options">
+              <a href="#" class="paypal-link">Send money with <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"
+                  class="paypal-logo"></a>
+              <a href="./card.html" class="bank-link">Add a bank account</a>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <!-- popup end -->
+      
+      <!-- Profile Information -->
+      <div class="profile-info text-center mb-6">
+        <h1 class="text-2xl font-bold text-white mb-4">Profile Information</h1>
+        <p class="text-white mt-3">Here's your recent transaction record</p>
+      </div>
+
+      <!-- Transaction History Table -->
+      <div class="transaction-history overflow-x-auto">
+        <table class="transaction-table">
+          <thead>
+            <tr>
+              <th>Name/Business</th>
+              <th>Date</th>
+              <th>Invoice ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>William Mardoch</td>
+              <td>21 March 2024</td>
+              <td>OP0214784</td>
+              <td>$250 USD</td>
+              <td class="status receive">Receive</td>
+            </tr>
+            <tr>
+              <td>Jack Dawson</td>
+              <td>20 March 2024</td>
+              <td>OP0214784</td>
+              <td>$20 USD</td>
+              <td class="status transfer">Transfer</td>
+            </tr>
+            <tr>
+              <td>Mailchimp</td>
+              <td>19 March 2024</td>
+              <td>OP7452148</td>
+              <td>-$80 USD</td>
+              <td class="status payment">Payment</td>
+            </tr>
+            <tr>
+              <td>Fiverr</td>
+              <td>18 March 2024</td>
+              <td>OP32201425</td>
+              <td>$100 USD</td>
+              <td class="status receive">Receive</td>
+            </tr>
+            <tr>
+              <td>Bank of America LTD.</td>
+              <td>19 March 2024</td>
+              <td>OP34014258</td>
+              <td>$210 USD</td>
+              <td class="status withdraw">Withdraw</td>
+            </tr>
+            <tr>
+              <td>Peter Jacky</td>
+              <td>12 March 2021</td>
+              <td>OP0214784</td>
+              <td>-$80 USD</td>
+              <td class="status payment">Payment</td>
+            </tr>
+            <tr>
+              <td>EBL Credit Card</td>
+              <td>10 March 2024</td>
+              <td>OP2147895</td>
+              <td>Add money</td>
+              <td class="status add-money">Add Money</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+
+  </main>
+  <button id="signout-button" class="sticky-signout-button">Sign Out</button>
+  </div>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+      authDomain: "orion-investment-2b141.firebaseapp.com",
+      projectId: "orion-investment-2b141",
+      storageBucket: "orion-investment-2b141.appspot.com",
+      messagingSenderId: "911866094162",
+      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+      measurementId: "G-12SQKBDR1S"
+    };
+
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+</body>
+
+</html>
+
+<script>
+
+  function updateTime() {
+    const timeElement = document.getElementById('liveTime');
+    const now = new Date();
+
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // If hour is 0, display as 12
+
+    const formattedTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+    timeElement.textContent = formattedTime;
+  }
+
+  // Update the time every second
+  setInterval(updateTime, 1000);
+
+  // Initial call to display time immediately on load
+  updateTime();
+
+  const popup = document.getElementById("popup");
+  const openPopupBtn = document.getElementById("open-popup");
+  const closePopupBtn = document.getElementById("close-popup");
+  const cancelPopupBtn = document.getElementById("cancel-popup");
+
+  // Open popup on button click
+  openPopupBtn.addEventListener("click", function () {
+    popup.style.display = "flex";
+  });
+
+  // Close popup when 'X' button is clicked
+  closePopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+  // Close popup when 'Cancel' button is clicked
+  cancelPopupBtn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+
+</script>
+<script>
+  var docRef = db.collection("users").doc("mail");
+
+docRef.get().then((doc) => {
+  if (doc.exists) {
+      console.log("Document data:", doc.data());
+      const userData = doc.data(); // Use doc.data() to access the data
+      console.log("Document data:", userData);
+      document.getElementById("salutationDisplay").innerText =  userData.salutation;
+      document.getElementById("firstNameDisplay").innerText =  userData.firstName;
+      document.getElementById("middleNameDisplay").innerText =  userData.middleName;
+      document.getElementById("lastNameDisplay").innerText = userData.lastName;
+      document.getElementById("emailDisplay").innerText =  userData.  mail;
+      document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
+  } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+</script>
+<script>
+  // Function to handle sign-out
+  const signout = document.getElementById("signout-button");
+
+  signout.addEventListener('click', (e) => {
+      auth.signOut().then(() => {
+          // Sign-out successful.
+          Toastify({
+              text: "You have successfully signed out.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+              close: true
+          }).showToast();
+
+          // Optionally, redirect to a login page or another page
+          window.location.href = "login.html"; // Change this to your login page
+      }).catch((error) => {
+          // An error happened.
+          Toastify({
+              text: `Error signing out: ${error.message}`,
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+              close: true
+          }).showToast();
+      });
+  })
+
+</script>

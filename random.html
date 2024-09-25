@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion - Who We Serve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Main container -->
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <!-- Title -->
+        <h1 class="text-center text-3xl font-bold text-gray-800 mb-6">Who We Serve</h1>
+
+        <!-- Tab Navigation -->
+        <div class="flex justify-center space-x-6 mb-8">
+            <button class="text-lg font-semibold text-blue-600 border-b-2 border-blue-600 pb-2">
+                Individuals
+            </button>
+            <button class="text-lg font-semibold text-gray-600 hover:text-gray-800">
+                Firms
+            </button>
+        </div>
+
+        <!-- Individuals Section (Card Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                <img src="https://via.placeholder.com/150" alt="Financial Advisors" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Financial Advisors</h3>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                <img src="https://via.placeholder.com/150" alt="Business Owners" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Business Owners</h3>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                <img src="https://via.placeholder.com/150" alt="CCOs" class="w-full h-56 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-semibold text-gray-800">CCOs</h3>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <style>
+        /* Custom hover effect for cards */
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</body>
+</html>

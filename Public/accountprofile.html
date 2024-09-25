@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Dashboard</title>
+  <link rel="stylesheet" href="../src/css/css/outputt.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</head>
+<style>
+  .profile-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  .upload-btn:hover {
+    background-color: #0d0a56;
+  }
+
+  .input-group {
+    border-bottom: 1px solid #d1d5db;
+    padding: 1rem 0;
+  }
+</style>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="./dashboard.html">
+        <div class="logo-wrap"><img class="logoo" src="./assests/images/logo.png" alt=""></div>
+      </a>
+      <ul class="nav">
+        <a href="./dashboard.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-house"></i>Dashboard</li>
+        </a>
+        <a href="./card.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-address-card"></i>Card</li>
+        </a>
+        <a href="./accounthistory.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-credit-card"></i>Transaction</li>
+        </a>
+        <a href="./investment.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-dollar-sign"></i>Investment</li>
+        </a>
+        <a href="./accountprofile.html">
+          <li><i style="margin-right: 10px;" class="fa-solid fa-user"></i>Account Profile</li>
+        </a>
+      </ul>
+      <div class="user">
+        <img id="" src="./assests/images/icon image.png" alt="User">
+        <div class="user-info">
+          <h3 id="fullNameDisplay">Bruce James</h3>
+          <p id="emailDisplay"></p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <header class="header">
+        <h2>Investment Dashboard</h2>
+        <input type="search" placeholder="Search" class="search">
+        <div style="color: white;" class="live-time" id="liveTime">
+          <p id="timeElement"></p>
+        </div>
+        <button id="open-popup" class="filter"><i style="margin-right: 10px;"
+            class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
+      </header>
+
+      <div class="bg-blue-700 flex items-center justify-center bg-red p-10">
+        <div class="profile-container">
+          <!-- Back button -->
+          <button onclick="history.back()" class="mb-4 text-white bg-blue-800 hover:bg-blue-900 px-4 py-2 rounded">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+
+          <!-- Profile Header -->
+          <div class="text-center mb-6 ">
+            <h1 class="text-3xl font-bold text-[#090446]">Account Profile</h1>
+            <p class="text-gray-600 mt-2">Your personal information is displayed below</p>
+          </div>
+
+          <!-- Profile Picture Section -->
+
+
+
+          <!-- Information Display Section -->
+          <div class="mt-8 space-y-4">
+            <!-- Loop through each input field dynamically -->
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Salutation:</label>
+                <p id="salutationDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">First Name:</label>
+                <p id="firstNameDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Middle Name:</label>
+                <p id="middleNameDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">Last Name:</label>
+                <p id="lastNameDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Address Line 1:</label>
+                <p id="address1Display" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">Address Line 2:</label>
+                <p id="address2Display" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">City:</label>
+                <p id="cityDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">State:</label>
+                <p id="stateDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Zip Code:</label>
+                <p id="zipCodeDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">Mailing Address:</label>
+                <p id="mailingAddressDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Different Citizenship:</label>
+                <p id="differentCitizenshipDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">Born Outside US:</label>
+                <p id="bornOutsideUSDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Phone Type:</label>
+                <p id="phoneTypeDisplay" class="text-gray-600"></p>
+              </div>
+              <div>
+                <label class="font-semibold text-gray-700">Location:</label>
+                <p id="locationDisplay" class="text-gray-600"></p>
+              </div>
+            </div>
+
+            <div class="input-group grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="font-semibold text-gray-700">Phone Number:</label>
+                <p id="phoneNumberDisplay" class="text-gray-600"></p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <!-- popup end -->
+
+
+  </main>
+  <button id="signout-button" class="sticky-signout-button">Sign Out</button>
+  </div>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+      authDomain: "orion-investment-2b141.firebaseapp.com",
+      projectId: "orion-investment-2b141",
+      storageBucket: "orion-investment-2b141.appspot.com",
+      messagingSenderId: "911866094162",
+      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+      measurementId: "G-12SQKBDR1S"
+    };
+
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+</body>
+
+</html>
+
+<script>
+
+  function updateTime() {
+    const timeElement = document.getElementById('liveTime');
+    const now = new Date();
+
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // If hour is 0, display as 12
+
+    const formattedTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+    timeElement.textContent = formattedTime;
+  }
+
+  // Update the time every second
+  setInterval(updateTime, 1000);
+
+  // Initial call to display time immediately on load
+  updateTime();
+
+</script>
+<script>
+  var docRef = db.collection("users").doc("mail");
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+      const userData = doc.data(); // Use doc.data() to access the data
+      console.log("Document data:", userData);
+      document.getElementById("salutationDisplay").innerText = userData.salutation;
+      document.getElementById("firstNameDisplay").innerText = userData.firstName;
+      document.getElementById("middleNameDisplay").innerText = userData.middleName;
+      document.getElementById("lastNameDisplay").innerText = userData.lastName;
+      document.getElementById("address1Display").innerText = userData.addressLine1;
+      document.getElementById("address2Display").innerText = userData.addressLine2;
+      document.getElementById("cityDisplay").innerText = userData.city;
+      document.getElementById("stateDisplay").innerText = userData.state;
+      document.getElementById("zipCodeDisplay").innerText = userData.zipCode;
+      document.getElementById("mailingAddressDisplay").innerText = userData.mailingAddress;
+      document.getElementById("differentCitizenshipDisplay").innerText = userData.differentCitizenship;
+      document.getElementById("bornOutsideUSDisplay").innerText = userData.bornOutsideUS;
+      document.getElementById("phoneTypeDisplay").innerText = userData.phoneType;
+      document.getElementById("locationDisplay").innerText = userData.location;
+      document.getElementById("phoneNumberDisplay").innerText = userData.phoneNumber;
+      document.getElementById("emailDisplay").innerText = userData.mail;
+      document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+</script>
+<script>
+  const imageUpload = document.getElementById("imageUpload");
+
+
+  imageUpload.addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Create a storage reference
+    const storageRef = ref(storage, `images/${file.name}`);
+
+    try {
+      // Upload the file
+      const snapshot = await uploadBytes(storageRef, file);
+      console.log('Uploaded a blob or file!', snapshot);
+
+      // Get the download URL and display the image
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      displayImage(downloadURL);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  });
+
+
+  // Function to display the uploaded image
+  function displayImage(url) {
+    const imgElement = document.createElement('img');
+    imgElement.src = url;
+    imgElement.alt = "Uploaded Image";
+    imgElement.style.width = "200px"; // Adjust size as needed
+    imgElement.style.margin = "10px";
+
+    imageContainer.appendChild(imgElement);
+  }
+
+
+</script>
+<script>
+  // Function to handle sign-out
+  const signout = document.getElementById("signout-button");
+
+  signout.addEventListener('click', (e) => {
+      auth.signOut().then(() => {
+          // Sign-out successful.
+          Toastify({
+              text: "You have successfully signed out.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+              close: true
+          }).showToast();
+
+          // Optionally, redirect to a login page or another page
+          window.location.href = "login.html"; // Change this to your login page
+      }).catch((error) => {
+          // An error happened.
+          Toastify({
+              text: `Error signing out: ${error.message}`,
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+              close: true
+          }).showToast();
+      });
+  })
+
+</script>

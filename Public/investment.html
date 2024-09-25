@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard</title>
+    <link rel="stylesheet" href="../src/css/css/outputt.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <a href="./dashboard.html">
+                <div class="logo-wrap"><img class="logoo" src="./assests/images/logo.png" alt=""></div>
+            </a>
+            <ul class="nav">
+                <a href="./dashboard.html">
+                    <li><i style="margin-right: 10px;" class="fa-solid fa-house"></i>Dashboard</li>
+                </a>
+                <a href="./card.html">
+                    <li><i style="margin-right: 10px;" class="fa-solid fa-address-card"></i>Card</li>
+                </a>
+                <a href="./accounthistory.html">
+                    <li><i style="margin-right: 10px;" class="fa-solid fa-credit-card"></i>Transaction</li>
+                </a>
+                <a href="./investment.html">
+                    <li><i style="margin-right: 10px;" class="fa-solid fa-dollar-sign"></i>Investment</li>
+                </a>
+                <a href="./accountprofile.html">
+                    <li><i style="margin-right: 10px;" class="fa-solid fa-user"></i>Account Profile</li>
+                </a>
+            </ul>
+            <div class="user">
+                <img id="" src="./assests/images/icon image.png" alt="User">
+                <div class="user-info">
+                  <h3 id="fullNameDisplay">Bruce James</h3>
+                  <p id="emailDisplay"></p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="header">
+                <h2>Investment Dashboard</h2>
+                <input type="search" placeholder="Search" class="search">
+                <div style="color: white;" class="live-time" id="liveTime">
+                    <p id="timeElement"></p>
+                </div><button id="open-popup" class="filter"><i style="margin-right: 10px;"
+                        class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
+
+            </header>
+
+
+            <!-- pop up -->
+            <!--  -->
+            <!-- popup end -->
+
+
+            
+            <div    >
+                <div class="parent-tiers">
+                    <div class="pricing-tier">
+                        <h2>Bronze Plan</h2>
+                        <h1>1%</h1>
+                        <p>Profit after 7 Days</p>
+                        <ul>
+                            <li>Min Dep : $1000</li>
+                            <li>Max Dep : $3000</li>
+                            <li>Instant Payments</li>
+                            <li>Principal Included</li>
+                        </ul>
+                        <button>Select Plan</button>
+                    </div>
+    
+                    <div class="pricing-container">
+                        <div class="pricing-tier">
+                            <h2>Silver Plan</h2>
+                            <h1>1.5%</h1>
+                            <p>Profit after 6 Days</p>
+                            <ul>
+                                <li>Min Dep : $3000</li>
+                                <li>Max Dep : $5000</li>
+                                <li>Instant Payments</li>
+                                <li>Principal Included</li>
+                            </ul>
+                            <button>Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="parent-tiers">
+                    <div class="pricing-container">
+                        <div class="pricing-tier">
+                            <h2>Gold Plan</h2>
+                            <h1>2%</h1>
+                            <p>Profit after 5 Days</p>
+                            <ul>
+                                <li>Min Dep : $5000</li>
+                                <li>Max Dep : $10000</li>
+                                <li>Instant Payments</li>
+                                <li>Principal Included</li>
+                            </ul>
+                            <button>Select Plan</button>
+                        </div>
+                    </div>
+    
+                    <div class="pricing-container">
+                        <div class="pricing-tier">
+                            <h2>Platinum Plan</h2>
+                            <h1>2.5%</h1>
+                            <p>Profit after 4 Days</p>
+                            <ul>
+                                <li>Min Dep : $8000</li>
+                                <li>Max Dep : $15000</li>
+                                <li>Instant Payments</li>
+                                <li>Principal Included</li>
+                            </ul>
+                            <button>Select Plan</button>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="parent-tiers">
+                    <div class="pricing-container">
+                        <div class="pricing-tier">
+                            <h2>Diamond Plan</h2>
+                            <h1>3%</h1>
+                            <p>Profit after 3 Days</p>
+                            <ul>
+                                <li>Min Dep : $10000</li>
+                                <li>Max Dep : $20000</li>
+                                <li>Instant Payments</li>
+                                <li>Principal Included</li>
+                            </ul>
+                            <button>Select Plan</button>
+                        </div>
+                    </div>
+    
+                    <div class="pricing-container">
+                        <div class="pricing-tier">
+                            <h2>VVIP Plan</h2>
+                            <h1>4%</h1>
+                            <p>Profit after 2 Days</p>
+                            <ul>
+                                <li>Min Dep : $15000</li>
+                                <li>Max Dep : $30000</li>
+                                <li>Instant Payments</li>
+                                <li>Principal Included</li>
+                            </ul>
+                            <button>Select Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+        <button id="signout-button" class="sticky-signout-button">Sign Out</button>
+    </div>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+            authDomain: "orion-investment-2b141.firebaseapp.com",
+            projectId: "orion-investment-2b141",
+            storageBucket: "orion-investment-2b141.appspot.com",
+            messagingSenderId: "911866094162",
+            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+            measurementId: "G-12SQKBDR1S"
+        };
+
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+</body>
+
+</html>
+
+<script>
+
+    function updateTime() {
+        const timeElement = document.getElementById('liveTime');
+        const now = new Date();
+
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // If hour is 0, display as 12
+
+        const formattedTime = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+        timeElement.textContent = formattedTime;
+    }
+
+    // Update the time every second
+    setInterval(updateTime, 1000);
+
+    // Initial call to display time immediately on load
+    updateTime();
+
+
+    const popup = document.getElementById("popup");
+    const openPopupBtn = document.getElementById("open-popup");
+    const closePopupBtn = document.getElementById("close-popup");
+    const cancelPopupBtn = document.getElementById("cancel-popup");
+
+    // Open popup on button click
+    openPopupBtn.addEventListener("click", function () {
+        popup.style.display = "flex";
+    });
+
+    // Close popup when 'X' button is clicked
+    closePopupBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+
+    // Close popup when 'Cancel' button is clicked
+    cancelPopupBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+
+
+</script>
+<script>
+    var docRef = db.collection("users").doc("mail");
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            const userData = doc.data(); // Use doc.data() to access the data
+            console.log("Document data:", userData);
+            document.getElementById("salutationDisplay").innerText = userData.salutation;
+            document.getElementById("firstNameDisplay").innerText = userData.firstName;
+            document.getElementById("middleNameDisplay").innerText = userData.middleName;
+            document.getElementById("lastNameDisplay").innerText = userData.lastName;
+            document.getElementById("emailDisplay").innerText = userData.mail;
+            document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+</script>
+<script>
+    // Function to handle sign-out
+    const signout = document.getElementById("signout-button");
+
+    signout.addEventListener('click', (e) => {
+        auth.signOut().then(() => {
+            // Sign-out successful.
+            Toastify({
+                text: "You have successfully signed out.",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                close: true
+            }).showToast();
+
+            // Optionally, redirect to a login page or another page
+            window.location.href = "login.html"; // Change this to your login page
+        }).catch((error) => {
+            // An error happened.
+            Toastify({
+                text: `Error signing out: ${error.message}`,
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+                close: true
+            }).showToast();
+        });
+    })
+
+</script>
