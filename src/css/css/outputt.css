@@ -1277,3 +1277,12 @@ input:focus, select:focus {
       grid-template-columns: 1fr;
   }
 }
+
+/* Hide overflow for spinner and prevent button width change */
+button .spinner {
+  transition: opacity 0.2s ease;
+}
+
+button .button-text {
+  display: inline-block;
+}

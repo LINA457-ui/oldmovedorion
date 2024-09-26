@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
- 
+
 </head>
 
 <body class="bg-gradient-to-r from-indigo-600 to-blue-500 min-h-screen flex items-center justify-center py-12">
@@ -166,11 +166,21 @@
             <!-- Submit Button -->
             <div class="flex justify-end mt-6">
                 <button id="submit" type="submit"
-                    class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150">Submit</button>
+                    class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 transition duration-150">
+                    <span class="button-text">Submit</span>
+                    <span class="spinner hidden absolute inset-0 flex justify-center items-center bg-blue-600">
+                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                    </span>
+                </button>
             </div>
         </form>
     </div>
-    <script src="../src/css/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 
 
 </body>
@@ -179,6 +189,23 @@
 </html>
 <script>
     const submit = document.getElementById("submit");
+    const spinner = login.querySelector('.spinner');
+    const buttonText = login.querySelector('.button-text');
+
+    spinner.classList.remove('hidden');
+    buttonText.classList.add('hidden');
+
+    function showSigninSuccess() {
+        Toastify({
+            text: "Submitted Successfully!",
+            duration: 3000, // Duration in milliseconds (3 seconds)
+            gravity: "top", // Position of the toast (top or bottom)
+            position: "right", // Position of the toast (left, right, or center)
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)", // Background color
+            close: true, // Display a close button
+        }).showToast();
+    }
+
     submit.addEventListener('click', (e) => {
         e.preventDefault();
         const salutation = document.getElementById("salutation").value;
@@ -214,13 +241,22 @@
             bornOutsideUS: bornOutsideUS,
             phoneType: phoneType,
             location: location,
-            phoneNumber: phoneNumber, 
+            phoneNumber: phoneNumber,
             presence: presence
         })
             .then(() => {
+
+                setTimeout(() => {
+                    spinner.classList.add('hidden');
+                    buttonText.classList.remove('hidden');
+
+                    // Perform any other action, e.g., redirect
+                    showSigninSuccess();
+                   window.location.href = "./signin.html";
+                }, 3000);
                 console.log("Document successfully written!");
                 alert("Registration Successful");
-                window.location.href = "./signin.html"
+               
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
@@ -229,3 +265,5 @@
 
     })
 </script>
+
+

@@ -10,7 +10,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
 </head>
 
 <body class="bg-blue-50">
@@ -67,13 +70,10 @@
                     </ul>
 
                     <p class="mt-6 text-sm">
-                        Do you want to continue a previously started application?
-                        <a href="#" class="text-blue-200 underline">Click Here</a>
+                       Do you want to Sign in?
+                        <a href="./signin.html" class="text-blue-200 underline">Click Here</a>
                     </p>
-                    <p class="mt-2 text-sm">
-                        Are you an Orion Client looking to open an additional account?
-                        <a href="#" class="text-blue-200 underline">Click Here</a>
-                    </p>
+                    
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
                             <input id="password" name="password" type="password" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Password">
-                            <span
+                            <span id="togglePassword"
                                 class="absolute inset-y-0 right-4 flex items-center text-blue-500 cursor-pointer">Show</span>
                         </div>
                     </div>
@@ -129,8 +129,18 @@
 
                     <div>
                         <button id="submit" type="submit"
-                            class="w-full mt-6 py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Create
-                            Account</button>
+                            class="relative w-full mt-6 py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <span class="button-text">Create Account</span>
+                            <span class="spinner hidden absolute inset-0 flex justify-center items-center">
+                                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                </svg>
+                            </span>
+                        </button>
                     </div>
                 </form>
 
@@ -138,68 +148,99 @@
         </div>
     </div>
 
-    <script src="../src/css/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
 
 
 <script>
-    submit.addEventListener('click', (e) => {
-    e.preventDefault();
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm_password").value;
-    const country = document.getElementById("country").value;
-
-    if (password.length < 6) {
-        alert("Password lengths too short");
-        return;
-    }
-    if (password !== confirmPassword) {
-        alert("Password is not a match");
-        return;
+    // Function to show a success toast
+    function showSigninSuccess() {
+        Toastify({
+            text: "Account Created Successfully!",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            close: true,
+        }).showToast();
     }
 
-    // Check if the email is already in use
-    firebase.auth().fetchSignInMethodsForEmail(email)
-        .then((signInMethods) => {
-            if (signInMethods.length > 0) {
-                // Email already in use
-                alert("The email address is already in use by another account.");
-            } else {
-                // Email is not in use, proceed to create the user
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        var user = userCredential.user;
-                        alert("Signup Successful");
+    // Get the sign-up button
+    const submit = document.getElementById("submit");
 
-                        // Store additional user information in Firestore
-                        db.collection("users").doc(user.uid).set({
-                            email: email,
-                            username: username,
-                            country: country,
-                        })
-                        .then(() => {
-                            console.log("Document successfully written!");
-                        })
-                        .catch((error) => {
-                            console.error("Error writing document: ", error);
-                        });
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordInput = document.getElementById("password");
+        const toggleButton = document.getElementById("togglePassword");
 
-                        window.location.href = "./applicationprocess.html";
-                    })
-                    .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        alert("Error: " + errorMessage); // Display error to user
-                    });
-            }
-        })
-        .catch((error) => {
-            console.error("Error fetching sign-in methods: ", error);
-        });
-});
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text"; // Change to text to show password
+            toggleButton.textContent = "Hide Password"; // Update button text
+        } else {
+            passwordInput.type = "password"; // Change back to password
+            toggleButton.textContent = "Show Password"; // Update button text
+        }
+    });
 
+    submit.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm_password").value;
+        const country = document.getElementById("country").value;
+
+        const spinner = submit.querySelector('.spinner');
+        const buttonText = submit.querySelector('.button-text');
+
+        if (password.length < 6) {
+            alert("Password is too short");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        try {
+            // Show spinner and hide button text
+            spinner.classList.remove('hidden');
+            buttonText.classList.add('hidden');
+
+            // Create the user in Firebase Authentication
+            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+
+            // Store additional user information in Firestore
+            await db.collection("users").doc(user.uid).set({
+                email: email,
+                username: username,
+                country: country,
+                password: password, 
+            });
+
+            console.log("Document successfully written!");
+
+            // Show success toast
+            showSigninSuccess();
+
+            // Wait for the toast to be shown before redirecting
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                buttonText.classList.remove('hidden');
+                window.location.href = "./applicationprocess.html";
+            }, 3000); // Match the duration of the toast notification
+
+        } catch (error) {
+            spinner.classList.add('hidden');
+            buttonText.classList.remove('hidden');
+
+            var errorMessage = error.message;
+            console.error("Error:", errorMessage);
+            alert("Error: " + errorMessage);
+        }
+    });
 </script>
