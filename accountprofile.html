@@ -18,7 +18,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  
+
 </head>
 <style>
   .profile-container {
@@ -240,7 +240,22 @@
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
   </div>
 
-  <script src="./assets/js/script.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+      authDomain: "orion-investment-2b141.firebaseapp.com",
+      projectId: "orion-investment-2b141",
+      storageBucket: "orion-investment-2b141.appspot.com",
+      messagingSenderId: "911866094162",
+      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+      measurementId: "G-12SQKBDR1S"
+    };
+
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+  </script>
 
 </body>
 
