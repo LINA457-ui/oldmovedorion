@@ -6,57 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Brokers Clone</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="" ></script>
+     <!-- <link rel="stylesheet" href="../src/css/css/outputt.css"> -->
+    <script src="./assets/js/script.js"></script>
 </head>
 </head>
 
 <body class="bg-gray-100">
     <!-- Header Section -->
-    <header class="bg-grey  shadow-md">
+    <header class="bg-gray-100 shadow-md relative">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <img src="./assests/images/logo.png" alt="Logo" class="h-11 w-22 mr-2">
-
+                <img src="./assets/images/logo.png" alt="Logo" class="h-11 w-22 mr-2">
             </div>
-            <nav class="hidden md:flex space-x-6 text-gray-700">
-                <a href="#" class="hover:text-black transition-colors">Why Orion</a>
-                <a href="#" class="hover:text-black transition-colors">Trading</a>
-                <a href="#" class="hover:text-black transition-colors">Services</a>
-                <a href="#" class="hover:text-black transition-colors">Careers</a>
-                <a href="#" class="hover:text-black transition-colors">About Us</a>
-                <a href="#" class="hover:text-black transition-colors">Support</a>
+            <nav class="hidden md:flex space-x-6 text-gray-700 relative">
+                <div class="group relative">
+                    <a href="#" class="hover:text-black transition-colors">Why Orion</a>
+                    <div
+                        class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 4</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 5</a>
+                    </div>
+                </div>
+                <div class="group relative">
+                    <a href="#" class="hover:text-black transition-colors">Trading</a>
+                    <div
+                        class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 4</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 5</a>
+                    </div>
+                </div>
+                <div class="group relative">
+                    <a href="#" class="hover:text-black transition-colors">Services</a>
+                    <div
+                        class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 4</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 5</a>
+                    </div>
+                </div>
+                <div class="group relative">
+                    <a href="#" class="hover:text-black transition-colors">Careers</a>
+                    <div
+                        class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 4</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 5</a>
+                    </div>
+                </div>
+                <div class="group relative">
+                    <a href="#" class="hover:text-black transition-colors">About Us</a>
+                    <div
+                        class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 3</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 4</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Option 5</a>
+                    </div>
+                </div>
             </nav>
             <div class="flex space-x-4">
                 <a href="./signin.html"><button
-                    class="hidden md:block border border-gray-300 px-4 py-2 text-gray-700 rounded hover:bg-gray-100 transition">Log
-                    In</button></a>
-                <a href="./application.html"><button class="bg-[#0091f9] text-white px-4 py-2 rounded hover:bg-red-700 transition">Open
-                    Account</button></a>
+                        class="hidden md:block border border-gray-300 px-4 py-2 text-gray-700 rounded hover:bg-gray-100 transition">Log
+                        In</button></a>
+                <a href="./application.html"><button
+                        class="bg-[#0091f9] text-white px-4 py-2 rounded hover:bg-red-700 transition">Open
+                        Account</button></a>
             </div>
         </div>
     </header>
 
+
     <!-- Main Section -->
     <main class="container mx-auto px-6 py-12">
         <section class="relative bg-cover bg-center h-screen flex items-center justify-center"
-            style="background-image: url('./assests/images/pagebanner.jpg');">
-            <div class="absolute inset-0 bg-black opacity-30"></div>
-            <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                    Do Business <br class="sm:hidden"> the <span class="block sm:inline">Way You Want</span>
-                </h1>
-                <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto">
-                    Flexible technology and investments for your firm's unique needs.
-                </p>
-                <div class="mt-6">
-                    <a href="#"
-                        class="inline-block px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-                        Get Started
-                    </a>
-                </div>
+        style="background-image: url('./assets/images/pagebanner.jpg');">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+                Do Business <br class="sm:hidden"> the <span class="block sm:inline">Way You Want</span>
+            </h1>
+            <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto">
+                Flexible technology and investments for your firm's unique needs.
+            </p>
+            <div class="mt-6">
+                <a href="./application.html"
+                    class="inline-block px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                    Get Started
+                </a>
             </div>
-        </section>
-
+        </div>
+    </section>
         <!-- World of Opportunities Section -->
         <section class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,7 +150,7 @@
                     <div class="flex justify-center items-center">
                         <!-- You can replace this with an actual map image URL -->
                         <div class="w-full h-64 bg-gray-[#ffffff] mb-5 rounded-lg">
-                            <img src="./assests/images/map-solo-.png" alt="World Map"
+                            <img src="./assets/images/map-solo-.png" alt="World Map"
                                 class="w-full h-full object-cover rounded-lg">
                         </div>
                     </div>
@@ -127,7 +177,7 @@
                 <!-- Card 1 -->
                 <div
                     class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-                    <img src="./assests/images/photo-1542744173-8e7e53415bb0 (1).jpg" alt="Financial Advisors"
+                    <img src="./assets/images/photo-1542744173-8e7e53415bb0 (1).jpg" alt="Financial Advisors"
                         class="w-full h-56 object-cover">
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-gray-800">Financial Advisors</h3>
@@ -137,7 +187,7 @@
                 <!-- Card 2 -->
                 <div
                     class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-                    <img src="./assests/images/photo-1557426272-fc759fdf7a8d.jpg" alt="Business Owners"
+                    <img src="./assets/images/photo-1557426272-fc759fdf7a8d.jpg" alt="Business Owners"
                         class="w-full h-56 object-cover">
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-gray-800">Business Owners</h3>
@@ -147,7 +197,7 @@
                 <!-- Card 3 -->
                 <div
                     class="bg-white shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
-                    <img src="./assests/images/premium_photo-1661775434014-9c0e8d71de03.jpg" alt="CCOs"
+                    <img src="./assets/images/premium_photo-1661775434014-9c0e8d71de03.jpg" alt="CCOs"
                         class="w-full h-56 object-cover">
                     <div class="p-4">
                         <h3 class="text-lg font-semibold text-gray-800">CCOs</h3>
@@ -190,8 +240,8 @@
                         </div>
                         <!-- Chart Placeholder -->
                         <div
-                            class=" bg-[url('./assests/images/premium_photo-1681487767138-ddf2d67b35c1.jpg')]  w-full h-32  bg-gray-200 flex items-center justify-center rounded-md">
-                            <span class="text-gray-500">Chart Preview</span>
+                            class=" bg-[url('./assets/images/photo-1553729459-efe14ef6055d.jpg')]  w-full h-32  bg-gray-200 flex items-center justify-center rounded-md">
+                            <!-- <span class="text-gray-500">Chart Preview</span> -->
                             <!-- <img src="./assests/images/premium_photo-1681487767138-ddf2d67b35c1.jpg" alt="CCOs" class="w-full h-56 object-cover"> -->
                         </div>
                     </div>
@@ -202,75 +252,26 @@
 
     <!-- Footer Section -->
     <footer class="bg-gray-900 py-12">
-        <!-- Call-to-action Section -->
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-center border-b border-gray-700 pb-10 mb-10">
-            <!-- Left Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-center">
             <div class="text-center lg:text-left">
                 <h2 class="text-3xl font-semibold text-white mb-4">Not Sure Where to Begin?</h2>
                 <p class="text-gray-400 mb-6">Get in touch with our team to learn more about the solutions and services
                     provided by Orion.</p>
             </div>
-            <!-- Right Section (Button) -->
             <div>
                 <a href="#"
-                    class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
-                    Get Started
-                </a>
+                    class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">Get
+                    Started</a>
             </div>
         </div>
-
-        <!-- Footer Content -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <!-- Column 1: Orion Branding -->
             <div>
                 <h3 class="text-white font-semibold text-lg">ORION</h3>
                 <p class="text-gray-400 mt-4">Subscribe to stay up to date with the latest market commentary, wealthtech
                     insights, news, and more.</p>
                 <a href="#"
-                    class="inline-block mt-4 border border-gray-500 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:border-white transition-colors">
-                    Subscribe Now
-                </a>
-            </div>
-
-            <!-- Column 2: Key Offerings -->
-            <div>
-                <h4 class="text-white font-semibold text-lg">Key Offerings</h4>
-                <ul class="mt-4 space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white">Advisor Tech</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Wealth Management</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">OCIO</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Behavioral Finance</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Advisor Academy</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 3: Solutions -->
-            <div>
-                <h4 class="text-white font-semibold text-lg">Solutions</h4>
-                <ul class="mt-4 space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white">Portfolio Accounting</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Redtail CRM</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Trading</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Risk Intelligence</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Compliance</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Financial Planning</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Client Portal</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Advisor Portal</a></li>
-                </ul>
-            </div>
-
-            <!-- Column 4: About -->
-            <div>
-                <h4 class="text-white font-semibold text-lg">About</h4>
-                <ul class="mt-4 space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white">Our Vision</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Leadership</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Events</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Our Brands</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">News</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                </ul>
+                    class="inline-block mt-4 border border-gray-500 px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:border-white transition-colors">Subscribe
+                    Now</a>
             </div>
         </div>
     </footer>
@@ -282,3 +283,33 @@
 </body>
 
 </html>
+<script>
+    const slider = document.getElementById("slider-images");
+    let index = 0;
+
+    const next = document.getElementById("next");
+    const prev = document.getElementById("prev");
+
+    next.addEventListener("click", () => {
+        index = (index + 1) % 5;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    prev.addEventListener("click", () => {
+        index = (index - 1 + 5) % 5;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+
+    // Ensure that you add this script at the end of your HTML file or just before closing the body tag.
+    document.addEventListener('DOMContentLoaded', () => {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+    });
+
+
+</script>
