@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 
 </head>
@@ -70,10 +70,10 @@
                     </ul>
 
                     <p class="mt-6 text-sm">
-                       Do you want to Sign in?
+                        Do you want to Sign in?
                         <a href="./signin.html" class="text-blue-200 underline">Click Here</a>
                     </p>
-                    
+
                 </div>
             </div>
 
@@ -148,7 +148,25 @@
         </div>
     </div>
 
-    <script src="./assets/js/script.js"></script>
+    <script>
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+            authDomain: "orion-investment-2b141.firebaseapp.com",
+            projectId: "orion-investment-2b141",
+            storageBucket: "orion-investment-2b141.appspot.com",
+            messagingSenderId: "911866094162",
+            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+            measurementId: "G-12SQKBDR1S"
+        };
+
+
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+    </script>
 </body>
 
 </html>
@@ -215,16 +233,16 @@
             const user = userCredential.user;
 
             // Store additional user information in Firestore
-            await db.collection("users").doc(user.uid).set({
+            await db.collection("users").doc(user.uid).set({ // Use user.uid for the document ID
                 email: email,
                 username: username,
                 country: country,
-                password: password, 
+                // Note: Storing password in Firestore is not recommended for security reasons
             });
 
             console.log("Document successfully written!");
+            localStorage.setItem('userDocId', user.uid); // Store the user ID in local storage
 
-            // Show success toast
             showSigninSuccess();
 
             // Wait for the toast to be shown before redirecting
@@ -244,3 +262,32 @@
         }
     });
 </script>
+
+
+<!-- SIGNOUT SCRIPT -->
+<script>
+    // Function to handle sign-out
+    const signout = document.getElementById("signout-button");
+  
+    signout.addEventListener('click', (e) => {
+      e.preventDefault();
+      auth.signOut().then(() => {
+        // Sign-out successful.
+        showSignOutSuccess();
+  
+        // Optionally, redirect to a login page or another page
+        window.location.href = "signin.html"; // Change this to your login page
+      }).catch((error) => {
+        // An error happened.
+        Toastify({
+          text: `Error signing out: ${error.message}`,
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+          close: true
+        }).showToast();
+      });
+    })
+  
+  </script>

@@ -17,64 +17,40 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-  
+
 </head>
 <style>
-  /* Custom styles */
-  .transaction-table {
-    width: 100%;
-    border-collapse: collapse;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .transaction-table th {
-    background-color: #1e40af;
-    color: #fff;
+  .transaction-history-container {
+    max-width: 90%;
+    margin: 0 auto;
     padding: 1rem;
-    text-align: left;
-    font-weight: 600;
   }
-
-  .transaction-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-
-  .transaction-table tr:hover {
-    background-color: #e2e8f0;
-  }
-
-  .status {
-    font-weight: bold;
-    padding: 0.25rem 0.75rem;
-    text-align: center;
-  }
-
-  .receive {
+  
+  .back-button {
+    background-color: #007bff;
     color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
-  .transfer {
-    
-    color: white;
+  .back-button:hover {
+    background-color: #0056b3;
   }
 
-  .payment {
-    
-    color: white;
-  }
+  @media (max-width: 768px) {
+    .transaction-history-container {
+      padding: 0.5rem;
+    }
 
-  .withdraw {
-    /* background-color: #fef3c7; */
-    color: white;
-  }
-
-  .add-money {
-    /* background-color: #dbf4ff; */
-    color: white;
+    .transaction-history table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
   }
 </style>
 
@@ -82,7 +58,7 @@
   <div class="dashboard">
     <aside class="sidebar">
       <a href="./dashboard.html">
-        <div class="logo-wrap"><img class="logoo" src="./assests/images/logo.png" alt=""></div>
+        <div class="logo-wrap"><img class="logoo" src="./assets/images/logo.png" alt=""></div>
       </a>
       <ul class="nav">
         <a href="./dashboard.html">
@@ -103,10 +79,10 @@
       </ul>
       <div class="user">
         <div class="user">
-          <img id="" src="./assests/images/icon image.png" alt="User">
+          <!-- <img id="" src="./assests/images/icon image.png" alt="User"> -->
           <div class="user-info">
-            <h3 id="fullNameDisplay">Bruce James</h3>
-            <p id="emailDisplay"></p>
+            <!-- <p>Welcome, Valued Orion Investor!</p> -->
+            <p id="emailDisplay">Let's create lasting value together with Orion Investment!</p>
           </div>
         </div>
       </div>
@@ -114,7 +90,7 @@
 
     <main class="content">
       <header class="header">
-        <h2>Investment Dashboard</h2>
+        <!-- <h2>Investment Dashboard</h2> -->
         <input type="search" placeholder="Search" class="search">
         <div style="color: white;" class="live-time" id="liveTime">
           <p id="timeElement"></p>
@@ -164,78 +140,107 @@
 
       </div>
       <!-- popup end -->
-      
+
       <!-- Profile Information -->
-      <div class="profile-info text-center mb-6">
-        <h1 class="text-2xl font-bold text-white mb-4">Profile Information</h1>
-        <p class="text-white mt-3">Here's your recent transaction record</p>
+      <div class="profile-info text-center mb-8">
+        <h1 class="text-3xl font-bold text-blue-900">Transaction History</h1>
+        <p class="text-gray-600 mt-2">Overview of your recent activities</p>
       </div>
 
       <!-- Transaction History Table -->
-      <div class="transaction-history overflow-x-auto">
-        <table class="transaction-table">
-          <thead>
-            <tr>
-              <th>Name/Business</th>
-              <th>Date</th>
-              <th>Invoice ID</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>William Mardoch</td>
-              <td>21 March 2024</td>
-              <td>OP0214784</td>
-              <td>$250 USD</td>
-              <td class="status receive">Receive</td>
-            </tr>
-            <tr>
-              <td>Jack Dawson</td>
-              <td>20 March 2024</td>
-              <td>OP0214784</td>
-              <td>$20 USD</td>
-              <td class="status transfer">Transfer</td>
-            </tr>
-            <tr>
-              <td>Mailchimp</td>
-              <td>19 March 2024</td>
-              <td>OP7452148</td>
-              <td>-$80 USD</td>
-              <td class="status payment">Payment</td>
-            </tr>
-            <tr>
-              <td>Fiverr</td>
-              <td>18 March 2024</td>
-              <td>OP32201425</td>
-              <td>$100 USD</td>
-              <td class="status receive">Receive</td>
-            </tr>
-            <tr>
-              <td>Bank of America LTD.</td>
-              <td>19 March 2024</td>
-              <td>OP34014258</td>
-              <td>$210 USD</td>
-              <td class="status withdraw">Withdraw</td>
-            </tr>
-            <tr>
-              <td>Peter Jacky</td>
-              <td>12 March 2021</td>
-              <td>OP0214784</td>
-              <td>-$80 USD</td>
-              <td class="status payment">Payment</td>
-            </tr>
-            <tr>
-              <td>EBL Credit Card</td>
-              <td>10 March 2024</td>
-              <td>OP2147895</td>
-              <td>Add money</td>
-              <td class="status add-money">Add Money</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="transaction-history-container mx-auto max-w-4xl bg-white shadow-md rounded-lg p-6">
+        <a href="dashboard.html"><button class="back-button mb-4">Back</button></a>
+        <div class="transaction-history overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead class="bg-gray-100 text-left">
+              <tr class="text-sm text-gray-600 border-b border-gray-300">
+                <th class="p-4">Name/Business</th>
+                <th class="p-4">Date</th>
+                <th class="p-4">Invoice ID</th>
+                <th class="p-4">Amount (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Bitcoin Investment Fund</td>
+                <td class="p-4">23 Sep 2024</td>
+                <td class="p-4">INV-BTC89374</td>
+                <td class="p-4 text-green-600 font-semibold">+$12,000.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Ethereum Liquidity Pool</td>
+                <td class="p-4">21 Sep 2024</td>
+                <td class="p-4">INV-ETH67823</td>
+                <td class="p-4 text-green-600 font-semibold">+$5,500.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Coinbase Withdrawal</td>
+                <td class="p-4">20 Sep 2024</td>
+                <td class="p-4">WD-COIN00234</td>
+                <td class="p-4 text-red-600 font-semibold">-$3,200.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Binance Trading Profit</td>
+                <td class="p-4">18 Sep 2024</td>
+                <td class="p-4">INV-BIN90213</td>
+                <td class="p-4 text-green-600 font-semibold">+$8,750.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Stellar Network Transfer</td>
+                <td class="p-4">17 Sep 2024</td>
+                <td class="p-4">TRX-STR78956</td>
+                <td class="p-4 text-red-600 font-semibold">-$1,250.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+                <td class="p-4">Investment in USDT</td>
+                <td class="p-4">15 Sep 2024</td>
+                <td class="p-4">INV-USDT56784</td>
+                <td class="p-4 text-green-600 font-semibold">+$9,300.00</td>
+              </tr>
+              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer">
+                <td class="p-4">Withdrawal to Bank (BOA)</td>
+                <td class="p-4">14 Sep 2024</td>
+                <td class="p-4">WD-BOA12345</td>
+                <td class="p-4 text-red-600 font-semibold">-$4,500.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+      
+      <style>
+        .transaction-history-container {
+          max-width: 90%;
+          margin: 0 auto;
+          padding: 1rem;
+        }
+        
+        .back-button {
+          background-color: #007bff;
+          color: white;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      
+        .back-button:hover {
+          background-color: #0056b3;
+        }
+      
+        @media (max-width: 768px) {
+          .transaction-history-container {
+            padding: 0.5rem;
+          }
+      
+          .transaction-history table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+          }
+        }
+      </style>
+      
   </div>
 
 
@@ -298,54 +303,50 @@
 <script>
   var docRef = db.collection("users").doc("mail");
 
-docRef.get().then((doc) => {
-  if (doc.exists) {
+  docRef.get().then((doc) => {
+    if (doc.exists) {
       console.log("Document data:", doc.data());
       const userData = doc.data(); // Use doc.data() to access the data
       console.log("Document data:", userData);
-      document.getElementById("salutationDisplay").innerText =  userData.salutation;
-      document.getElementById("firstNameDisplay").innerText =  userData.firstName;
-      document.getElementById("middleNameDisplay").innerText =  userData.middleName;
+      document.getElementById("salutationDisplay").innerText = userData.salutation;
+      document.getElementById("firstNameDisplay").innerText = userData.firstName;
+      document.getElementById("middleNameDisplay").innerText = userData.middleName;
       document.getElementById("lastNameDisplay").innerText = userData.lastName;
-      document.getElementById("emailDisplay").innerText =  userData.  mail;
+      document.getElementById("emailDisplay").innerText = userData.mail;
       document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
-  } else {
+    } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
-  }
-}).catch((error) => {
-  console.log("Error getting document:", error);
-});
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
 </script>
+
+<!-- SIGNOUT SCRIPT -->
 <script>
   // Function to handle sign-out
   const signout = document.getElementById("signout-button");
 
   signout.addEventListener('click', (e) => {
-      auth.signOut().then(() => {
-          // Sign-out successful.
-          Toastify({
-              text: "You have successfully signed out.",
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-              close: true
-          }).showToast();
+    e.preventDefault();
+    auth.signOut().then(() => {
+      // Sign-out successful.
+      showSignOutSuccess();
 
-          // Optionally, redirect to a login page or another page
-          window.location.href = "login.html"; // Change this to your login page
-      }).catch((error) => {
-          // An error happened.
-          Toastify({
-              text: `Error signing out: ${error.message}`,
-              duration: 3000,
-              gravity: "top",
-              position: "right",
-              backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
-              close: true
-          }).showToast();
-      });
+      // Optionally, redirect to a login page or another page
+      window.location.href = "signin.html"; // Change this to your login page
+    }).catch((error) => {
+      // An error happened.
+      Toastify({
+        text: `Error signing out: ${error.message}`,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+        close: true
+      }).showToast();
+    });
   })
 
 </script>

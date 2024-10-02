@@ -232,6 +232,48 @@ a {
   }
 }
 
+@media screen and (max-width: 350px) {
+  .sidebar {
+      width: 120px; /* Further reduce the sidebar width */
+      padding: 5px; /* Reduce padding for smaller screens */
+  }
+
+  .logo-wrap {
+      width: 80px; /* Reduce logo wrap width */
+      margin-left: 10px;
+  }
+
+  .logoo {
+      width: 70px; /* Reduce the logo size */
+  }
+
+  .sidebar .nav li {
+      font-size: 12px; /* Smaller font size */
+      padding: 5px; /* Reduce padding */
+      margin: 10px 0; /* Adjust margin */
+  }
+
+  .user {
+      padding: 5px; /* Reduce padding for user section */
+  }
+
+  .user img {
+      width: 30px; /* Make user image smaller */
+  }
+
+  .user-info h3 {
+      font-size: 12px; /* Smaller font for name */
+  }
+
+  .user-info p {
+      font-size: 10px; /* Smaller font for email */
+  }
+
+  .sidebar .nav li i {
+      margin-right: 5px; /* Adjust icon margin */
+  }
+}
+
 .custom-div {
   height: 300px;
   width: 100%;
@@ -327,229 +369,293 @@ a {
   gap: 20px;
 }
 
+/* Base Styles for Header */
 .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    /* margin-bottom: 90px; */
-    background-color: #157dd4;
-    padding: 30px 10px 0 10px;
-    cursor: pointer;
-    width: 80%;
-    position: fixed;
-    z-index: 1000;
-    overflow-y: hidden;
-    margin-top: -10px;
-    height: auto;
-    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #157dd4;
+  padding: 15px 20px;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
 }
-
-
 
 .header h2 {
-    font-size: 20px;
-    color: white;
-    margin-top: 10px;
+  font-size: 24px;
+  color: white;
+  margin: 0;
 }
 
-.search {
+.live-time {
+  color: white;
+  font-size: 16px;
+}
+
+.filter {
+  padding: 12px 20px;
+  background-color: #f77f00;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.filter:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
+
+/* Responsive Styles */
+
+/* For screen widths 350px and below */
+@media (max-width: 350px) {
+  .header {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 10px 10px;
+  }
+
+  .header h2 {
+    font-size: 18px; /* Smaller font size */
+    margin-bottom: 5px; /* Add spacing */
+  }
+
+  .live-time {
+    font-size: 12px; /* Reduce font size */
+  }
+
+  .filter {
+    padding: 8px 15px; /* Adjust button padding */
+    font-size: 12px; /* Smaller button text */
+    margin: 5px 0; /* Add margin for better spacing */
+  }
+}
+
+/* For screen widths 351px to 480px */
+@media (min-width: 351px) and (max-width: 480px) {
+  .header {
+    flex-direction: row;
+    padding: 10px 15px; /* Slightly adjust padding */
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .live-time {
+    font-size: 14px;
+  }
+
+  .filter {
+    padding: 10px 18px; /* Adjust padding */
+    font-size: 14px;
+  }
+}
+
+/* For screen widths 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    padding: 12px 20px; /* Adjust padding for medium screens */
+  }
+
+  .header h2 {
+    font-size: 22px;
+  }
+
+  .live-time {
+    font-size: 15px;
+  }
+
+  .filter {
+    padding: 12px 22px;
+    font-size: 15px;
+  }
+}
+
+/* For screen widths 769px and above */
+@media (min-width: 769px) {
+  .header {
+    padding: 15px 25px; /* Slightly larger padding for bigger screens */
+  }
+
+  .header h2 {
+    font-size: 24px; /* Maintain original size */
+  }
+
+  .live-time {
+    font-size: 16px;
+  }
+
+  .filter {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  .search {
+    display: block; /* Display the search bar */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     width: 250px;
     transition: border-color 0.3s ease;
-}
+  }
 
-.search:focus {
+  .search:focus {
     border-color: #4f46e5;
     outline: none;
+  }
 }
 
-.filter {
-    padding: 10px 20px;
-    background-color: #f77f00;
-    color: #fff;
-    border-radius: 5px;
-    z-index: 1000;
-    border: none;
-    transition: background-color 0.3s ease;
-}
 
-.filter:hover {
-    background-color: green;
-}
 
 
 /* Overview Section */
 /* Overview Section */
+.section-wrap {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px; /* Max width for desktop */
+  margin: auto;
+}
+
+.section-title {
+  font-size: 2em;
+  color: #4f46e5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .overview {
   display: flex;
   justify-content: space-between;
-  margin-top: 70px;
-  /* background-color: #001242; */
-  ;
-  
-
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  margin-top: 20px;
 }
 
-/* Standout Current Balance Card */
-.balance-card {
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
-  color: #fff;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-.overview {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 80px;
-}
-
-.overview div {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    flex-basis: 30%;
-    text-align: center;
-    
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.overview p{
-  font-size: x-large;
-}
-
-.overview div:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Details Section */
-.details {
-    display: block;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.crypto-chart{
-  background-image: url('./assests\images\chart.jpg');
-        background-size: cover;      /* Ensures the image covers the entire div */
-        background-position: center; /* Center the image */
-        height: 400px;               /* Adjust the height */
-        width: 100%;  
-}
-
-.money-floww, .recent-transactions {
-  background-color: #fff;
-  /* padding: 20px; */
+.card {
+  background-color: #ffffff;
+  padding: 30px;
   border-radius: 12px;
-  flex-basis: 48%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-basis: 30%; /* Flex basis for larger screens */
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  /* background-color: red; */
 }
 
-.money-floww:hover, .recent-transactions:hover {
+.card h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card p {
+  font-size: 2em;
+  color: #4f46e5; /* Primary color */
+  font-weight: bold;
+}
+
+.card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping for responsiveness */
+  gap: 20px; /* Space between cards */
+  margin-top: 20px;
 }
 
 .money-flow, .recent-transactions {
-    background-color: #071013 !important;
-    padding: 20px;
-    border-radius: 12px;
-    color: white;
-    flex-basis: 48%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-basis: 48%; /* Default size for larger screens */
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.crypto-chart {
+  background-image: url('./assets/images/chart.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* Adjust height */
+  border-radius: 12px;
 }
 
 .money-flow:hover, .recent-transactions:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.recent-transactions {
+  padding: 20px;
+}
+
+.recent-transactions h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 .recent-transactions ul {
-    list-style-type: none;
-    padding: 0;
-    
+  list-style-type: none;
+  padding: 0;
 }
 
 .recent-transactions li {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: none;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-   
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .recent-transactions li:hover {
-    background-color: none;
+  background-color: #f0f0f0;
 }
 
-.recent-transactions li:before {
-    content: '';
-    color: #4f46e5;
-    margin-right: 10px;
+.recent-transactions li span {
+  color: #333;
+  font-weight: 600;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .sidebar {
-        width: 240px;
-    }
-    
-    .overview, .details {
-        flex-direction: column;
-    }
+  .card, .money-flow, .recent-transactions {
+    flex-basis: 100%; /* Stack items on smaller screens */
+  }
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        width: 200px;
-    }
+  .card {
+    flex-basis: 100%; /* Stack cards on smaller screens */
+    margin-bottom: 15px;
+  }
 
-    .overview div {
-        flex-basis: 100%;
-        margin-bottom: 15px;
-    }
-
-    .details {
-        flex-direction: column;
-      
-    }
-
-    .money-flow {
-        flex-basis: 100%;
-        margin-bottom: 15px;
-        width: 80%;
-        position:  relative;
-        background-color: red;
-    }
+  .money-flow, .recent-transactions {
+    flex-basis: 100%;
+  }
 }
-  
+
 @media (max-width: 480px) {
-    .header h2 {
-        font-size: 18px;
-    }
+  .card h3 {
+    font-size: 1.2em; /* Smaller headings */
+  }
 
-    .search {
-        width: 180px;
-    }
-
-    .overview div, .money-flow, .recent-transactions {
-        padding: 10px;
-    }
+  .card p {
+    font-size: 1.5em; /* Smaller text */
+  }
 }
+
 
   /* registration */
   
@@ -968,101 +1074,148 @@ textarea {
   height: 500px;
   margin: 0 auto;
   padding: 20px;
-  /* background-color: white; */
+  /* background-color: #E0D8DE; */
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  border-radius: 8px;
+}
+
+/* Container for each pricing plan */
+/* General styling for the pricing section */
+.pricing-section {
+  padding: 50px 20px; /* Top and bottom padding */
+}
+
+.parent-tiers {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px; /* Gap at the bottom */
 }
 
 /* Container for each pricing plan */
 .pricing-container {
-  flex: 1 1 auto; /* Allows the containers to grow and shrink as needed */
+  flex: 1 1 300px;
   max-width: 350px;
-  margin: 20px;
-  /* background-color: red; */
+  margin: 0 auto;
+  transition: transform 0.3s ease;
 }
 
-/* Pricing tier styles */
 .pricing-tier {
-  background-color: #122744; /* Blue background */
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 30px;
-  width: 350px; /* Full width of the container */
-  max-width: 350px;
+  color: black; /* Default text color */
   text-align: center;
-  color: white;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .pricing-tier:hover {
-  transform: scale(1.05); /* Slight hover effect */
+  transform: scale(1.05);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-tier h2 {
-  font-size: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.75rem;
+  background-color: rgba(255, 255, 255, 0.15); /* Improved visibility */
   padding: 10px 20px;
   border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  color: #fff; /* Maintain good contrast */
 }
 
 .pricing-tier h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 10px 0;
+  font-weight: bold;
+  color: #000; /* Contrast against bright backgrounds */
 }
 
 .pricing-tier p {
   font-size: 1rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  color: #fff; /* Maintain visibility */
 }
 
 .pricing-tier ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0 0 15px 0;
   text-align: left;
-  margin-bottom: 20px;
 }
 
 .pricing-tier ul li {
-  font-size: 1rem;
-  margin: 10px 0;
-  position: relative;
   padding-left: 25px;
+  position: relative;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #fff; /* Ensure visibility */
 }
 
 .pricing-tier ul li::before {
   content: "✔";
-  color: #00D98F;
   position: absolute;
   left: 0;
-  font-size: 1.2rem;
-  line-height: 1rem;
+  color: #00D98F;
 }
 
 .pricing-tier button {
   background-color: #00D98F;
   border: none;
-  padding: 15px 20px;
-  color: white;
+  padding: 12px 20px;
+  color: #000; /* Enhance button text visibility */
   font-size: 1rem;
   border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .pricing-tier button:hover {
   background-color: #00B074;
+  transform: translateY(-3px);
 }
 
-/* Responsive styles */
+/* Different styles for each plan */
+.bronze {
+  background: linear-gradient(135deg, #cd7f32, #a77255);
+  color: #fff;
+}
+
+.silver {
+  background: linear-gradient(135deg, #C0C0C0, #858585);
+  color: #000; /* Switch to black text for better contrast */
+}
+
+.gold {
+  background: linear-gradient(135deg, #FFD700, #d4af37);
+  color: #000; /* Ensure contrast */
+}
+
+.platinum {
+  background: linear-gradient(135deg, #e5e4e2, #c3c3c3);
+  color: #000; /* Better visibility */
+}
+
+.diamond {
+  background: linear-gradient(135deg, #b9f2ff, #8ecae6);
+  color: #000; /* Black text for clarity */
+}
+
+.vvip {
+  background: linear-gradient(135deg, #d8bfd8, #dda0dd);
+  color: #000; /* Ensure text is visible */
+}
+
+/* Responsive styling */
 @media (max-width: 768px) {
   .parent-tiers {
-    flex-wrap: wrap; /* Enable wrapping on smaller screens */
+    flex-direction: column;
+    gap: 20px;
   }
 
   .pricing-container {
-    flex: 1 1 100%; /* Full width on small screens */
     max-width: 100%;
   }
 }

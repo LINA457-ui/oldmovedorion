@@ -7,16 +7,16 @@
     <title>Orion - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    
+
     <!-- Firebase scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
-    
+
     <!-- Toastify -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    
-    
+
+
     <style>
         .hidden {
             display: none;
@@ -66,33 +66,47 @@
                         class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out relative overflow-hidden">
                         <span class="button-text">Login</span>
                         <span class="spinner hidden absolute inset-0 flex justify-center items-center bg-blue-600">
-                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
+                                </path>
                             </svg>
                         </span>
                     </button>
                 </div>
+
+                <!-- Link to Signup Page -->
+                <div class="text-center">
+                    <p class="mt-4">
+                        Don't have an account?
+                        <a href="application.html" class="text-blue-600 hover:text-blue-800 font-semibold">Sign up</a>
+                    </p>
+                </div>
             </form>
+
         </div>
     </div>
 
     <!-- Firebase initialization -->
     <script>
-        
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-      authDomain: "orion-investment-2b141.firebaseapp.com",
-      projectId: "orion-investment-2b141",
-      storageBucket: "orion-investment-2b141.appspot.com",
-      messagingSenderId: "911866094162",
-      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-      measurementId: "G-12SQKBDR1S"
-    };
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+            authDomain: "orion-investment-2b141.firebaseapp.com",
+            projectId: "orion-investment-2b141",
+            storageBucket: "orion-investment-2b141.appspot.com",
+            messagingSenderId: "911866094162",
+            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+            measurementId: "G-12SQKBDR1S"
+        };
 
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
 
     </script>
 

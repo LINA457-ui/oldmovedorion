@@ -167,78 +167,23 @@
                 </button>
             </div>
         </form>
-    </div>
-
-
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-            authDomain: "orion-investment-2b141.firebaseapp.com",
-            projectId: "orion-investment-2b141",
-            storageBucket: "orion-investment-2b141.appspot.com",
-            messagingSenderId: "911866094162",
-            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-            measurementId: "G-12SQKBDR1S"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-    </script>
-
-
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const submitButton = document.getElementById("submit");
-            const spinner = document.getElementById("spinner");
-
-            // Show spinner and disable button
-            submitButton.disabled = true;
-            spinner.style.display = "flex";
-
-            // Get form data
-            const formData = {
-                salutation: document.getElementById("salutation").value,
-                first_name: document.getElementById("firstName").value,
-                middle_name: document.getElementById("middleName").value,
-                last_name: document.getElementById("lastName").value,
-                address_line1: document.getElementById("address1").value,
-                address_line2: document.getElementById("address2").value,
-                city: document.getElementById("city").value,
-                state: document.getElementById("state").value,
-                zip: document.getElementById("zip").value,
-                phone_type: document.getElementById("phoneType").value,
-                location: document.getElementById("location").value,
-                phone_number: document.getElementById("phoneNumber").value,
-                mailingAddress: document.getElementById("mailingAddress").checked,
-                citizenship: document.getElementById("citizenship").checked,
-                birthOutsideUS: document.getElementById("birthOutsideUS").checked
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+                authDomain: "orion-investment-2b141.firebaseapp.com",
+                projectId: "orion-investment-2b141",
+                storageBucket: "orion-investment-2b141.appspot.com",
+                messagingSenderId: "911866094162",
+                appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+                measurementId: "G-12SQKBDR1S"
             };
 
-            // Save form data to Firestore
-            db.collection("contacts").add(formData)
-                .then(() => {
-                   showSigninSuccess();
-                    setTimeout(() => {
-                        window.location.href = "./dashboard.html";
-                    }, 2000);
-
-                    // Reset the form
-                    document.getElementById("contactForm").reset();
-                })
-                .catch((error) => {
-                    console.error("Error submitting form: ", error);
-                    alert("An error occurred. Please try again.");
-                })
-                .finally(() => {
-                    // Hide spinner and enable button
-                    spinner.style.display = "none";
-                    submitButton.disabled = false;
-                });
-        });
-    </script>
+            // Initialize Firebase
+            const app = firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            const auth = firebase.auth();
+        </script>
+    </div>
 </body>
 
 </html>
@@ -253,4 +198,69 @@
             close: true,
         }).showToast();
     }
+</script>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const submitButton = document.getElementById("submit");
+        const spinner = document.getElementById("spinner");
+
+        // Show spinner and disable button
+        submitButton.disabled = true;
+        spinner.style.display = "flex";
+
+        // Get form data
+        const formData = {
+            salutation: document.getElementById("salutation").value,
+            first_name: document.getElementById("firstName").value,
+            middle_name: document.getElementById("middleName").value || null,
+            last_name: document.getElementById("lastName").value,
+            address_line1: document.getElementById("address1").value,
+            address_line2: document.getElementById("address2").value || null,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            zip: document.getElementById("zip").value,
+            phone_type: document.getElementById("phoneType").value,
+            location: document.getElementById("location").value,
+            phone_number: document.getElementById("phoneNumber").value,
+            mailingAddress: document.getElementById("mailingAddress").checked,
+            citizenship: document.getElementById("citizenship").checked,
+            birthOutsideUS: document.getElementById("birthOutsideUS").checked
+        };
+
+        // Retrieve the unique document ID from localStorage
+        const docId = localStorage.getItem('userDocId');
+
+        // Check if docId is present
+        if (!docId) {
+            console.error("User document ID not found in localStorage.");
+            alert("User not found. Please sign up again.");
+            spinner.style.display = "none";
+            submitButton.disabled = false;
+            return; // Exit the function if docId is not found
+        }
+
+        try {
+            // Save form data to Firestore
+            await db.collection("users").doc(docId).update(formData);
+
+            // Show success notification
+            showSigninSuccess();
+            setTimeout(() => {
+                window.location.href = "./dashboard.html";
+            }, 2000);
+
+            // Reset the form
+            document.getElementById("contactForm").reset();
+        } catch (error) {
+            console.error("Error submitting form: ", error);
+            alert("An error occurred. Please try again.");
+        } finally {
+            // Hide spinner and enable button
+            spinner.style.display = "none";
+            submitButton.disabled = false;
+        }
+    });
+
 </script>
