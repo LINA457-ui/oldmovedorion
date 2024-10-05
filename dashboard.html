@@ -130,15 +130,17 @@
                         <!-- Transfer From Section -->
                         <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
                         <select id="transfer-from" class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
-                            <option>Current Balance</option>
+                            <option id="currentBalanceM">Current Balance</option>
+                            <option id="brokerage">Brokerage</option>
+                            <option id="dividend">Dividend</option>
                         </select>
                     
                         <!-- Transfer To Section -->
                         <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
                         <select id="transfer-to" class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
-                            <option>Select an Account</option>
-                            <option>Brokerage</option>
-                            <option>Dividend</option>
+                            <option  id="currentBalanceM">Current Balance</option>
+                            <option id="brokerage">Brokerage</option>
+                            <option id="dividend">Dividend</option>
                         </select>
                     
                         <!-- Amount Input Section -->
@@ -153,7 +155,7 @@
                                 class="cancel-btn w-32 py-2 px-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-md shadow transition duration-200 ease-in-out">
                                 Cancel
                             </button>
-                            <button type="submit"
+                            <button id="continue" type="submit"
                                 class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md shadow transition duration-200 transform hover:scale-105 ease-in-out">
                                 Continue
                             </button>
@@ -180,17 +182,33 @@
                 <h2 class="section-title">Investment Overview</h2>
 
                 <section class="overview">
-                    <div class="card balance-card  bg-[#FFFD82]">
-                        <h3>Current Balance</h3>
-                        <p>$500,206.20</p>
+                    
+                        <!-- Current Balance Card -->
+                        <div class="cardd balance-card bg-yellow-100 text-gray-800 w-full sm:w-[48%] lg:w-[30%] p-6 rounded-xl shadow-md transition-transform transform hover:translate-y-2 hover:shadow-lg relative">
+                            <!-- Platinum Icon -->
+                            <!-- Title -->
+                            <h3 class="text-2xl font-bold mb-2 text-gray-900">Current Balance</h3>
+                            
+                            <!-- Balance Amount -->
+                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$905,000.00</p>
+                    
+                            <!-- Plan Details -->
+                            <div>
+                                <p>Active Plan: <span class="text-blue-700 text-2xl" >Platinum</span></p>
+                                <p>Dividend Interest: <span class="text-blue-700 text-2xl">0.4%</span></p>
+                            </div>
+                        </div>
+                    
+                    
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Brokerage</h3>
+                        <p style="color: red !important">$-48,000.50</p>
+                        <p >Active Plan: <span class="text-blue-700 text-2xl" >Platinum</span></p>
+                       
                     </div>
                     <div class="card">
-                        <h3>Brokerage</h3>
-                        <p>$64,210.50</p>
-                    </div>
-                    <div class="card">
-                        <h3>Dividend</h3>
-                        <p>$5,612.00</p>
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Dividend</h3>
+                        <p>$21,720</p>
                     </div>
                 </section>
 
@@ -456,7 +474,7 @@
       return;
     }
 
-    var docRef = db.collection("users").doc(docId);
+    const docRef = db.collection("users").doc(docId);
 
     docRef.get().then((doc) => {
       if (doc.exists) {
@@ -551,4 +569,20 @@
 
     // Create the pie chart
     const stockPieChart = new Chart(ctx, config);
+</script>
+
+<script>
+
+</script>
+
+
+<script>
+    const currentBalanceM = document.getElementById('currentBalanceM');
+    const brokerage = document.getElementById('brokerage');
+    const dividend= document.getElementById('dividend');
+    const continue = document.getElementById('continue');
+
+
+    const docRef = db.collection("users").doc(docId);
+     
 </script>

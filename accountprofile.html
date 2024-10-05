@@ -316,7 +316,7 @@
     }
 
     // Reference the Firestore document using the retrieved docId
-    var docRef = db.collection("users").doc(docId);
+    const docRef = db.collection("users").doc(docId);
 
     docRef.get().then((doc) => {
       if (doc.exists) {

@@ -1,11 +1,116 @@
-<header class="header">
-    <h2>Investment Dashboard</h2>
-    <input type="search" placeholder="Search" class="search">
-    <div style="color: white;" class="live-time" id="liveTime">
-        <p id="timeElement"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Record</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/css/out.css">
+</head>
+
+<body class="bg-gray-100">
+        <!-- Change PIN form -->
+        <div id="enterPinForm"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 ease-in-out">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+            <h3 class="text-lg font-semibold text-center text-gray-800 mb-4">Enter Transaction PIN</h3>
+            
+            <form id="pinForm" class="space-y-6">
+                <!-- PIN input -->
+                <div class="flex flex-col items-center">
+                    <label for="pin" class="text-gray-700 text-sm mb-2">Enter PIN</label>
+                    <div class="flex space-x-2 justify-center">
+                        <input type="text" maxlength="1" inputmode="numeric" pattern="\d*"
+                            class="pin-box w-12 h-12 text-center text-2xl border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-100 text-gray-900"
+                            required aria-label="PIN digit 1" />
+                        <input type="text" maxlength="1" inputmode="numeric" pattern="\d*"
+                            class="pin-box w-12 h-12 text-center text-2xl border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-100 text-gray-900"
+                            required aria-label="PIN digit 2" />
+                        <input type="text" maxlength="1" inputmode="numeric" pattern="\d*"
+                            class="pin-box w-12 h-12 text-center text-2xl border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-100 text-gray-900"
+                            required aria-label="PIN digit 3" />
+                        <input type="text" maxlength="1" inputmode="numeric" pattern="\d*"
+                            class="pin-box w-12 h-12 text-center text-2xl border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-100 text-gray-900"
+                            required aria-label="PIN digit 4" />
+                    </div>
+                </div>
+    
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-500 w-full transition-colors duration-300 focus:outline-none focus:ring focus:ring-indigo-400">
+                    Submit PIN
+                </button>
+            </form>
+        </div>
     </div>
+    
 
-    <button id="open-popup" class="filter"><i style="margin-right: 10px;"
-            class="fa-solid fa-money-bill-transfer"></i>Withdraw Funds</button>
+</body>
+</html>
 
-</header>
+
+<!-- <script>
+    // Firestore reference to the user’s PIN
+    const userPinDocRef = db.collection('users').doc('userId'); // Replace 'userId' with the actual user ID
+    
+    // Step 1: Save the default PIN (0000) to Firestore when the user is created or first time setup
+    const saveDefaultPin = async () => {
+        try {
+            await userPinDocRef.set({
+                pin: "0000"
+            });
+            console.log("Default PIN saved successfully!");
+        } catch (error) {
+            console.error("Error saving default PIN: ", error);
+        }
+    };
+    
+    // Call this function to save the default pin on user creation
+    saveDefaultPin();
+    
+    // Step 2: Show Change PIN form when the button is clicked
+    document.getElementById('changePinBtn').addEventListener('click', () => {
+        document.getElementById('changePinForm').style.display = 'block';
+    });
+    
+    // Step 3: Handle the change PIN form submission
+    document.getElementById('pinForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+    
+        const oldPin = document.getElementById('oldPin').value;
+        const newPin = document.getElementById('newPin').value;
+        const confirmNewPin = document.getElementById('confirmNewPin').value;
+    
+        // Validate the new PIN
+        if (newPin !== confirmNewPin) {
+            alert('New PIN and Confirm New PIN do not match.');
+            return;
+        }
+    
+        try {
+            // Fetch the current PIN from Firestore
+            const doc = await userPinDocRef.get();
+            if (doc.exists) {
+                const storedPin = doc.data().pin;
+    
+                // Step 4: Check if the old PIN matches the stored PIN
+                if (oldPin === storedPin) {
+                    // Step 5: Update the PIN in Firestore
+                    await userPinDocRef.update({
+                        pin: newPin
+                    });
+                    alert('PIN updated successfully!');
+                    // Optionally, hide the form after success
+                    document.getElementById('changePinForm').style.display = 'none';
+                } else {
+                    alert('Old PIN is incorrect.');
+                }
+            } else {
+                console.log('No such document.');
+            }
+        } catch (error) {
+            console.error("Error updating PIN: ", error);
+        }
+    });
+    </script>
+     -->

@@ -7,6 +7,8 @@
     <title>Banking Dashboard</title>
     <link rel="stylesheet" href="./assets/css/outputt.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -63,10 +65,10 @@
                     Funds</button>
             </header>
 
-            <div
+            <!-- <div
                 class="h-75 bg-gradient-to-r from-blue-400 to-blue-600 text-white flex items-center justify-center rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold">Welcome to Our Service!</h2>
-            </div>
+            </div> -->
 
 
 
@@ -114,134 +116,126 @@
 
 
 
+            <button id="signout-button" class="sticky-signout-button">Sign Out</button>
+            <div class="bg-red">
+                <a href="./addbankacct.html">
+                    <button id="addBankbutton" class="sticky-addbank-button">
+                        <span class="button-text">Add a Bank Account</span>
+                        <span class="spinner hidden absolute inset-0 flex justify-center items-center bg-blue-600">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                                </circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </a>
+
+                <!-- transaction pin -->
+                <a  href="./pin.html"><button id="transferBankbutton" class="sticky-transferBank-button">Change
+                        transaction pin</button></a>
+
+
+                <!-- Change PIN form -->
+               
+
+                <!-- Change PIN Form Popup -->
+                <!-- Change PIN Form Popup -->
+
+                <!-- <script>
+                    // Show the change pin form when the button is clicked
+                    document.getElementById('transferBankbutton').addEventListener('click', function () {
+                        const form = document.getElementById('changePinForm');
+                        form.style.display = 'flex'; // Display the form
+                        form.classList.remove('opacity-0', 'translate-y-10');
+                        form.classList.add('opacity-100', 'translate-y-0');
+                    });
+
+                    // Hide the form when cancel button is clicked
+                    document.getElementById('cancelPinBtn').addEventListener('click', function () {
+                        const form = document.getElementById('changePinForm');
+                        form.classList.add('opacity-0', 'translate-y-10');
+                        setTimeout(() => form.style.display = 'none', 500); // Wait for transition
+                    });
+
+                    // Optionally hide the form on form submission
+                    document.getElementById('submitPinBtn').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const form = document.getElementById('changePinForm');
+                        form.classList.add('opacity-0', 'translate-y-10');
+                        setTimeout(() => form.style.display = 'none', 500); // Wait for transition
+                    });
+
+                </script> -->
+
+                <script>
+                    // Show the change pin form when the button is clicked
+                    document.getElementById('transferBankbutton').addEventListener('click', function () {
+                        const form = document.getElementById('changePinForm');
+                        form.style.display = 'flex'; // Display the form
+                        form.classList.remove('opacity-0', 'translate-y-10');
+                        form.classList.add('opacity-100', 'translate-y-0');
+                    });
+
+                    // Close the form (you can customize this with a close button or auto-hide)
+                    document.getElementById('submitPinBtn').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const form = document.getElementById('changePinForm');
+                        form.classList.add('opacity-0', 'translate-y-10');
+                        setTimeout(() => form.style.display = 'none', 500); // Wait for transition
+                    });
+
+                </script>
 
 
 
 
 
 
-        </main>
-        <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-        <button id="addBankbutton" class="sticky-addbank-button">
-            <span class="button-text">Add a Bank Account</span>
-            <span class="spinner hidden absolute inset-0 flex justify-center items-center bg-blue-600">
-                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
-            </span>
-        </button>
-        <button id="transferBankbutton" class="sticky-transferBank-button">Add Bank</button>
-
-        <div id="popupAdd" class="popup-overlay">
-
-            <div class="transfer-container mx-auto my-10 max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg">
-                <div class="transfer-header flex justify-between items-center border-b pb-4 mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800">Add a Bank Account</h3>
-                    <button id="close-popupp"
-                        class="close-btn text-gray-500 hover:text-gray-800 transition duration-200">&times;</button>
-                </div>
-
-                <form class="transfer-form bg-white w-full space-y-6">
-                    <!-- Bank Name Input -->
-                    <div>
-                        <label for="bankName" class="block text-base font-medium text-gray-700 mb-1">Bank Name</label>
-                        <input id="bankName" name="bankName" type="text" placeholder="Bank Name"
-                            class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold placeholder-gray-400"
-                            style="color: black !important; font-weight: bold !important;" required>
-                    </div>
-                
-                    <!-- Routing Number Input -->
-                    <div>
-                        <label for="routingNumber" class="block text-base font-medium text-gray-700 mb-1">Routing Number</label>
-                        <input id="routingNumber" name="routingNumber" type="text" placeholder="Routing Number"
-                            class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold placeholder-gray-400"
-                            style="color: black !important; font-weight: bold !important;" required>
-                    </div>
-                
-                    <!-- Account Number Input -->
-                    <div>
-                        <label for="accountNumber" class="block text-base font-medium text-gray-700 mb-1">Account Number</label>
-                        <input id="accountNumber" name="accountNumber" type="text" placeholder="Account Number"
-                            class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold placeholder-gray-400"
-                            style="color: black !important; font-weight: bold !important;" required>
-                    </div>
-                
-                    <!-- Amount Input -->
-                    <div>
-                        <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
-                        <input id="amount" name="amount" type="text" placeholder="$ Amount"
-                            class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold placeholder-gray-400"
-                            style="color: black !important; font-weight: bold !important;" required>
-                    </div>
-                
-                    <!-- Button Group -->
-                    <div class="flex justify-end space-x-4 mt-8">
-                        <button id="cancel-popupp" type="button"
-                            class="w-32 py-2 px-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-md shadow transition duration-200 ease-in-out">
-                            Cancel
-                        </button>
-                        <button id="submitErrorPop" type="submit"
-                            class="w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md shadow transition duration-200 transform hover:scale-105 ease-in-out">
-                            Withdraw
-                        </button>
-                    </div>
-                </form>
-                
             </div>
 
 
-        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+    <!-- transaction pin -->
+
+   
+    <!-- ENTER PIN -->
+    <!-- Withdraw Button -->
+    <!-- Enter PIN Form Modal (Initially Hidden) -->
+   
+    
+
+
+
+
+
+
+    <!-- ENTER PIN -->
 
 
     </div>
 
     <!-- Popup Container -->
-    <div id="checkDeposit" class="checkDeposit hidden fixed inset-0 items-center justify-center">
-        <div class="relative max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg border border-gray-200 mt-10">
-            <!-- Cancel Button -->
-            <button id="cClosePopup"
-                class="absolute top-2 right-2 text-gray-400 hover:text-red-600 transition duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-
-            <h2 class="text-2xl font-bold text-gray-800 mb-3">Deposit Required</h2>
-            <p class="text-gray-600 mb-2">To access your investment withdrawals, please submit a check deposit to your
-                account.</p>
-
-            <!-- File Upload Section -->
-            <div class="mt-4">
-                <label class="block text-sm font-semibold text-red-600 mb-1" for="checkImage">Upload Check
-                    Image*</label>
-                <div id="uploadArea"
-                    class="flex items-center justify-center w-full p-4 border-4 border-dashed border-red-500 rounded-lg cursor-pointer hover:bg-red-50 transition duration-300">
-                    <input type="file" id="checkImage" accept="image/*" class="hidden" />
-                    <span class="text-red-500 font-semibold">Click here to upload your check</span>
-                </div>
-            </div>
-
-            <!-- Emphasis on Check Amount -->
-            <div class="mt-6 bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500">
-                <p class="text-center text-xl font-bold text-yellow-800">$100,000.00 Check</p>
-            </div>
-
-            <!-- Reason for Limitation -->
-            <p class="mt-4 text-sm text-gray-500 italic">Please note: For security purposes and to maintain the
-                integrity of your investment, withdrawals are only enabled after a successful check deposit of
-                $100,000.00.</p>
-
-            <!-- Submit Button -->
-            <div class="mt-6 flex justify-end">
-                <button
-                    class="bg-blue-600 text-white font-bold px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">Submit
-                    Deposit</button>
-            </div>
-        </div>
-    </div>
+    
 
 
 
@@ -252,7 +246,7 @@
             document.getElementById('checkImage').click();
         });
     </script>
-    
+
 </body>
 
 </html>
@@ -359,54 +353,3 @@
 
 </script>
 
-<script>
-    const addBankbutton = document.getElementById("addBankbutton");
-    const popupAdd = document.getElementById('popupAdd');
-    const closepopupp = document.getElementById('close-popupp');
-    const cancelpopupp = document.getElementById('cancel-popupp');
-    const checkDeposit = document.getElementById('checkDeposit');
-    const cClosePopup = document.getElementById("cClosePopup");
-    const transferForm = document.querySelector('.transfer-form');
-
-
-
-
-
-    addBankbutton.addEventListener('click', (e) => {
-        popupAdd.style.display = 'flex';
-    })
-
-    closepopupp.addEventListener('click', (e) => {
-        popupAdd.style.display = 'none';
-    })
-
-    cancelpopupp.addEventListener('click', (e) => {
-        popupAdd.style.display = 'none';
-    })
-
-   submitErrorPop.addEventListener('click', (event) => { 
-    // Prevent the default form submission
-    event.preventDefault(); 
-
-    // Fetch the latest values inside the event listener
-    const bankNameInput = document.getElementById('bankName').value.trim();
-    const routingNumberInput = document.getElementById('routingNumber').value.trim();
-    const accountNumberInput = document.getElementById('accountNumber').value.trim();
-
-    // Check if input values are empty
-    if (bankNameInput === "" || routingNumberInput === "" || accountNumberInput === "") {
-        console.log("One or more input fields are empty.");
-        return;
-    } else {
-        // Display the checkDeposit element
-        checkDeposit.style.display = 'flex';
-        console.log("checkDeposit display set to flex.");
-    }
-});
-
-
-    cClosePopup.addEventListener('click', (e) => {
-        checkDeposit.style.display = 'none';
-        popupAdd.style.display = 'none';
-    })
-</script>

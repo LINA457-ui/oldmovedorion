@@ -144,102 +144,158 @@
       <!-- Profile Information -->
       <div class="profile-info text-center mb-8">
         <h1 class="text-3xl font-bold text-blue-900">Transaction History</h1>
-        <p class="text-gray-600 mt-2">Overview of your recent activities</p>
+        <p class="text-white mt-2">Overview of your recent activities</p>
       </div>
 
       <!-- Transaction History Table -->
       <div class="transaction-history-container mx-auto max-w-4xl bg-white shadow-md rounded-lg p-6">
         <a href="dashboard.html"><button class="back-button mb-4">Back</button></a>
-        <div class="transaction-history overflow-x-auto">
-          <table class="w-full border-collapse">
-            <thead class="bg-gray-100 text-left">
-              <tr class="text-sm text-gray-600 border-b border-gray-300">
-                <th class="p-4">Name/Business</th>
-                <th class="p-4">Date</th>
-                <th class="p-4">Invoice ID</th>
-                <th class="p-4">Amount (USD)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Bitcoin Investment Fund</td>
-                <td class="p-4">23 Sep 2024</td>
-                <td class="p-4">INV-BTC89374</td>
-                <td class="p-4 text-green-600 font-semibold">+$12,000.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Ethereum Liquidity Pool</td>
-                <td class="p-4">21 Sep 2024</td>
-                <td class="p-4">INV-ETH67823</td>
-                <td class="p-4 text-green-600 font-semibold">+$5,500.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Coinbase Withdrawal</td>
-                <td class="p-4">20 Sep 2024</td>
-                <td class="p-4">WD-COIN00234</td>
-                <td class="p-4 text-red-600 font-semibold">-$3,200.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Binance Trading Profit</td>
-                <td class="p-4">18 Sep 2024</td>
-                <td class="p-4">INV-BIN90213</td>
-                <td class="p-4 text-green-600 font-semibold">+$8,750.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Stellar Network Transfer</td>
-                <td class="p-4">17 Sep 2024</td>
-                <td class="p-4">TRX-STR78956</td>
-                <td class="p-4 text-red-600 font-semibold">-$1,250.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
-                <td class="p-4">Investment in USDT</td>
-                <td class="p-4">15 Sep 2024</td>
-                <td class="p-4">INV-USDT56784</td>
-                <td class="p-4 text-green-600 font-semibold">+$9,300.00</td>
-              </tr>
-              <tr class="text-sm text-gray-800 hover:bg-gray-50 cursor-pointer">
-                <td class="p-4">Withdrawal to Bank (BOA)</td>
-                <td class="p-4">14 Sep 2024</td>
-                <td class="p-4">WD-BOA12345</td>
-                <td class="p-4 text-red-600 font-semibold">-$4,500.00</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow-md">
+                <thead class="bg-gray-100 text-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Date</th>
+                        <th class="px-4 py-2 text-left">Transaction</th>
+                        <th class="px-4 py-2 text-right">Withdrawals</th>
+                        <th class="px-4 py-2 text-right">Deposits</th>
+                        <th class="px-4 py-2 text-right">Balance</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm">
+                    <!-- Start from the bottommost date (November) -->
+                    <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Apr 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,886,900.00</td>
+                  </tr>
+                  <!-- March Withdrawal -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Mar 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,890,520.00</td>
+                  </tr>
+                  <!-- February Withdrawal -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Feb 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,894,140.00</td>
+                  </tr>
+                  <!-- January Withdrawal -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Jan 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,897,760.00</td>
+                  </tr>
+                  <!-- December Withdrawal -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Dec 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,901,380.00</td>
+                  </tr>
+                  <!-- November Withdrawal -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Nov 02</td>
+                      <td class="px-4 py-2">Withdrawal - Plan Fee</td>
+                      <td class="px-4 py-2 text-right">-3,620.00</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,905,000.00</td>
+                  </tr>
+                  <!-- November Deposit -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Nov 06</td>
+                      <td class="px-4 py-2">Deposit</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$905,000.00</td>
+                      <td class="px-4 py-2 text-right">$1,905,000.00</td>
+                  </tr>
+                  <!-- Platinum Plan Subscription -->
+                  <tr class="border-b border-gray-200">
+                      <td class="px-4 py-2 whitespace-nowrap">Nov 01</td>
+                      <td class="px-4 py-2">Deposit - Platinum Plan Subscription</td>
+                      <td class="px-4 py-2 text-right"></td>
+                      <td class="px-4 py-2 text-right">$1,000,000.00</td>
+                      <td class="px-4 py-2 text-right">$1,000,000.00</td>
+                  </tr>
+                </tbody>
+            </table>
         </div>
-      </div>
-      
-      <style>
+    </div>
+    
+    
+    <style>
+      .transaction-history-container {
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+    
+      .back-button {
+        background-color: #007bff;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    
+      .back-button:hover {
+        background-color: #0056b3;
+      }
+    
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+    
+      th, td {
+        padding: 16px;
+        text-align: left;
+      }
+    
+      thead {
+        background-color: #f9f9f9;
+        border-bottom: 2px solid #e5e5e5;
+      }
+    
+      tbody tr {
+        transition: background-color 0.2s ease;
+      }
+    
+      tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+    
+      .text-green-600 {
+        color: #16a34a;
+      }
+    
+      .text-red-600 {
+        color: #dc2626;
+      }
+    
+      @media (max-width: 768px) {
         .transaction-history-container {
-          max-width: 90%;
-          margin: 0 auto;
-          padding: 1rem;
+          padding: 0.5rem;
         }
-        
-        .back-button {
-          background-color: #007bff;
-          color: white;
-          padding: 0.5rem 1rem;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
+    
+        .transaction-history table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
         }
-      
-        .back-button:hover {
-          background-color: #0056b3;
-        }
-      
-        @media (max-width: 768px) {
-          .transaction-history-container {
-            padding: 0.5rem;
-          }
-      
-          .transaction-history table {
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-          }
-        }
-      </style>
+      }
+    </style>
+    
       
   </div>
 
