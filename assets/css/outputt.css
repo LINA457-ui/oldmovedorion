@@ -79,11 +79,27 @@ a {
 /* popup styling */
 
 
+.pin-shit {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 50;
+  width: 100%;
+  height: 50%;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+ 
+}
+
+
 .popup-overlay {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 60;
   width: 100%;
   height: 50%;
   margin-top: 100px;
@@ -322,6 +338,17 @@ a {
   transform-origin: center; 
 }
 
+#dashboardLogo {
+  position: absolute;
+  top: 35px;      /* Adjust as needed */
+  left: 170px;     /* Adjust as needed */
+  width: 100px;   /* Adjust the width */
+  height: auto;   /* Maintain aspect ratio */
+  z-index: 1000;   /* Ensures it's on top of other elements */
+  border-radius: 12px;
+}
+
+
 .sticky-addbank-button:hover{
   background-color: gold;
 }
@@ -375,11 +402,11 @@ a {
 /* Base Styles for Header */
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-evenly;
+
   background-color: #157dd4;
   padding: 15px 20px;
-  width: 100%;
+  width: 80%;
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -394,6 +421,7 @@ a {
 .live-time {
   color: white;
   font-size: 16px;
+  margin-top: 15px;
 }
 
 .filter {
@@ -409,6 +437,20 @@ a {
 .filter:hover {
   background-color: green;
   transform: scale(1.05);
+}
+
+
+@media (max-width: 350px) {
+  h2 {
+      font-size: 16px;
+  }
+  .live-time {
+      display: none;
+  }
+  #openPopupBtn {
+      width: 100px;
+      font-size: 12px;
+  }
 }
 
 /* Responsive Styles */

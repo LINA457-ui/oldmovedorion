@@ -104,51 +104,107 @@
 
 
             <header class="header">
-    <h2>Investment Dashboard</h2>
-    <div class="live-time" id="liveTime">
-        <p id="timeElement"></p>
-    </div>
-    <button id="open-popup" class="filter">
-        <i class="fa-solid fa-money-bill-transfer" style="margin-right: 10px;"></i> Withdraw Funds
-    </button>
-    <button id="open-popup" class="filter"><i style="margin-right: 10px;"
-        class="fa-solid fa-money-bill-transfer"></i>Transfer Funds</button>
-</header>
+                
+                    <h2>Investment Dashboard</h2>
+                    <div class="live-time" id="liveTime">
+                        <p id="timeElement"></p>
+                    </div>
+
+                    <button id="openPopupBtn" class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md shadow transition duration-200 transform hover:scale-105 ease-in-out"><i style="margin-right: 10px;"
+                            class="fa-solid fa-money-bill-transfer"></i>Transfer Funds</button>
+             
+            </header>
+
+
+
+            <!-- pin shit -->
+
+            <div id="popup" class="pin-shit hidden bg-white shadow-md rounded-lg p-6 max-w-md w-full"> 
+                <h5 class="text-2xl font-semibold text-center text-gray-800 mb-6">Enter Transaction Pin</h5>
+              
+                <form action="#" class="space-y-4">
+                    <!-- Pin input fields -->
+                    <div class="flex justify-between">
+                        <input type="password" maxlength="1"
+                            class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                        <input type="password" maxlength="1"
+                            class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                        <input type="password" maxlength="1"
+                            class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                        <input type="password" maxlength="1"
+                            class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    </div>
+              
+                    <!-- Submit Button -->
+                    <div class="mt-6">
+                        <button id="verify-pin-btn" type="submit"
+                            class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-200">Verify
+                            Pin</button>
+                    </div>
+              
+                    <!-- Cancel Button -->
+                    <div class="mt-2">
+                        <button id="cancel-btn" type="button"
+                            class="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition duration-200">Cancel</button>
+                    </div>
+                </form>
+              </div>
+              
+              <script>
+                // Autofocus on next pin input
+                const pinInputs = document.querySelectorAll('.pin-input');
+                pinInputs.forEach((input, index) => {
+                    input.addEventListener('input', () => {
+                        if (input.value.length === 1 && index < pinInputs.length - 1) {
+                            pinInputs[index + 1].focus();
+                        }
+                    });
+                });
+              
+                // Cancel button to hide the popup
+                document.getElementById('cancel-btn').addEventListener('click', function () {
+                   window.location.href = "./dashboard.html" // Hide the transfer popup
+                });
+              </script>
+              
+
+            <!-- pin shit -->
 
 
 
             <!-- pop up -->
-            <div id="popup" class="popup-overlay">
-
+            <div id="transferPopup" class="popup-overlay hidden" style="display: none";>
                 <div class="transfer-container">
                     <div class="transfer-header">
                         <h3>Help Me Transfer Money</h3>
                         <button id="close-popup" class="close-btn">&times;</button>
                     </div>
-
+            
                     <form class="transfer-form">
                         <!-- Transfer From Section -->
                         <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
-                        <select id="transfer-from" class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
+                        <select id="transfer-from"
+                            class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
                             <option id="currentBalanceM">Current Balance</option>
-                            <option id="brokerage">Brokerage</option>
-                            <option id="dividend">Dividend</option>
+                            <option id="">Brokerage</option>
+                            <option id="">Dividend</option>
                         </select>
-                    
+            
                         <!-- Transfer To Section -->
                         <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
-                        <select id="transfer-to" class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
-                            <option  id="currentBalanceM">Current Balance</option>
-                            <option id="brokerage">Brokerage</option>
-                            <option id="dividend">Dividend</option>
+                        <select id="transfer-to"
+                            class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
+                            <option id="currentBalanceM">Current Balance</option>
+                            <option id="">Brokerage</option>
+                            <option id="">Dividend</option>
                         </select>
-                    
+            
                         <!-- Amount Input Section -->
                         <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
                         <input id="amount" name="amount" type="text" placeholder="Enter Amount"
                             class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold mb-4"
                             style="color: black !important; font-weight: bold !important;" required>
-                    
+            
                         <!-- Button Group -->
                         <div class="button-group flex justify-end space-x-4 mt-8">
                             <button id="cancel-popup" type="button"
@@ -160,55 +216,50 @@
                                 Continue
                             </button>
                         </div>
-                    
+            
                         <!-- Extra Options -->
                         <div class="extra-options mt-6 flex flex-col items-start space-y-2">
-                            <!-- <a href="#" class="paypal-link text-blue-600 hover:text-blue-700 transition duration-200 flex items-center">
-                                Send money with 
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"
-                                    class="paypal-logo w-16 h-auto ml-2">
-                            </a> -->
-                            <a href="./card.html" class="bank-link text-blue-600 hover:text-blue-700 transition duration-200">
+                            <a href="./card.html"
+                                class="bank-link text-blue-600 hover:text-blue-700 transition duration-200">
                                 Add a bank account
                             </a>
                         </div>
                     </form>
-                    
                 </div>
-
             </div>
             <!-- popup end -->
             <div class="section-wrap">
                 <h2 class="section-title">Investment Overview</h2>
 
                 <section class="overview">
-                    
-                        <!-- Current Balance Card -->
-                        <div class="cardd balance-card bg-yellow-100 text-gray-800 w-full sm:w-[48%] lg:w-[30%] p-6 rounded-xl shadow-md transition-transform transform hover:translate-y-2 hover:shadow-lg relative">
-                            <!-- Platinum Icon -->
-                            <!-- Title -->
-                            <h3 class="text-2xl font-bold mb-2 text-gray-900">Current Balance</h3>
-                            
-                            <!-- Balance Amount -->
-                            <p class="text-4xl font-extrabold text-indigo-600 mb-4">$905,000.00</p>
-                    
-                            <!-- Plan Details -->
-                            <div>
-                                <p>Active Plan: <span class="text-blue-700 text-2xl" >Platinum</span></p>
-                                <p>Dividend Interest: <span class="text-blue-700 text-2xl">0.4%</span></p>
-                            </div>
+
+                    <!-- Current Balance Card -->
+                    <div
+                        class="cardd balance-card bg-yellow-100 text-gray-800 w-full sm:w-[48%] lg:w-[30%] p-6 rounded-xl shadow-md transition-transform transform hover:translate-y-2 hover:shadow-lg relative">
+                        <!-- Platinum Icon -->
+                        <!-- Title -->
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Current Balance</h3>
+
+                        <!-- Balance Amount -->
+                        <p id="currentBalance" class="text-4xl font-extrabold text-indigo-600 mb-4"> </p>
+
+                        <!-- Plan Details -->
+                        <div>
+                            <p>Active Plan: <span class="text-blue-700 text-2xl">Platinum</span></p>
+                            <p>Dividend Interest: <span class="text-blue-700 text-2xl">0.4%</span></p>
                         </div>
-                    
-                    
+                    </div>
+
+
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-2 text-gray-900">Brokerage</h3>
-                        <p style="color: red !important">$-48,000.50</p>
-                        <p >Active Plan: <span class="text-blue-700 text-2xl" >Platinum</span></p>
-                       
+                        <p id="brokerage" style="color: red !important"> </p>
+                        <p>Active Plan: <span class="text-blue-700 text-2xl">Platinum</span></p>
+
                     </div>
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-2 text-gray-900">Dividend</h3>
-                        <p>$21,720</p>
+                        <p id="dividend"> </p>
                     </div>
                 </section>
 
@@ -218,23 +269,27 @@
                     </div>
                 </section>
 
-                <section  class="detaills w-full flex justify-center items-center p-4 sm:p-8">
+                <section class="detaills w-full flex justify-center items-center p-4 sm:p-8">
                     <div class="money-flow w-full max-w-4xl bg-white shadow-md rounded-lg p-4 sm:p-6 md:p-8">
                         <div class="crypto-chart relative w-full h-64 sm:h-80 md:h-96">
                             <canvas id="stockPieChart" class="w-full h-full"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="recent-transactions">
                         <h3>Recent Transactions</h3>
                         <ul>
-                            <li><span>Bitcoin Investment</span><span>+$12,000.00</span></li>
-                            <li><span>Ethereum Liquidity</span><span>+$5,500.00</span></li>
-                            <li><span>Coinbase Withdrawal</span><span>-$3,200.00</span></li>
-                            <li><span>Binance Profit</span><span>+$8,750.00</span></li>
-                            <li><span>Stellar Transfer</span><span>-$1,250.00</span></li>
-                            <li><span>USDT Investment</span><span>+$9,300.00</span></li>
+                            
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li><span>Deposit</span><span>+$905,000.00</span></li>
+                            <li><span>Platinum Plan Subscription</span><span>+$1,000,000.00</span></li>
                         </ul>
+                        
                     </div>
                 </section>
 
@@ -268,30 +323,136 @@
         </main>
     </div>
     <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-    
+    <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png" alt="Dashboard Logo">
+
     <script>
         const firebaseConfig = {
-          apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-          authDomain: "orion-investment-2b141.firebaseapp.com",
-          projectId: "orion-investment-2b141",
-          storageBucket: "orion-investment-2b141.appspot.com",
-          messagingSenderId: "911866094162",
-          appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-          measurementId: "G-12SQKBDR1S"
+            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
+            authDomain: "orion-investment-2b141.firebaseapp.com",
+            projectId: "orion-investment-2b141",
+            storageBucket: "orion-investment-2b141.appspot.com",
+            messagingSenderId: "911866094162",
+            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
+            measurementId: "G-12SQKBDR1S"
         };
-    
-    
+
+
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
         const storage = firebase.storage();
-    
-      </script>
-    
+
+    </script>
+
 
 </body>
 
 </html>
+
+
+<script>
+    // Get the popup and open button elements
+    const openPopupBtn = document.getElementById('openPopupBtn');
+    const pinShit = document.getElementById('popup');
+    
+    // Add event listener to open the popup when the button is clicked
+    openPopupBtn.addEventListener('click', function() {
+        // Toggle the 'hidden' class to show the popup
+        pinShit.classList.remove('hidden');
+        pinShit.classList.add('flex'); // You can add flex to center content if needed
+    });
+  
+    // Optional: Close functionality
+    const closePopupBtn = document.getElementById('close-popup');
+    closePopupBtn.addEventListener('click', function() {
+        // Add the 'hidden' class back to hide the popup
+        pinShit.classList.add('hidden');
+    });
+  </script>
+
+<script>
+    // Function to verify the transaction PIN
+    document.getElementById('verify-pin-btn').addEventListener('click', async function (e) {
+        e.preventDefault();  // Prevent form submission
+
+        // Get the input values of the PIN fields
+        const pinInputs = document.querySelectorAll('.pin-input');
+        let enteredPin = '';
+        pinInputs.forEach(input => {
+            enteredPin += input.value; // Combine the inputs into a single string
+        });
+
+        // Get the user's document ID from localStorage
+        const docId = localStorage.getItem("userDocId");
+
+        // Check if userDocId is available
+        if (!docId) {
+            Toastify({
+                text: "User not found. Please log in.",
+                backgroundColor: "red",
+                duration: 3000
+            }).showToast();
+            return;
+        }
+
+        // Reference to Firestore and collection using the stored docId
+        const userRef = firebase.firestore().collection('users').doc(docId);
+
+        try {
+            // Fetch the document from Firestore
+            const doc = await userRef.get();
+
+            if (doc.exists) {
+                const data = doc.data();
+                const storedTransactionPin = data.transactionPin;  // The pin stored in Firestore
+
+                // Check if entered PIN matches the stored one
+                if (enteredPin === storedTransactionPin) {
+                    // If PIN matches, show success notification and the transfer money popup
+                    Toastify({
+                        text: "Transaction PIN verified successfully!",
+                        backgroundColor: "green",
+                        duration: 3000
+                    }).showToast();
+
+                    // Show the transfer form popup by changing the display property
+                    document.getElementById('transferPopup').style.display = 'block';
+                    enteredPin = " ";
+                } else {
+                    Toastify({
+                        text: "Incorrect Transaction PIN. Please try again.",
+                        backgroundColor: "red",
+                        duration: 3000
+                    }).showToast();
+                }
+            } else {
+                Toastify({
+                    text: "No transaction PIN found for this user.",
+                    backgroundColor: "orange",
+                    duration: 3000
+                }).showToast();
+            }
+        } catch (error) {
+            console.error('Error verifying transaction pin:', error);
+            Toastify({
+                text: "Something went wrong. Please try again.",
+                backgroundColor: "red",
+                duration: 3000
+            }).showToast();
+        }
+    });
+
+    // Function to close the popup
+    document.getElementById('close-popup').addEventListener('click', function () {
+        document.getElementById('transferPopup').style.display = 'none'; // Hide the transfer popup
+    });
+
+    // Function to cancel and close the popup
+    document.getElementById('cancel-popup').addEventListener('click', function () {
+        document.getElementById('transferPopup').style.display = 'none'; // Hide the transfer popup
+    });
+</script>
+  
 
 
 
@@ -321,26 +482,10 @@
     updateTime();
 
 
-    // Get the popup elements
-    const popup = document.getElementById("popup");
-    const openPopupBtn = document.getElementById("open-popup");
-    const closePopupBtn = document.getElementById("close-popup");
-    const cancelPopupBtn = document.getElementById("cancel-popup");
+    
 
-    // Open popup on button click
-    openPopupBtn.addEventListener("click", function () {
-        popup.style.display = "flex";
-    });
 
-    // Close popup when 'X' button is clicked
-    closePopupBtn.addEventListener("click", function () {
-        popup.style.display = "none";
-    });
-
-    // Close popup when 'Cancel' button is clicked
-    cancelPopupBtn.addEventListener("click", function () {
-        popup.style.display = "none";
-    });
+   
 
 
 </script>
@@ -462,41 +607,41 @@
 
 
 <script>
-  // Initialize Firebase (use your own configuration)
+    // Initialize Firebase (use your own configuration)
 
 
-  function users() {
-    const docId = localStorage.getItem('userDocId');
-    console.log("Retrieved docId from localStorage:", docId);
+    function users() {
+        const docId = localStorage.getItem('userDocId');
+        console.log("Retrieved docId from localStorage:", docId);
 
-    if (!docId) {
-      console.log("No user ID found in localStorage.");
-      return;
+        if (!docId) {
+            console.log("No user ID found in localStorage.");
+            return;
+        }
+
+        const docRef = db.collection("users").doc(docId);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                const userData = doc.data();
+
+                document.getElementById("firstNameDisplay").innerText = userData.first_name || "N/A";
+                document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
+                document.getElementById("emailDisplay").innerText = userData.email || "N/A";
+                document.getElementById('fullNameDisplay').innerText = (userData.first_name || "") + " " + (userData.last_name || "");
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
 
-    const docRef = db.collection("users").doc(docId);
-
-    docRef.get().then((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        const userData = doc.data();
-
-        document.getElementById("firstNameDisplay").innerText = userData.first_name || "N/A";
-        document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
-        document.getElementById("emailDisplay").innerText = userData.email || "N/A";
-        document.getElementById('fullNameDisplay').innerText = (userData.first_name || "") + " " + (userData.last_name || "");
-      } else {
-        console.log("No such document!");
-      }
-    }).catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  }
-
-  // Call the users function when the page is fully loaded
-  window.onload = function () {
-    users();
-  };
+    // Call the users function when the page is fully loaded
+    window.onload = function () {
+        users();
+    };
 </script>
 
 
@@ -571,18 +716,54 @@
     const stockPieChart = new Chart(ctx, config);
 </script>
 
-<script>
-
-</script>
-
 
 <script>
-    const currentBalanceM = document.getElementById('currentBalanceM');
-    const brokerage = document.getElementById('brokerage');
-    const dividend= document.getElementById('dividend');
-    const continue = document.getElementById('continue');
+    // Function to display account data
+    async function displayAccountData() {
+      try {
+        // Retrieve the logged-in user's document ID from localStorage
+        const docId = localStorage.getItem("userDocId");
 
+        if (docId) {
+          // Reference the document from Firestore
+          const docRef = db.collection("users").doc(docId);
+          
+          // Fetch the document data
+          const docSnap = await docRef.get();
 
-    const docRef = db.collection("users").doc(docId);
-     
+          if (docSnap.exists) {
+            const userData = docSnap.data();
+
+            // Log the full user data to debug
+            console.log('User Data:', userData);
+
+            // Extract balance, brokerage, and dividend
+            const currentBalance = userData.currentBalance || 0.00;
+            const brokerage = userData.brokerage || 0.00;
+            const dividend = userData.dividend || 0.00;
+
+            // Log individual values to see if they are coming from Firestore
+            console.log('Current Balance:', currentBalance);
+            console.log('Brokerage:', brokerage);
+            console.log('Dividend:', dividend);
+
+            // Update the HTML elements to display the data
+            document.getElementById("currentBalance").innerText = `$${currentBalance.toFixed(2)}`;
+            document.getElementById("brokerage").innerText = `$${brokerage.toFixed(2)}`;
+            document.getElementById("dividend").innerText = `$${dividend.toFixed(2)}`;
+          } else {
+            console.log("No such document!");
+          }
+        } else {
+          console.log("No user logged in or document ID not found in localStorage.");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    // Call the function to load the data when the page loads
+    window.onload = displayAccountData;
 </script>
+
+  
