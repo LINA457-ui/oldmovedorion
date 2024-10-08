@@ -221,12 +221,7 @@
                         </div>
 
                         <!-- Extra Options -->
-                        <div class="extra-options mt-6 flex flex-col items-start space-y-2">
-                            <a href="./card.html"
-                                class="bank-link text-blue-600 hover:text-blue-700 transition duration-200">
-                                Add a bank account
-                            </a>
-                        </div>
+                       
                     </form>
                 </div>
             </div>
@@ -325,6 +320,22 @@
 
         </main>
     </div>
+
+    <div id="orion-popup-overlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-[9999]">
+        <div class="orion-popup-box bg-white p-6 rounded-lg shadow-lg max-w-md w-full transform transition-transform duration-500 scale-0">
+            <h2 class="orion-popup-title text-2xl font-semibold text-red-600 mb-4">Feature Unavailable</h2>
+            <p class="orion-popup-message text-gray-700 mb-4">
+                Dear User, Currently, this feature is unavailable for your account. 
+                For further assistance or to inquire about activating this feature, 
+                please <a href="mailto:support@orion.com" class="text-blue-600 underline">contact our support team</a>.
+            </p>
+            <button id="orion-close-popup" class="w-full py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition ease-in-out">
+                Close
+            </button>
+        </div>
+    </div>
+    
+    
     <button id="signout-button" class="sticky-signout-button">Sign Out</button>
     <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
         alt="Dashboard Logo">
@@ -752,3 +763,28 @@
     // Call the function to load the data when the page loads
     window.onload = displayAccountData;
 </script>
+
+<script>
+  document.getElementById("continue").addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    const popupOverlay = document.getElementById("orion-popup-overlay");
+    const popupBox = popupOverlay.querySelector(".orion-popup-box");
+
+    // Show the popup
+    popupOverlay.classList.remove("hidden");
+    setTimeout(() => popupBox.classList.remove("scale-0"), 100);
+
+    // Close the popup and the form when the close button is clicked
+    document.getElementById("orion-close-popup").addEventListener("click", function() {
+        popupBox.classList.add("scale-0");
+        setTimeout(() => {
+            popupOverlay.classList.add("hidden");
+            document.querySelector("form.transfer-form").reset(); // Close the form
+        }, 300);
+    });
+});
+
+
+</script>
+
