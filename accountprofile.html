@@ -79,7 +79,7 @@
         <div style="color: white;" class="live-time" id="liveTime">
           <p id="timeElement"></p>
         </div>
-        
+
       </header>
       <div id="popup" class="popup-overlay">
 
@@ -177,7 +177,8 @@
               </div>
               <div>
                 <label class="font-semibold text-gray-700">Mailing Address:</label>
-                <p id="mailingAddressDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"></p>
+                <p id="mailingAddressDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300">
+                </p>
               </div>
               <div>
                 <label class="font-semibold text-gray-700">Different Citizenship:</label>
@@ -200,7 +201,7 @@
               <div>
                 <label class="font-semibold text-gray-700">Phone Number:</label>
                 <p id="phoneNumberDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300">
-                  </p>
+                </p>
               </div>
             </div>
           </div>
@@ -213,27 +214,11 @@
 
   </main>
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-  <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png" alt="Dashboard Logo">
+  <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
+    alt="Dashboard Logo">
   </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-      authDomain: "orion-investment-2b141.firebaseapp.com",
-      projectId: "orion-investment-2b141",
-      storageBucket: "orion-investment-2b141.appspot.com",
-      messagingSenderId: "911866094162",
-      appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-      measurementId: "G-12SQKBDR1S"
-    };
-
-
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const auth = firebase.auth();
-    const storage = firebase.storage();
-
-  </script>
+  <script src="./assets/js/script.js" ></script>
 
 </body>
 
@@ -327,7 +312,7 @@
         document.getElementById("firstNameDisplay").innerText = userData.first_name || "N/A";
         document.getElementById("middleNameDisplay").innerText = userData.middle_name || "N/A";
         document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
-        document.getElementById("address1Display").innerText = userData. address_line1 || "N/A";
+        document.getElementById("address1Display").innerText = userData.address_line1 || "N/A";
         document.getElementById("address2Display").innerText = userData.address_line2 || "N/A";
         document.getElementById("cityDisplay").innerText = userData.city || "N/A";
         document.getElementById("stateDisplay").innerText = userData.state || "N/A";

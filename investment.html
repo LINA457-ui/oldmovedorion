@@ -17,8 +17,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-       
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
 <body>
     <div class="dashboard">
@@ -46,19 +46,19 @@
             <div class="user">
                 <!-- <img id="" src="./assests/images/icon image.png" alt="User"> -->
                 <div class="user-info">
-                  <!-- <h3 id="fullNameDisplay">Bruce James</h3> -->
-                  <p id="emailDisplay">Let's create lasting value together with Orion Investment!</p>
+                    <!-- <h3 id="fullNameDisplay">Bruce James</h3> -->
+                    <p id="emailDisplay">Let's create lasting value together with Orion Investment!</p>
                 </div>
             </div>
         </aside>
 
         <main class="content">
             <header class="header">
-                
+
                 <input type="search" placeholder="Search" class="search">
                 <div style="color: white;" class="live-time" id="liveTime">
                     <p id="timeElement"></p>
-               
+
 
             </header>
 
@@ -108,17 +108,17 @@
             <!-- popup end -->
 
 
-            
+
             <div class="pricing-section">
-                           
-                         
+
+
                 <div class="parent-tiers">
                     <!-- Diamond Plan -->
                     <div class="pricing-container">
                         <div class="pricing-tier diamond">
                             <h2>Diamond Plan</h2>
                             <h1>0.04%</h1>
-                          
+
                             <ul>
                                 <li>Max Dep : $500,000</li>
                                 <li>Instant Payments</li>
@@ -127,7 +127,7 @@
                             <button>Select Plan</button>
                         </div>
                     </div>
-            
+
                     <!-- VVIP Plan -->
                     <div class="pricing-container">
                         <div class="pricing-tier vvip">
@@ -143,15 +143,15 @@
                     </div>
                 </div>
             </div>
-            
+
 
 
         </main>
         <button id="signout-button" class="sticky-signout-button">Sign Out</button>
     </div>
 
-    <script src="./assets/js/script.js"></script>
-    
+    <script src="./assets/js/script.js" ></script>
+
 </body>
 
 </html>
@@ -204,7 +204,7 @@
     });
 
 
-    
+
 
 
 </script>
@@ -235,26 +235,26 @@
 <script>
     // Function to handle sign-out
     const signout = document.getElementById("signout-button");
-  
+
     signout.addEventListener('click', (e) => {
-      e.preventDefault();
-      auth.signOut().then(() => {
-        // Sign-out successful.
-        showSignOutSuccess();
-  
-        // Optionally, redirect to a login page or another page
-        window.location.href = "signin.html";// Change this to your login page
-      }).catch((error) => {
-        // An error happened.
-        Toastify({
-          text: `Error signing out: ${error.message}`,
-          duration: 3000,
-          gravity: "top",
-          position: "right",
-          backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
-          close: true
-        }).showToast();
-      });
+        e.preventDefault();
+        auth.signOut().then(() => {
+            // Sign-out successful.
+            showSignOutSuccess();
+
+            // Optionally, redirect to a login page or another page
+            window.location.href = "signin.html";// Change this to your login page
+        }).catch((error) => {
+            // An error happened.
+            Toastify({
+                text: `Error signing out: ${error.message}`,
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+                close: true
+            }).showToast();
+        });
     })
-  
-  </script>
+
+</script>

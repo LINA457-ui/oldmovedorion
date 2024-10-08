@@ -104,24 +104,25 @@
 
 
             <header class="header">
-                
-                    <h2>Investment Dashboard</h2>
-                    <div class="live-time" id="liveTime">
-                        <p id="timeElement"></p>
-                    </div>
 
-                    <button id="openPopupBtn" class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md shadow transition duration-200 transform hover:scale-105 ease-in-out"><i style="margin-right: 10px;"
-                            class="fa-solid fa-money-bill-transfer"></i>Transfer Funds</button>
-             
+                <h2>Investment Dashboard</h2>
+                <div class="live-time" id="liveTime">
+                    <p id="timeElement"></p>
+                </div>
+
+                <button id="openPopupBtn"
+                    class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md shadow transition duration-200 transform hover:scale-105 ease-in-out"><i
+                        style="margin-right: 10px;" class="fa-solid fa-money-bill-transfer"></i>Transfer Funds</button>
+
             </header>
 
 
 
             <!-- pin shit -->
 
-            <div id="popup" class="pin-shit hidden bg-white shadow-md rounded-lg p-6 max-w-md w-full"> 
+            <div id="popup" class="pin-shit hidden bg-white shadow-md rounded-lg p-6 max-w-md w-full">
                 <h5 class="text-2xl font-semibold text-center text-gray-800 mb-6">Enter Transaction Pin</h5>
-              
+
                 <form action="#" class="space-y-4">
                     <!-- Pin input fields -->
                     <div class="flex justify-between">
@@ -134,23 +135,23 @@
                         <input type="password" maxlength="1"
                             class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                     </div>
-              
+
                     <!-- Submit Button -->
                     <div class="mt-6">
                         <button id="verify-pin-btn" type="submit"
                             class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-200">Verify
                             Pin</button>
                     </div>
-              
+
                     <!-- Cancel Button -->
                     <div class="mt-2">
                         <button id="cancel-btn" type="button"
                             class="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition duration-200">Cancel</button>
                     </div>
                 </form>
-              </div>
-              
-              <script>
+            </div>
+
+            <script>
                 // Autofocus on next pin input
                 const pinInputs = document.querySelectorAll('.pin-input');
                 pinInputs.forEach((input, index) => {
@@ -160,51 +161,53 @@
                         }
                     });
                 });
-              
+
                 // Cancel button to hide the popup
                 document.getElementById('cancel-btn').addEventListener('click', function () {
-                   window.location.href = "./dashboard.html" // Hide the transfer popup
+                    window.location.href = "./dashboard.html" // Hide the transfer popup
                 });
-              </script>
-              
+            </script>
+
 
             <!-- pin shit -->
 
 
 
             <!-- pop up -->
-            <div id="transferPopup" class="popup-overlay hidden" style="display: none";>
+            <div id="transferPopup" class="popup-overlay hidden" style="display: none" ;>
                 <div class="transfer-container">
                     <div class="transfer-header">
                         <h3>Help Me Transfer Money</h3>
                         <button id="close-popup" class="close-btn">&times;</button>
                     </div>
-            
+
                     <form class="transfer-form">
                         <!-- Transfer From Section -->
-                        <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
+                        <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer
+                            From</label>
                         <select id="transfer-from"
                             class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
                             <option id="currentBalanceM">Current Balance</option>
                             <option id="">Brokerage</option>
                             <option id="">Dividend</option>
                         </select>
-            
+
                         <!-- Transfer To Section -->
-                        <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
+                        <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer
+                            To</label>
                         <select id="transfer-to"
                             class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
                             <option id="currentBalanceM">Current Balance</option>
                             <option id="">Brokerage</option>
                             <option id="">Dividend</option>
                         </select>
-            
+
                         <!-- Amount Input Section -->
                         <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
                         <input id="amount" name="amount" type="text" placeholder="Enter Amount"
                             class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold mb-4"
                             style="color: black !important; font-weight: bold !important;" required>
-            
+
                         <!-- Button Group -->
                         <div class="button-group flex justify-end space-x-4 mt-8">
                             <button id="cancel-popup" type="button"
@@ -216,7 +219,7 @@
                                 Continue
                             </button>
                         </div>
-            
+
                         <!-- Extra Options -->
                         <div class="extra-options mt-6 flex flex-col items-start space-y-2">
                             <a href="./card.html"
@@ -279,7 +282,7 @@
                     <div class="recent-transactions">
                         <h3>Recent Transactions</h3>
                         <ul>
-                            
+
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
@@ -289,7 +292,7 @@
                             <li><span>Deposit</span><span>+$905,000.00</span></li>
                             <li><span>Platinum Plan Subscription</span><span>+$1,000,000.00</span></li>
                         </ul>
-                        
+
                     </div>
                 </section>
 
@@ -323,26 +326,10 @@
         </main>
     </div>
     <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-    <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png" alt="Dashboard Logo">
+    <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
+        alt="Dashboard Logo">
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-            authDomain: "orion-investment-2b141.firebaseapp.com",
-            projectId: "orion-investment-2b141",
-            storageBucket: "orion-investment-2b141.appspot.com",
-            messagingSenderId: "911866094162",
-            appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-            measurementId: "G-12SQKBDR1S"
-        };
-
-
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-        const storage = firebase.storage();
-
-    </script>
+    <script src="./assets/js/script.js" ></script>
 
 
 </body>
@@ -354,21 +341,21 @@
     // Get the popup and open button elements
     const openPopupBtn = document.getElementById('openPopupBtn');
     const pinShit = document.getElementById('popup');
-    
+
     // Add event listener to open the popup when the button is clicked
-    openPopupBtn.addEventListener('click', function() {
+    openPopupBtn.addEventListener('click', function () {
         // Toggle the 'hidden' class to show the popup
         pinShit.classList.remove('hidden');
         pinShit.classList.add('flex'); // You can add flex to center content if needed
     });
-  
+
     // Optional: Close functionality
     const closePopupBtn = document.getElementById('close-popup');
-    closePopupBtn.addEventListener('click', function() {
+    closePopupBtn.addEventListener('click', function () {
         // Add the 'hidden' class back to hide the popup
         pinShit.classList.add('hidden');
     });
-  </script>
+</script>
 
 <script>
     // Function to verify the transaction PIN
@@ -452,7 +439,7 @@
         document.getElementById('transferPopup').style.display = 'none'; // Hide the transfer popup
     });
 </script>
-  
+
 
 
 
@@ -482,10 +469,10 @@
     updateTime();
 
 
-    
 
 
-   
+
+
 
 
 </script>
@@ -720,50 +707,48 @@
 <script>
     // Function to display account data
     async function displayAccountData() {
-      try {
-        // Retrieve the logged-in user's document ID from localStorage
-        const docId = localStorage.getItem("userDocId");
+        try {
+            // Retrieve the logged-in user's document ID from localStorage
+            const docId = localStorage.getItem("userDocId");
 
-        if (docId) {
-          // Reference the document from Firestore
-          const docRef = db.collection("users").doc(docId);
-          
-          // Fetch the document data
-          const docSnap = await docRef.get();
+            if (docId) {
+                // Reference the document from Firestore
+                const docRef = db.collection("users").doc(docId);
 
-          if (docSnap.exists) {
-            const userData = docSnap.data();
+                // Fetch the document data
+                const docSnap = await docRef.get();
 
-            // Log the full user data to debug
-            console.log('User Data:', userData);
+                if (docSnap.exists) {
+                    const userData = docSnap.data();
 
-            // Extract balance, brokerage, and dividend
-            const currentBalance = userData.currentBalance || 0.00;
-            const brokerage = userData.brokerage || 0.00;
-            const dividend = userData.dividend || 0.00;
+                    // Log the full user data to debug
+                    console.log('User Data:', userData);
 
-            // Log individual values to see if they are coming from Firestore
-            console.log('Current Balance:', currentBalance);
-            console.log('Brokerage:', brokerage);
-            console.log('Dividend:', dividend);
+                    // Extract balance, brokerage, and dividend
+                    const currentBalance = userData.currentBalance || 0.00;
+                    const brokerage = userData.brokerage || 0.00;
+                    const dividend = userData.dividend || 0.00;
 
-            // Update the HTML elements to display the data
-            document.getElementById("currentBalance").innerText = `$${currentBalance.toFixed(2)}`;
-            document.getElementById("brokerage").innerText = `$${brokerage.toFixed(2)}`;
-            document.getElementById("dividend").innerText = `$${dividend.toFixed(2)}`;
-          } else {
-            console.log("No such document!");
-          }
-        } else {
-          console.log("No user logged in or document ID not found in localStorage.");
+                    // Log individual values to see if they are coming from Firestore
+                    console.log('Current Balance:', currentBalance);
+                    console.log('Brokerage:', brokerage);
+                    console.log('Dividend:', dividend);
+
+                    // Update the HTML elements to display the data
+                    document.getElementById("currentBalance").innerText = `$${currentBalance.toFixed(2)}`;
+                    document.getElementById("brokerage").innerText = `$${brokerage.toFixed(2)}`;
+                    document.getElementById("dividend").innerText = `$${dividend.toFixed(2)}`;
+                } else {
+                    console.log("No such document!");
+                }
+            } else {
+                console.log("No user logged in or document ID not found in localStorage.");
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
     }
 
     // Call the function to load the data when the page loads
     window.onload = displayAccountData;
 </script>
-
-  
