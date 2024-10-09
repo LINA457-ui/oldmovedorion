@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyDTkXjNDPdbOeo32CaCkglIy-6nzuszEJM",
-  authDomain: "orion-investment-2b141.firebaseapp.com",
-  projectId: "orion-investment-2b141",
-  storageBucket: "orion-investment-2b141.appspot.com",
-  messagingSenderId: "911866094162",
-  appId: "1:911866094162:web:bfe2dc2323995f4585358b",
-  measurementId: "G-12SQKBDR1S"
+  apiKey: "AIzaSyBPEXcNJGorp0Apw8hNhbBg7Rk5EpbgbBI",
+  authDomain: "orion-investment-636b0.firebaseapp.com",
+  projectId: "orion-investment-636b0",
+  storageBucket: "orion-investment-636b0.appspot.com",
+  messagingSenderId: "556792471177",
+  appId: "1:556792471177:web:9c8d988141e2d8cb503058",
+  measurementId: "G-QVPWNEJ005"
 };
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();

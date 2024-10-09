@@ -329,7 +329,12 @@
             <p class="orion-popup-message text-gray-700 mb-6 text-lg leading-relaxed text-center">
                 Dear User, Currently, this feature is unavailable for your account. For further assistance or to inquire
                 about activating this feature, please
-                <a href="mailto:support@investmentorion.com?subject=Support%20Request&body=Hello,%0A%0AI%20need%20assistance%20with..." class="text-blue-600 underline font-semibold hover:text-blue-800">contact our support team</a>
+                <a href="./sendmailto.html" id="support-link" class="text-blue-500 hover:underline font-bold hover:text-blue-700">
+                    Contact our support team
+                </a>
+                <div id="loading" class="hidden mt-2 text-blue-500">Loading...</div>
+                
+                
 
 
 
@@ -340,27 +345,7 @@
             </button>
         </div>
     </div>
-    <script>
-        document.getElementById('contact-support-link').addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent the default link behavior
-    
-            let email = 'support@investmentorion.com';
-            let subject = 'Support Request';
-            let body = 'Hello,\n\nI need assistance with...'; // Prefill the email body (optional)
-    
-            // Use encodeURIComponent for special characters
-            let mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-            // Check if the window.open is blocked (e.g., by browser pop-up blockers)
-            let isMailOpened = window.open(mailtoLink, '_self');
-    
-            // If mail client failed to open, display a message (optional)
-            if (!isMailOpened) {
-                alert("It seems the mail client could not be opened. Please check your email settings.");
-            }
-        });
-    </script>
-    
+   
 
 
 
