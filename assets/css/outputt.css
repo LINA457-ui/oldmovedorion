@@ -1473,7 +1473,7 @@ input:focus, select:focus {
 
 /*  */
 
-<style>
+
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -1486,4 +1486,3 @@ input:focus, select:focus {
     .fade-in {
         animation: fadeIn 0.5s ease-in;
     }
-</style>
