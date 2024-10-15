@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./assets/css/outputt.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
 
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
@@ -104,8 +105,16 @@
 
 
             <header class="header">
-
-                <h2>Investment Dashboard</h2>
+                <div class="mt-6 z-50 mr-5">
+                    <h5 class="text-xl font-bold text-white font-dancing-script shadow-lg animate-bounce transition duration-300 ease-in-out">
+                      Welcome, George Papazis
+                    </h5>
+                  </div>
+                <div class="mt-6 z-50 mr-5">
+                    <h2 class="mt-6" >Investment Dashboard</h2>
+                </div>
+                  
+                
                 <div class="live-time" id="liveTime">
                     <p id="timeElement"></p>
                 </div>
@@ -278,7 +287,7 @@
                         <h3>Recent Transactions</h3>
                         <ul>
 
-                            <li><span>Dividend</span><span>+$3,620.00</span></li>
+                            <li class="text-red"><span>Dividend</span><span>+$3,620.00</span></li>
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
                             <li><span>Dividend</span><span>+$3,620.00</span></li>
@@ -350,8 +359,11 @@
 
 
     <button id="signout-button" class="sticky-signout-button">Sign Out</button>
+    
     <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
         alt="Dashboard Logo">
+       
+              
 
     <script src="./assets/js/script.js"></script>
 
