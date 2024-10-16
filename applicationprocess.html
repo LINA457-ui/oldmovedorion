@@ -180,21 +180,18 @@
 
         // Get form data
         const formData = {
-            salutation: document.getElementById("salutation").value,
             first_name: document.getElementById("firstName").value,
-            middle_name: document.getElementById("middleName").value || null,
-            last_name: document.getElementById("lastName").value,
-            address_line1: document.getElementById("address1").value,
-            address_line2: document.getElementById("address2").value || null,
-            city: document.getElementById("city").value,
-            state: document.getElementById("state").value,
-            zip: document.getElementById("zip").value,
-            phone_type: document.getElementById("phoneType").value,
-            location: document.getElementById("location").value,
-            phone_number: document.getElementById("phoneNumber").value,
-            mailingAddress: document.getElementById("mailingAddress").checked,
-            citizenship: document.getElementById("citizenship").checked,
-            birthOutsideUS: document.getElementById("birthOutsideUS").checked
+        last_name: document.getElementById("lastName").value,
+        address_line1: document.getElementById("address1").value,
+        address_line2: document.getElementById("address2").value || null,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        zip: document.getElementById("zip").value,
+        phone_type: document.getElementById("phoneType").value,
+        location: document.getElementById("location").value,
+        phone_number: document.getElementById("phoneNumber").value,
+        mailingAddress: document.getElementById("mailingAddress").checked,
+        birthOutsideUS: document.getElementById("birthOutsideUS").checked
         };
 
         // Retrieve the unique document ID from localStorage
