@@ -28,37 +28,20 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Left Section -->
                 <div class="space-y-6">
-                    <div>
-                        <label for="salutation" class="block text-sm font-semibold text-gray-700">Salutation</label>
-                        <select id="salutation" name="salutation"
-                            class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                            <option value="" disabled selected>Choose</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Ms">Ms</option>
-                        </select>
-                    </div>
+                  
                     <div>
                         <label for="firstName" class="block text-sm font-semibold text-gray-700">First Name</label>
                         <input id="firstName" name="first_name" type="text" placeholder="Required"
                             class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
-                    <div>
-                        <label for="middleName" class="block text-sm font-semibold text-gray-700">Middle Name(s)</label>
-                        <input id="middleName" name="middle_name" type="text"
-                            class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                    </div>
+                   
                     <div>
                         <label for="lastName" class="block text-sm font-semibold text-gray-700">Last Name</label>
                         <input id="lastName" name="last_name" type="text" placeholder="Required"
                             class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
-                </div>
-
-                <!-- Right Section -->
-                <div class="space-y-6">
                     <div>
                         <label for="address1" class="block text-sm font-semibold text-gray-700">Address Line One</label>
                         <input id="address1" name="address_line1" type="text"
@@ -66,6 +49,11 @@
                             class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
+                </div>
+
+                <!-- Right Section -->
+                <div class="space-y-6">
+                   
                     <div>
                         <label for="address2" class="block text-sm font-semibold text-gray-700">Address Line Two</label>
                         <input id="address2" name="address_line2" type="text" placeholder="Apt, Suite, Floor, etc."
@@ -107,12 +95,7 @@
                     <label for="mailingAddress" class="ml-2 text-sm font-medium text-gray-700">Different mailing
                         address</label>
                 </div>
-                <div>
-                    <input id="citizenship" type="checkbox"
-                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                    <label for="citizenship" class="ml-2 text-sm font-medium text-gray-700">Different citizenship
-                        (non-U.S.)</label>
-                </div>
+               
                 <div>
                     <input id="birthOutsideUS" type="checkbox"
                         class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
