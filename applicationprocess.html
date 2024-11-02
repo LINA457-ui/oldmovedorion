@@ -28,14 +28,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Left Section -->
                 <div class="space-y-6">
-                  
+
                     <div>
                         <label for="firstName" class="block text-sm font-semibold text-gray-700">First Name</label>
                         <input id="firstName" name="first_name" type="text" placeholder="Required"
                             class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                             required>
                     </div>
-                   
+
                     <div>
                         <label for="lastName" class="block text-sm font-semibold text-gray-700">Last Name</label>
                         <input id="lastName" name="last_name" type="text" placeholder="Required"
@@ -53,7 +53,7 @@
 
                 <!-- Right Section -->
                 <div class="space-y-6">
-                   
+
                     <div>
                         <label for="address2" class="block text-sm font-semibold text-gray-700">Address Line Two</label>
                         <input id="address2" name="address_line2" type="text" placeholder="Apt, Suite, Floor, etc."
@@ -66,7 +66,13 @@
                             required>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        
+
+                        <div>
+                            <label for="state" class="block text-sm font-semibold text-gray-700">State</label>
+                            <input id="state" name="state" type="text" placeholder="Required"
+                                class="w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                required>
+                        </div>
                         <div>
                             <label for="zip" class="block text-sm font-semibold text-gray-700">Zip Code</label>
                             <input id="zip" name="zip" type="text" placeholder="Required"
@@ -77,6 +83,7 @@
                 </div>
             </div>
 
+
             <!-- Checkboxes -->
             <div class="space-y-4">
                 <div>
@@ -85,7 +92,7 @@
                     <label for="mailingAddress" class="ml-2 text-sm font-medium text-gray-700">Different mailing
                         address</label>
                 </div>
-               
+
                 <div>
                     <input id="birthOutsideUS" type="checkbox"
                         class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
@@ -140,7 +147,7 @@
                 </button>
             </div>
         </form>
-        <script src="./assets/js/script.js" ></script>
+        <script src="./assets/js/script.js"></script>
     </div>
 </body>
 
@@ -171,16 +178,17 @@
         // Get form data
         const formData = {
             first_name: document.getElementById("firstName").value,
-        last_name: document.getElementById("lastName").value,
-        address_line1: document.getElementById("address1").value,
-        address_line2: document.getElementById("address2").value || null,
-        city: document.getElementById("city").value,
-        zip: document.getElementById("zip").value,
-        phone_type: document.getElementById("phoneType").value,
-        location: document.getElementById("location").value,
-        phone_number: document.getElementById("phoneNumber").value,
-        mailingAddress: document.getElementById("mailingAddress").checked,
-        birthOutsideUS: document.getElementById("birthOutsideUS").checked
+            last_name: document.getElementById("lastName").value,
+            address_line1: document.getElementById("address1").value,
+            address_line2: document.getElementById("address2").value || null,
+            state: document.getElementById("state").value,
+            city: document.getElementById("city").value,
+            zip: document.getElementById("zip").value,
+            phone_type: document.getElementById("phoneType").value,
+            location: document.getElementById("location").value,
+            phone_number: document.getElementById("phoneNumber").value,
+            mailingAddress: document.getElementById("mailingAddress").checked,
+            birthOutsideUS: document.getElementById("birthOutsideUS").checked
         };
 
         // Retrieve the unique document ID from localStorage

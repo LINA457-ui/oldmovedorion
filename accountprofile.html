@@ -124,10 +124,18 @@
       <div class=" flex items-center justify-center p-10 min-h-screen">
         <div class="profile-container  rounded-lg shadow-lg w-full max-w-4xl p-8">
           <!-- Back button -->
-          <button onclick="history.back()"
-            class="mb-4 text-blue-800 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md flex items-center">
-            <i class="fas fa-arrow-left mr-2"></i> Back
-          </button>
+          <div class="flex items-center justify-between w-full px-10">
+            <button onclick="history.back()"
+              class="mb-4 text-blue-800 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md flex items-center">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+
+            <div>
+              <input type="file" id="imageUpload" accept="image/*">
+              <button onclick="uploadImage()">Upload Image</button>
+
+            </div>
+          </div>
 
           <!-- Profile Header -->
           <div class="text-center mb-8">
@@ -139,12 +147,12 @@
           <div class="space-y-6">
             <!-- Grid container -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
+
               <div>
                 <label class="font-semibold text-gray-700">First Name:</label>
                 <p id="firstNameDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"></p>
               </div>
-              
+
               <div>
                 <label class="font-semibold text-gray-700">Last Name:</label>
                 <p id="lastNameDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"></p>
@@ -163,7 +171,7 @@
               </div>
               <div>
                 <label class="font-semibold text-gray-700">State:</label>
-                <p id="" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300">MARYLAND</p>
+                <p id="stateDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"></p>
               </div>
               <div>
                 <label class="font-semibold text-gray-700">Zip Code:</label>
@@ -171,11 +179,11 @@
               </div>
               <div>
                 <label class="font-semibold text-gray-700">Mailing Address:</label>
-                <p id="" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"> 1336 TANEY AVE APT 201 FREDERICK MARYLAND 21702 USA
+                <p id="mailingDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300">
                 </p>
               </div>
-              
-             
+
+
               <div>
                 <label class="font-semibold text-gray-700">Phone Type:</label>
                 <p id="phoneTypeDisplay" class="text-gray-600 bg-gray-50 p-2 rounded-md border border-gray-300"></p>
@@ -200,11 +208,11 @@
 
   </main>
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-  <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
-    alt="Dashboard Logo">
+  <img id="dashboardLogo" src=""
+    alt="">
   </div>
 
-  <script src="./assets/js/script.js" ></script>
+  <script src="./assets/js/script.js"></script>
 
 </body>
 
@@ -298,8 +306,12 @@
         document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
         document.getElementById("address1Display").innerText = userData.address_line1 || "N/A";
         document.getElementById("address2Display").innerText = userData.address_line2 || "N/A";
+        document.getElementById("stateDisplay").innerText = userData.state || "N/A";
         document.getElementById("cityDisplay").innerText = userData.city || "N/A";
         document.getElementById("zipCodeDisplay").innerText = userData.zip || "N/A";
+        document.getElementById("mailingDisplay").innerText = `${userData.address_line1} ${userData.address_line2} ${userData.state} ${userData.zip} ${userData.location}`
+
+
         document.getElementById("phoneTypeDisplay").innerText = userData.phone_type || "N/A";
         document.getElementById("locationDisplay").innerText = userData.location || "N/A";
         document.getElementById("phoneNumberDisplay").innerText = userData.phone_number || "N/A";
@@ -324,43 +336,75 @@
 
 <!-- IMAGE UPLOAD -->
 <script>
-  const imageUpload = document.getElementById("imageUpload");
+  let selectedFile;
 
-
-  imageUpload.addEventListener('change', async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    // Create a storage reference
-    const storageRef = ref(storage, `images/${file.name}`);
-
-    try {
-      // Upload the file
-      const snapshot = await uploadBytes(storageRef, file);
-      console.log('Uploaded a blob or file!', snapshot);
-
-      // Get the download URL and display the image
-      const downloadURL = await getDownloadURL(snapshot.ref);
-      displayImage(downloadURL);
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
+  // Select file on change
+  document.getElementById("imageUpload").addEventListener("change", (event) => {
+    selectedFile = event.target.files[0];
   });
 
+  // Upload Image Function
+  function uploadImage() {
+    if (!selectedFile) {
+      alert("Please select an image to upload.");
+      return;
+    }
 
-  // Function to display the uploaded image
-  function displayImage(url) {
-    const imgElement = document.createElement('img');
-    imgElement.src = url;
-    imgElement.alt = "Uploaded Image";
-    imgElement.style.width = "200px"; // Adjust size as needed
-    imgElement.style.margin = "10px";
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+        const storageRef = firebase.storage().ref(); 
+        const userImageRef = storageRef.child(`ProfileImages/${userId}/profile.jpg`);
 
-    imageContainer.appendChild(imgElement);
+        // Upload the file to Firebase Storage
+        userImageRef.put(selectedFile).then((snapshot) => {
+          console.log("Uploaded the file successfully!");
+
+          // Get the download URL
+          userImageRef.getDownloadURL().then((url) => {
+            // Set the image in the dashboard div
+            document.getElementById("dashboardLogo").src = url;
+
+            // Update Firestore with the download URL
+            db.collection("Profile")
+              .doc(userId)
+              .set({ profileimage: url }, { merge: true })
+              .then(() => {
+                alert("Profile Picture updated successfully!");
+                console.log("Profile Picture updated successfully!");
+              })
+              .catch((error) => {
+                console.error("Error updating profile: ", error);
+              });
+          });
+        }).catch((error) => {
+          console.error("Error uploading image: ", error);
+        });
+      } else {
+        alert("No user is signed in.");
+      }
+    });
   }
 
-
+  // Display Profile Image on Page Load
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const userId = user.uid;
+      db.collection("Profile").doc(userId).get().then((doc) => {
+        if (doc.exists && doc.data().profileimage) {
+          // Set the saved profile image URL as src
+          document.getElementById("dashboardLogo").src = doc.data().profileimage;
+        }
+      }).catch((error) => {
+        console.error("Error retrieving profile image: ", error);
+      });
+    } else {
+      console.log("No user is signed in.");
+    }
+  });
 </script>
+
+
 
 <!-- SIGNOUT SCRIPT -->
 <script>
@@ -388,4 +432,29 @@
     });
   })
 
+</script>
+
+<script>
+
+  // Display Profile Image on Page Load
+  firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+          const userId = user.uid;
+
+          // Retrieve the profile image URL from Firestore
+          db.collection("Profile").doc(userId).get().then((doc) => {
+              if (doc.exists && doc.data().profileimage) {
+                  // Set the saved profile image URL as the src of the image element
+                  document.getElementById("dashboardLogo").src = doc.data().profileimage;
+              } else {
+                  console.log("No profile image found.");
+              }
+          }).catch((error) => {
+              console.error("Error retrieving profile image: ", error);
+          });
+
+      } else {
+          console.log("No user is signed in.");
+      }
+  });
 </script>

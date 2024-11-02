@@ -106,15 +106,16 @@
 
             <header class="header">
                 <div class="mt-6 z-50 mr-5">
-                    <h5 class="text-xl font-bold text-white font-dancing-script shadow-lg animate-bounce transition duration-300 ease-in-out">
-                      Welcome, George Papazis
+                    <h5 id="firstNameDisplay"
+                        class="text-xl font-bold text-white font-dancing-script shadow-lg animate-bounce transition duration-300 ease-in-out">
+                        <!-- Welcome, George Papazis -->
                     </h5>
-                  </div>
-                <div class="mt-6 z-50 mr-5">
-                    <h2 class="mt-6" >Investment Dashboard</h2>
                 </div>
-                  
-                
+                <div class="mt-6 z-50 mr-5">
+                    <h2 class="mt-6">Investment Dashboard</h2>
+                </div>
+
+
                 <div class="live-time" id="liveTime">
                     <p id="timeElement"></p>
                 </div>
@@ -248,7 +249,7 @@
                         <h3 class="text-2xl font-bold mb-2 text-gray-900">Current Balance</h3>
 
                         <!-- Balance Amount -->
-                        <p id="currentBalanc" class="text-4xl font-extrabold text-indigo-600 mb-4">$930,340.00 </p>
+                        <p id="currentBalance" class="text-4xl font-extrabold text-indigo-600 mb-4">$930,340.00 </p>
 
                         <!-- Plan Details -->
                         <div>
@@ -260,13 +261,13 @@
 
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-2 text-gray-900">Brokerage</h3>
-                        <p id="brokerag" style="color: red !important"> $-48,000.50 </p>
-                        <p>Active Plan:  <br> <span>(*86233)</span></p>
+                        <p id="brokerage" style="color: red !important">  </p>
+                        <p>Active Plan: <br> <span>(*86233)</span></p>
 
                     </div>
                     <div class="card">
                         <h3 class="text-2xl font-bold mb-2 text-gray-900">Dividend</h3>
-                        <p id="dividen">$25,340.00</p>
+                        <p id="dividend">$25,340.00</p>
                     </div>
                 </section>
 
@@ -338,12 +339,13 @@
             <p class="orion-popup-message text-gray-700 mb-6 text-lg leading-relaxed text-center">
                 Dear User, Currently, this feature is unavailable for your account. For further assistance or to inquire
                 about activating this feature, please
-                <a href="./sendmailto.html" id="support-link" class="text-blue-500 hover:underline font-bold hover:text-blue-700">
+                <a href="./sendmailto.html" id="support-link"
+                    class="text-blue-500 hover:underline font-bold hover:text-blue-700">
                     Contact our support team
                 </a>
-                <div id="loading" class="hidden mt-2 text-blue-500">Loading...</div>
-                
-                
+            <div id="loading" class="hidden mt-2 text-blue-500">Loading...</div>
+
+
 
 
 
@@ -354,16 +356,15 @@
             </button>
         </div>
     </div>
-   
+
 
 
 
     <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-    
-    <img id="dashboardLogo" src="./assets/images/rsz_1screenshot_2024-10-08_at_11150_am-removebg-preview.png"
-        alt="Dashboard Logo">
-       
-              
+
+    <img id="dashboardLogo" src="" alt="">
+
+
 
     <script src="./assets/js/script.js"></script>
 
@@ -371,6 +372,32 @@
 </body>
 
 </html>
+
+<!-- image uploaded -->
+<script>
+    // Function to Display Image from Firestore
+    async function displayImage() {
+        const docId = localStorage.getItem('userDocId');
+        if (!docId) return;
+
+        try {
+            const doc = await firestore.collection("users").doc(docId).get();
+            if (doc.exists) {
+                const fileName = doc.data().imageUrl; // Assuming this is the file name or relative path
+                const bucketName = "orion-investment-2b141.appspot.com";
+                const imageUrl = `https://storage.googleapis.com/${bucketName}/images/${fileName}`;
+
+                document.getElementById('dashboardLogo').src = imageUrl;
+            }
+        } catch (error) {
+            console.error("Error fetching image URL: ", error);
+        }
+    }
+
+    // Call displayImage on page load
+    window.onload = displayImage;
+</script>
+
 
 
 <script>
@@ -521,9 +548,8 @@
             console.log("Document data:", userData);
 
             // Display data in HTML elements
-            document.getElementById("salutationDisplay").innerText = userData.salutation || "";
+            document.getElementById("fullName").innerText = `${userData.firstName} ${userData.lastName}`
             document.getElementById("firstNameDisplay").innerText = userData.firstName || "";
-            document.getElementById("middleNameDisplay").innerText = userData.middleName || "";
             document.getElementById("lastNameDisplay").innerText = userData.lastName || "";
             document.getElementById("emailDisplay").innerText = userData.mail || ""; // Make sure 'mail' is the correct field
             document.getElementById('fullNameDisplay').innerText = `${userData.firstName} ${userData.lastName}` || "Name not available";
@@ -629,46 +655,6 @@
 </script>
 
 
-<script>
-    // Initialize Firebase (use your own configuration)
-
-
-    function users() {
-        const docId = localStorage.getItem('userDocId');
-        console.log("Retrieved docId from localStorage:", docId);
-
-        if (!docId) {
-            console.log("No user ID found in localStorage.");
-            return;
-        }
-
-        const docRef = db.collection("users").doc(docId);
-
-        docRef.get().then((doc) => {
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-                const userData = doc.data();
-
-                document.getElementById("firstNameDisplay").innerText = userData.first_name || "N/A";
-                document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
-                document.getElementById("emailDisplay").innerText = userData.email || "N/A";
-                document.getElementById('fullNameDisplay').innerText = (userData.first_name || "") + " " + (userData.last_name || "");
-            } else {
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-    }
-
-    // Call the users function when the page is fully loaded
-    window.onload = function () {
-        users();
-    };
-</script>
-
-
-
 
 <script>
     // Get the context of the new canvas element
@@ -741,55 +727,6 @@
 
 
 <script>
-    // Function to display account data
-    async function displayAccountData() {
-        try {
-            // Retrieve the logged-in user's document ID from localStorage
-            const docId = localStorage.getItem("userDocId");
-
-            if (docId) {
-                // Reference the document from Firestore
-                const docRef = db.collection("users").doc(docId);
-
-                // Fetch the document data
-                const docSnap = await docRef.get();
-
-                if (docSnap.exists) {
-                    const userData = docSnap.data();
-
-                    // Log the full user data to debug
-                    console.log('User Data:', userData);
-
-                    // Extract balance, brokerage, and dividend
-                    const currentBalance = userData.currentBalance || 0.00;
-                    const brokerage = userData.brokerage || 0.00;
-                    const dividend = userData.dividend || 0.00;
-
-                    // Log individual values to see if they are coming from Firestore
-                    console.log('Current Balance:', currentBalance);
-                    console.log('Brokerage:', brokerage);
-                    console.log('Dividend:', dividend);
-
-                    // Update the HTML elements to display the data
-                    document.getElementById("currentBalance").innerText = `$${currentBalance.toFixed(2)}`;
-                    document.getElementById("brokerage").innerText = `$${brokerage.toFixed(2)}`;
-                    document.getElementById("dividend").innerText = `$${dividend.toFixed(2)}`;
-                } else {
-                    console.log("No such document!");
-                }
-            } else {
-                console.log("No user logged in or document ID not found in localStorage.");
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        }
-    }
-
-    // Call the function to load the data when the page loads
-    window.onload = displayAccountData;
-</script>
-
-<script>
     document.getElementById("continue").addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -812,3 +749,76 @@
 
 
 </script>
+
+<script>
+    function users() {
+        // Retrieve the document ID from localStorage
+        const docId = localStorage.getItem('userDocId');
+
+        if (!docId) {
+            console.log("No user ID found in localStorage.");
+            return; // Exit if no docId is found
+        }
+
+        // Reference the Firestore document using the retrieved docId
+        const docRef = db.collection("users").doc(docId);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                const userData = doc.data();
+
+                // Update UI elements with data from the Firestore document
+                document.getElementById("firstNameDisplay").innerText = `Welcome ${userData.first_name} ${userData.last_name} `;
+                document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
+                document.getElementById("address1Display").innerText = userData.address_line1 || "N/A";
+                document.getElementById("address2Display").innerText = userData.address_line2 || "N/A";
+                document.getElementById("cityDisplay").innerText = userData.city || "N/A";
+                document.getElementById("zipCodeDisplay").innerText = userData.zip || "N/A";
+                document.getElementById("phoneTypeDisplay").innerText = userData.phone_type || "N/A";
+                document.getElementById("locationDisplay").innerText = userData.location || "N/A";
+                document.getElementById("phoneNumberDisplay").innerText = userData.phone_number || "N/A";
+                document.getElementById("currentBalance").innerText = `$${userData.currentBalance || "N/A"}`; 
+                document.getElementById("brokerage").innerText = `$${userData.brokerage || "N/A"}`; 
+                document.getElementById("dividend").innerText = `$${userData.dividend || "N/A"}`; 
+                document.getElementById("emailDisplay").innerText = userData.email || "N/A";
+                document.getElementById('fullNameDisplay').innerText = `${userData.first_name || ""} ${userData.last_name || ""}`;
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
+
+    // Call the users function to fetch and display the user data
+    window.onload = function () {
+        users();
+    }
+</script>
+
+<script>
+
+    // Display Profile Image on Page Load
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            const userId = user.uid;
+
+            // Retrieve the profile image URL from Firestore
+            db.collection("Profile").doc(userId).get().then((doc) => {
+                if (doc.exists && doc.data().profileimage) {
+                    // Set the saved profile image URL as the src of the image element
+                    document.getElementById("dashboardLogo").src = doc.data().profileimage;
+                } else {
+                    console.log("No profile image found.");
+                }
+            }).catch((error) => {
+                console.error("Error retrieving profile image: ", error);
+            });
+
+        } else {
+            console.log("No user is signed in.");
+        }
+    });
+</script>
+
