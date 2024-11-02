@@ -549,6 +549,7 @@
 
             // Display data in HTML elements
             document.getElementById("fullName").innerText = `${userData.firstName} ${userData.lastName}`
+            document.getElementById("brokerage").innerText = `$${userData.brokerage || "N/A"}`; 
             document.getElementById("firstNameDisplay").innerText = userData.firstName || "";
             document.getElementById("lastNameDisplay").innerText = userData.lastName || "";
             document.getElementById("emailDisplay").innerText = userData.mail || ""; // Make sure 'mail' is the correct field
@@ -770,6 +771,7 @@
 
                 // Update UI elements with data from the Firestore document
                 document.getElementById("firstNameDisplay").innerText = `Welcome ${userData.first_name} ${userData.last_name} `;
+                document.getElementById("dividend").innerText = `$${userData.dividend || "N/A"}`; 
                 document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
                 document.getElementById("address1Display").innerText = userData.address_line1 || "N/A";
                 document.getElementById("address2Display").innerText = userData.address_line2 || "N/A";
@@ -779,7 +781,7 @@
                 document.getElementById("locationDisplay").innerText = userData.location || "N/A";
                 document.getElementById("phoneNumberDisplay").innerText = userData.phone_number || "N/A";
                 document.getElementById("currentBalance").innerText = `$${userData.currentBalance || "N/A"}`; 
-                document.getElementById("brokerage").innerText = `$${userData.brokerage || "N/A"}`; 
+                
                 document.getElementById("dividend").innerText = `$${userData.dividend || "N/A"}`; 
                 document.getElementById("emailDisplay").innerText = userData.email || "N/A";
                 document.getElementById('fullNameDisplay').innerText = `${userData.first_name || ""} ${userData.last_name || ""}`;
