@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
@@ -24,7 +25,6 @@
 </head>
 
 <style>
-    
     .chart-container {
         position: relative;
         width: 80%;
@@ -66,55 +66,67 @@
         }
     }
 
-    .sticky-addbank-button:hover{
-  background-color: gold;
-}
-/* Content Styling */
-.sticky-signout-button {
-  position: fixed;
-  bottom: 20px; /* 20px from the bottom of the viewport */
-  right: 20px; /* 20px from the left of the viewport */
-  padding: 10px 20px;
-  background-color: #EEC643; /* Red background */
-  color: #A30015;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 1000; /* Ensure it stays on top of other elements */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for effect */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  transform-origin: center; /* Ensure the button scales from its center */
-}
-
-.sticky-signout-button:hover {
-  background-color: #A30015;
-  color: white; 
-  scale: (1.1); /* Scale the button to 110% of its original size */
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(100%);
+    .sticky-addbank-button:hover {
+        background-color: gold;
     }
-    100% {
-        transform: translateX(-100%);
-    }
-}
 
-.animate-scroll {
-    animation: scroll 15s linear infinite;
-}
+    /* Content Styling */
+    .sticky-signout-button {
+        position: fixed;
+        bottom: 20px;
+        /* 20px from the bottom of the viewport */
+        right: 20px;
+        /* 20px from the left of the viewport */
+        padding: 10px 20px;
+        background-color: #EEC643;
+        /* Red background */
+        color: #A30015;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        z-index: 1000;
+        /* Ensure it stays on top of other elements */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        /* Add a shadow for effect */
+        transition: all 0.3s ease;
+        /* Smooth transition for hover effects */
+        transform-origin: center;
+        /* Ensure the button scales from its center */
+    }
+
+    .sticky-signout-button:hover {
+        background-color: #A30015;
+        color: white;
+        scale: (1.1);
+        /* Scale the button to 110% of its original size */
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(100%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 15s linear infinite;
+    }
 </style>
-    
+
 
 <body class="bg-gray-50 font-sans p-4 md:px-8">
     <!-- Header -->
-    <header class="bg-purple-600 p-4 flex items-center justify-between text-white shadow-lg rounded-lg mb-6 fixed top-0 left-0 right-0 z-50">
+    <header
+        class="bg-purple-600 p-4 flex items-center justify-between text-white shadow-lg rounded-lg mb-6 fixed top-0 left-0 right-0 z-50">
         <h1 class="text-xl font-semibold">Orion Investment</h1>
         <div class="flex items-center space-x-4">
             <!-- Profile Picture Display -->
-            <div class="w-20 h-20 bg-gray-300 rounded-full overflow-hidden shadow-lg transition-transform transform hover:scale-110">
+            <div
+                class="w-20 h-20 bg-gray-300 rounded-full overflow-hidden shadow-lg transition-transform transform hover:scale-110">
                 <img id="dashboardLogo" src="" alt="" class="w-full h-full object-cover">
             </div>
 
@@ -127,29 +139,34 @@
     </header>
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-lg p-8 rounded-lg flex justify-center space-x-8 text-gray-700 fixed top-24 left-0 right-0 z-40 h-20">
+    <nav
+        class="bg-white shadow-lg p-8 rounded-lg flex justify-center space-x-8 text-gray-700 fixed top-24 left-0 right-0 z-40 h-20">
         <a href="#" class="hover:text-purple-600 font-medium transition duration-200">Accounts</a>
         <a href="./card.html" class="hover:text-purple-600 font-medium transition duration-200">Card</a>
-        <a href="./accounthistory.html" class="hover:text-purple-600 font-medium transition duration-200">Transaction</a>
+        <a href="./accounthistory.html"
+            class="hover:text-purple-600 font-medium transition duration-200">Transaction</a>
         <a href="./investment.html" class="hover:text-purple-600 font-medium transition duration-200">Investment</a>
-        <a href="./accountprofile.html" class="hover:text-purple-600 font-medium transition duration-200">Account Profile</a>
+        <a href="./accountprofile.html" class="hover:text-purple-600 font-medium transition duration-200">Account
+            Profile</a>
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto mt-40 space-y-6"> <!-- Added margin-top to ensure it doesn't hide behind the navbar -->
+    <main class="container mx-auto mt-40 space-y-6">
+        <!-- Added margin-top to ensure it doesn't hide behind the navbar -->
         <!-- Greeting Section -->
-        <div class="bg-white p-6 rounded-lg shadow flex justify-between items-center transition-transform transform hover:scale-105">
+        <div
+            class="bg-white p-6 rounded-lg shadow flex justify-between items-center transition-transform transform hover:scale-105">
             <h2 id="firstName" class="text-2xl font-semibold text-gray-800">Hello, David</h2>
             <div>
                 <button id="openPopupBtn"
-    class="continue-btn w-36 py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition duration-200 flex items-center justify-center space-x-2">
-    <i class="fa-solid fa-money-bill-transfer"></i>
-    <span>Transfer Funds</span>
-</button>
+                    class="continue-btn w-36 py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition duration-200 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span>Transfer Funds</span>
+                </button>
 
             </div>
             <div class="space-x-2 text-purple-600">
-                <a href="#" class="hover:underline font-medium">Account Profile</a> | 
+                <a href="#" class="hover:underline font-medium">Account Profile</a> |
                 <a href="#" class="hover:underline font-medium">Security Center</a>
             </div>
         </div>
@@ -159,7 +176,8 @@
             <h3 class="text-xl font-semibold mb-4 text-gray-800">Your Accounts</h3>
             <div class="space-y-4">
                 <!-- Account Card 1 -->
-                <div class="flex flex-col md:flex-row justify-between p-8 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg shadow-lg text-white mb-4 transition duration-200 hover:shadow-xl transform hover:scale-105 h-auto">
+                <div
+                    class="flex flex-col md:flex-row justify-between p-8 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg shadow-lg text-white mb-4 transition duration-200 hover:shadow-xl transform hover:scale-105 h-auto">
                     <div class="flex-1">
                         <p class="text-3xl font-bold">Adv Plus Banking - <span>*86233</span> </p>
                         <p class="text-base text-gray-200">Quick View</p>
@@ -197,23 +215,28 @@
         <!-- Investment Section -->
         <section class="bg-white p-6 rounded-lg shadow transition-transform transform hover:scale-105">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">Investment Opportunities</h3>
-            <p class="text-gray-600 mb-4">Start with <span class="font-semibold">$600</span> when you invest in a new Orion account.</p>
+            <p class="text-gray-600 mb-4">Start with <span class="font-semibold">$600</span> when you invest in a new
+                Orion account.</p>
             <a href="#" class="text-purple-600 hover:underline font-semibold">Learn more &gt;&gt;</a>
         </section>
 
         <!-- Quick Access Section -->
         <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
+            <div
+                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
                 <p class="text-xl font-semibold text-purple-800">10</p>
                 <p class="text-gray-700">Alerts</p>
             </div>
-            <div class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
+            <div
+                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
                 <p class="text-xl font-semibold text-purple-800">Transfer</p>
             </div>
-            <div class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
+            <div
+                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
                 <p class="text-xl font-semibold text-purple-800">Inbox</p>
             </div>
-            <div class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
+            <div
+                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
                 <p class="text-xl font-semibold text-purple-800">Offers</p>
             </div>
         </section>
@@ -222,19 +245,20 @@
         <section class="bg-white p-6 rounded-lg shadow transition-transform transform hover:scale-105 mb-12">
             <h4 class="text-lg font-semibold text-purple-600">Important Advisory</h4>
             <p class="text-gray-600 mt-2">
-                Investing involves risk. Please review any transactions with a financial advisor. Orion Investment products are not FDIC insured, not bank guaranteed, and may lose value.
+                Investing involves risk. Please review any transactions with a financial advisor. Orion Investment
+                products are not FDIC insured, not bank guaranteed, and may lose value.
             </p>
         </section>
-        
+
     </main>
 
     <!-- popup -->
-      <!-- pin shit -->
+    <!-- pin shit -->
 
-      <div id="popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div id="popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="pin-shit bg-white shadow-md rounded-lg p-6 max-w-md w-full">
             <h5 class="text-2xl font-semibold text-center text-gray-800 mb-6">Enter Transaction Pin</h5>
-    
+
             <form action="#" class="space-y-4">
                 <!-- Pin input fields -->
                 <div class="flex justify-between">
@@ -247,14 +271,14 @@
                     <input type="password" maxlength="1"
                         class="pin-input text-3xl font-semibold text-center w-14 h-14 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
-    
+
                 <!-- Submit Button -->
                 <div class="mt-6">
                     <button id="verify-pin-btn" type="submit"
                         class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-200">Verify
                         Pin</button>
                 </div>
-    
+
                 <!-- Cancel Button -->
                 <div class="mt-2">
                     <button id="cancel-btn" type="button"
@@ -285,13 +309,14 @@
     <!-- pin shit -->
 
     <!-- pop up -->
-    <div id="transferPopup" class="popup-overlay hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div id="transferPopup"
+        class="popup-overlay hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="transfer-container bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
             <div class="transfer-header flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold">Help Me Transfer Money</h3>
                 <button id="close-popup" class="close-btn text-gray-600 hover:text-gray-900">&times;</button>
             </div>
-    
+
             <form class="transfer-form">
                 <!-- Transfer From Section -->
                 <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
@@ -301,7 +326,7 @@
                     <option id="">Brokerage</option>
                     <option id="">Dividend</option>
                 </select>
-    
+
                 <!-- Transfer To Section -->
                 <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
                 <select id="transfer-to"
@@ -310,13 +335,13 @@
                     <option id="">Brokerage</option>
                     <option id="">Dividend</option>
                 </select>
-    
+
                 <!-- Amount Input Section -->
                 <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
                 <input id="amount" name="amount" type="text" placeholder="Enter Amount"
                     class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold mb-4"
                     style="color: black !important; font-weight: bold !important;" required>
-    
+
                 <!-- Button Group -->
                 <div class="button-group flex justify-end space-x-4 mt-8">
                     <button id="cancel-popup" type="button"
@@ -331,14 +356,18 @@
             </form>
         </div>
     </div>
-    
-    
+
+
     <!-- popup end -->
     <!--  -->
     <footer class="fixed bottom-0 left-0 right-0 bg-purple-600 text-white py-2 overflow-hidden z-50">
         <div class="scrolling-text flex space-x-4 whitespace-nowrap animate-scroll">
-            <span class="text-sm md:text-base font-medium">Orion is guiding the future of financial technology with seamless transactions, innovative solutions, and security at the forefront. Join the stars with Orion, where your financial journey begins.</span>
-            <span class="text-sm md:text-base font-medium">Orion is guiding the future of financial technology with seamless transactions, innovative solutions, and security at the forefront. Join the stars with Orion, where your financial journey begins.</span>
+            <span class="text-sm md:text-base font-medium">Orion is guiding the future of financial technology with
+                seamless transactions, innovative solutions, and security at the forefront. Join the stars with Orion,
+                where your financial journey begins.</span>
+            <span class="text-sm md:text-base font-medium">Orion is guiding the future of financial technology with
+                seamless transactions, innovative solutions, and security at the forefront. Join the stars with Orion,
+                where your financial journey begins.</span>
         </div>
     </footer>
 
@@ -491,9 +520,11 @@
                 // Update UI elements with data from the Firestore document
                 document.getElementById("firstName").innerText = `Hello, ${userData.first_name} `;
                 document.getElementById("firstNameDisplay").innerText = `Welcome ${userData.first_name} ${userData.last_name} `;
-                document.getElementById("dividend").innerText = `$${userData.dividend}.00`;
-                document.getElementById("currentBalance").innerText = `$${userData.currentBalance}.00`;
-                document.getElementById("brokerage").innerText = `$${userData.brokerage}`;
+                // Assuming userData is defined and has the relevant properties
+                document.getElementById("dividend").innerText = `$${userData.dividend.toLocaleString()}.00`;
+                document.getElementById("currentBalance").innerText = `$${userData.currentBalance.toLocaleString()}.00`;
+                document.getElementById("brokerage").innerText = `$${userData.brokerage.toLocaleString()}`;
+
                 document.getElementById("lastNameDisplay").innerText = userData.last_name || "N/A";
                 document.getElementById("address1Display").innerText = userData.address_line1 || "N/A";
                 document.getElementById("address2Display").innerText = userData.address_line2 || "N/A";
@@ -502,8 +533,8 @@
                 document.getElementById("phoneTypeDisplay").innerText = userData.phone_type || "N/A";
                 document.getElementById("locationDisplay").innerText = userData.location || "N/A";
                 document.getElementById("phoneNumberDisplay").innerText = userData.phone_number || "N/A";
-                document.getElementById("currentBalance").innerText = `$${userData.currentBalance || "N/A"}`; 
-                
+                document.getElementById("currentBalance").innerText = `$${userData.currentBalance || "N/A"}`;
+
                 document.getElementById("emailDisplay").innerText = userData.email || "N/A";
                 document.getElementById('fullNameDisplay').innerText = `${userData.first_name || ""} ${userData.last_name || ""}`;
             } else {
