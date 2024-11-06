@@ -211,28 +211,7 @@
 
 
 </script>
-<script>
-    var docRef = db.collection("users").doc("mail");
 
-    docRef.get().then((doc) => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-            const userData = doc.data(); // Use doc.data() to access the data
-            console.log("Document data:", userData);
-            document.getElementById("salutationDisplay").innerText = userData.salutation;
-            document.getElementById("firstNameDisplay").innerText = userData.firstName;
-            document.getElementById("middleNameDisplay").innerText = userData.middleName;
-            document.getElementById("lastNameDisplay").innerText = userData.lastName;
-            document.getElementById("emailDisplay").innerText = userData.mail;
-            document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-</script>
 
 <!-- SIGNOUT SCRIPT -->
 <script>
@@ -240,13 +219,19 @@
     const signout = document.getElementById("signout-button");
 
     signout.addEventListener('click', (e) => {
-        e.preventDefault();
         auth.signOut().then(() => {
             // Sign-out successful.
-            showSignOutSuccess();
+            Toastify({
+                text: "You have successfully signed out.",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                close: true
+            }).showToast();
 
             // Optionally, redirect to a login page or another page
-            window.location.href = "signin.html";// Change this to your login page
+            window.location.href = "signin.html"; // Change this to your login page
         }).catch((error) => {
             // An error happened.
             Toastify({
