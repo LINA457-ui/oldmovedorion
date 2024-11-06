@@ -212,6 +212,7 @@
       <!-- Transaction History Table -->
       <div class="transaction-history-container mx-auto max-w-4xl bg-white shadow-md rounded-lg p-6">
         <a href="dashboard.html"><button class="back-button mb-4">Back</button></a>
+
         <div class="overflow-x-auto">
           <table class="min-w-full bg-white rounded-lg shadow-md">
             <thead class="bg-gray-100 text-gray-700">
@@ -223,77 +224,79 @@
                 <th class="px-4 py-2 text-right">Balance</th>
               </tr>
             </thead>
+
             <tbody class="text-gray-600 text-sm">
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">Oct 02</td>
-                <td class="px-4 py-2">DEP/10/31/Jones-Papazis/08488829009</td>
+                <td id="eightMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="eightMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$4,050.00</td>
-                <td class="px-4 py-2 text-right">$930,340.00</td>
+                <td id="eightMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="eightMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- Start from the bottommost date (November) -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">Sept 02</td>
-                <td class="px-4 py-2">Dividend</td>
-                <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$926,720.00</td>
+                <td id="sevenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="sevenMonthDescription" class="px-4 py-2"></td>
+                <td  class="px-4 py-2 text-right"></td>
+                <td id="sevenMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="sevenMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- March Withdrawal -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">Aug 02</td>
-                <td class="px-4 py-2">Dividend</td>
-                <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$923,100.00</td>
+                <td id="sixMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="sixMonthDescription" class="px-4 py-2"></td>
+                <td  class="px-4 py-2 text-right"></td>
+                <td id="sixMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="sixMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- February Withdrawal -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">July 02</td>
-                <td class="px-4 py-2">Dividend</td>
+                <td id="fiveMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="fiveMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$919,480.00</td>
+                <td id="fiveMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="fiveMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- January Withdrawal -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">June 02</td>
-                <td class="px-4 py-2">Dividend</td>
+                <td id="fourMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="fourMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$915,860.00</td>
+                <td id="fourMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="fourMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- December Withdrawal -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">May 02</td>
-                <td class="px-4 py-2">Dividend</td>
+                <td id="threeMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="threeMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$912,240.00</td>
+                <td id="threeMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="threeMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- November Withdrawal -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">April  02</td>
-                <td class="px-4 py-2">Dividend</td>
+                <td id="twoMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="twoMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$3,620.00</td>
-                <td class="px-4 py-2 text-right">$908,620.00</td>
+                <td id="twoMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="twoMonthBalance" class="px-4 py-2 text-right"></td>
               </tr>
               <!-- November Deposit -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">March 06</td>
-                <td class="px-4 py-2">Deposit</td>
-                <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$905,000.00</td>
-                <td class="px-4 py-2 text-right">$905,000.00</td>
+                <td id="oneplusMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="oneplusMonthDescription"  class="px-4 py-2"></td>
+                <td id=""  class="px-4 py-2 text-right"></td>
+                <td id="oneplusMonthDeposit"  class="px-4 py-2 text-right"></td>
+                <td id="oneplusMonthBalance"  class="px-4 py-2 text-right"></td>
               </tr>
               <!-- Platinum Plan Subscription -->
               <tr class="border-b border-gray-200">
-                <td class="px-4 py-2 whitespace-nowrap">March 01</td>
-                <td class="px-4 py-2">Platinum Plan Subscription</td>
-                <td class="px-4 py-2 text-right"></td>
-                <td class="px-4 py-2 text-right">$1,000,000.00</td>
-                <td class="px-4 py-2 text-right">$1,000,000.00</td>
+                <td id="oneMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="oneMonthDescription" class="px-4 py-2"></td>
+                <td id="" class="px-4 py-2 text-right"></td>
+                <td id="oneMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="oneMonthBalance" class="px-4 py-2 text-right"></td>
+
               </tr>
             </tbody>
           </table>
@@ -310,11 +313,9 @@
   </main>
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
   </div>
+  <img id="dashboardLogo" src="" alt="">
   <script src="./assets/js/script.js"></script>
-  <img id="dashboardLogo" src=""
-  alt="">
-  <script src="./assets/js/script.js"></script>
-</div>
+  </div>
 </body>
 
 </html>
@@ -367,28 +368,6 @@
 
 
 </script>
-<script>
-  var docRef = db.collection("users").doc("mail");
-
-  docRef.get().then((doc) => {
-    if (doc.exists) {
-      console.log("Document data:", doc.data());
-      const userData = doc.data(); // Use doc.data() to access the data
-      console.log("Document data:", userData);
-      document.getElementById("salutationDisplay").innerText = userData.salutation;
-      document.getElementById("firstNameDisplay").innerText = userData.firstName;
-      document.getElementById("middleNameDisplay").innerText = userData.middleName;
-      document.getElementById("lastNameDisplay").innerText = userData.lastName;
-      document.getElementById("emailDisplay").innerText = userData.mail;
-      document.getElementById('fullNameDisplay').innerText = userData.firstName + " " + userData.lastName;
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  }).catch((error) => {
-    console.log("Error getting document:", error);
-  });
-</script>
 
 <!-- SIGNOUT SCRIPT -->
 <script>
@@ -422,23 +401,109 @@
 
   // Display Profile Image on Page Load
   firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-          const userId = user.uid;
+    if (user) {
+      const userId = user.uid;
 
-          // Retrieve the profile image URL from Firestore
-          db.collection("Profile").doc(userId).get().then((doc) => {
-              if (doc.exists && doc.data().profileimage) {
-                  // Set the saved profile image URL as the src of the image element
-                  document.getElementById("dashboardLogo").src = doc.data().profileimage;
-              } else {
-                  console.log("No profile image found.");
-              }
-          }).catch((error) => {
-              console.error("Error retrieving profile image: ", error);
-          });
+      // Retrieve the profile image URL from Firestore
+      db.collection("Profile").doc(userId).get().then((doc) => {
+        if (doc.exists && doc.data().profileimage) {
+          // Set the saved profile image URL as the src of the image element
+          document.getElementById("dashboardLogo").src = doc.data().profileimage;
+        } else {
+          console.log("No profile image found.");
+        }
+      }).catch((error) => {
+        console.error("Error retrieving profile image: ", error);
+      });
 
-      } else {
-          console.log("No user is signed in.");
-      }
+    } else {
+      console.log("No user is signed in.");
+    }
   });
+</script>
+
+
+<!-- display account history -->
+<script>
+  function users() {
+    // Retrieve the document ID from localStorage
+    const docId = localStorage.getItem('userDocId');
+
+    if (!docId) {
+      console.log("No user ID found in localStorage.");
+      return; // Exit if no docId is found
+    }
+
+    // Reference the Firestore document using the retrieved docId
+    const docRef = db.collection("users").doc(docId);
+
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        const userData = doc.data();
+
+        // Account History oNE
+        document.getElementById("oneMonthDate").innerText = userData.oneMonthDate;
+        document.getElementById("oneMonthDescription").innerText = userData.oneMonthDescription;
+        document.getElementById("oneMonthDeposit").innerText = `$${userData.oneMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("oneMonthBalance").innerText = `$${userData.oneMonthBalance.toLocaleString()}.00`;
+              // Account History one Plus
+              document.getElementById("oneplusMonthDate").innerText = userData.oneplusMonthDate;
+        document.getElementById("oneplusMonthDescription").innerText = userData.oneplusMonthDescription;
+        document.getElementById("oneplusMonthDeposit").innerText = `$${userData.oneplusMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("oneplusMonthBalance").innerText = `$${userData.oneplusMonthBalance.toLocaleString()}.00`;
+         // Account History second month
+         document.getElementById("twoMonthDate").innerText = userData.twoMonthDate;
+        document.getElementById("twoMonthDescription").innerText = userData.twoMonthDescription;
+        document.getElementById("twoMonthDeposit").innerText = `$${userData.twoMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("twoMonthBalance").innerText = `$${userData.twoMonthBalance.toLocaleString()}.00`;
+        // third month
+        document.getElementById("threeMonthDate").innerText = userData.threeMonthDate;
+        document.getElementById("threeMonthDescription").innerText = userData.threeMonthDescription;
+        document.getElementById("threeMonthDeposit").innerText = `$${userData.threeMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("threeMonthBalance").innerText = `$${userData.threeMonthBalance.toLocaleString()}.00`;
+        // four
+        document.getElementById("fourMonthDate").innerText = userData.fourMonthDate;
+        document.getElementById("fourMonthDescription").innerText = userData.fourMonthDescription;
+        document.getElementById("fourMonthDeposit").innerText = `$${userData.fourMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("fourMonthBalance").innerText = `$${userData.fourMonthBalance.toLocaleString()}.00`;
+        // five
+        document.getElementById("fiveMonthDate").innerText = userData.fiveMonthDate;
+        document.getElementById("fiveMonthDescription").innerText = userData.fiveMonthDescription;
+        document.getElementById("fiveMonthDeposit").innerText = `$${userData.fiveMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("fiveMonthBalance").innerText = `$${userData.fiveMonthBalance.toLocaleString()}.00`;
+
+        // six
+        document.getElementById("sixMonthDate").innerText = userData.sixMonthDate;
+        document.getElementById("sixMonthDescription").innerText = userData.sixMonthDescription;
+        document.getElementById("sixMonthDeposit").innerText = `$${userData.sixMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("sixMonthBalance").innerText = `$${userData.sixMonthBalance.toLocaleString()}.00`;
+        // seven
+        document.getElementById("sevenMonthDate").innerText = userData.sevenMonthDate;
+        document.getElementById("sevenMonthDescription").innerText = userData.sevenMonthDescription;
+        document.getElementById("sevenMonthDeposit").innerText = `$${userData.sevenMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("sevenMonthBalance").innerText = `$${userData.sevenMonthBalance.toLocaleString()}.00`;
+        // eight
+        document.getElementById("eightMonthDate").innerText = userData.eightMonthDate;
+        document.getElementById("eightMonthDescription").innerText = userData.eightMonthDescription;
+        document.getElementById("eightMonthDeposit").innerText = `$${userData.eightMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("eightMonthBalance").innerText = `$${userData.eightMonthBalance.toLocaleString()}.00`;
+
+
+
+         
+
+        // Assuming userData is defined and has the relevant properties
+      } else {
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  }
+
+  // Call the users function to fetch and display the user data
+  window.onload = function () {
+    users();
+  }
 </script>
