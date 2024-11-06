@@ -449,8 +449,8 @@
         const userData = doc.data();
 
         // Account History oNE
-        document.getElementById("oneMonthDate").innerText = userData.oneMonthDate;
-        document.getElementById("oneMonthDescription").innerText = userData.oneMonthDescription;
+        document.getElementById("oneMonthDate").innerText = userData.oneMonthDate || " ";
+        document.getElementById("oneMonthDescription").innerText = userData.oneMonthDescription || " ";
         document.getElementById("oneMonthDeposit").innerText = `$${userData.oneMonthDeposit.toLocaleString()}.00`;
         document.getElementById("oneMonthBalance").innerText = `$${userData.oneMonthBalance.toLocaleString()}.00`;
               // Account History one Plus
