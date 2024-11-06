@@ -375,24 +375,30 @@
   const signout = document.getElementById("signout-button");
 
   signout.addEventListener('click', (e) => {
-    e.preventDefault();
-    auth.signOut().then(() => {
-      // Sign-out successful.
-      showSignOutSuccess();
+      auth.signOut().then(() => {
+          // Sign-out successful.
+          Toastify({
+              text: "You have successfully signed out.",
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+              close: true
+          }).showToast();
 
-      // Optionally, redirect to a login page or another page
-      window.location.href = "signin.html"; // Change this to your login page
-    }).catch((error) => {
-      // An error happened.
-      Toastify({
-        text: `Error signing out: ${error.message}`,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
-        close: true
-      }).showToast();
-    });
+          // Optionally, redirect to a login page or another page
+          window.location.href = "signin.html"; // Change this to your login page
+      }).catch((error) => {
+          // An error happened.
+          Toastify({
+              text: `Error signing out: ${error.message}`,
+              duration: 3000,
+              gravity: "top",
+              position: "right",
+              backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
+              close: true
+          }).showToast();
+      });
   })
 
 </script>
