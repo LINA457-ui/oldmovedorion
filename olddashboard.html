@@ -803,3 +803,53 @@
     });
 </script>
 
+
+
+<div id="transferPopup"
+class="popup-overlay hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+<div class="transfer-container bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
+    <div class="transfer-header flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold">Help Me Transfer Money</h3>
+        <button id="close-popup" class="close-btn text-gray-600 hover:text-gray-900">&times;</button>
+    </div>
+
+    <form class="transfer-form">
+        <!-- Transfer From Section -->
+        <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
+        <select id="transfer-from"
+            class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
+            <option id="currentBalanceM">Current Balance</option>
+            <option id="">Brokerage</option>
+            <option id="">Dividend</option>
+        </select>
+
+        <!-- Transfer To Section -->
+        <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
+        <select id="transfer-to"
+            class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
+            <option id="currentBalanceM">Current Balance</option>
+            <option id="">Brokerage</option>
+            <option id="">Dividend</option>
+        </select>
+
+        <!-- Amount Input Section -->
+        <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
+        <input id="amount" name="amount" type="text" placeholder="Enter Amount"
+            class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold mb-4"
+            style="color: black !important; font-weight: bold !important;" required>
+
+        <!-- Button Group -->
+        <div class="button-group flex justify-end space-x-4 mt-8">
+            <button id="cancel-popup" type="button"
+                class="cancel-btn w-32 py-2 px-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-md transition duration-200 ease-in-out">
+                Cancel
+            </button>
+            <button id="continue" type="submit"
+                class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md transition duration-200 transform hover:scale-105 ease-in-out">
+                Continue
+            </button>
+        </div>
+    </form>
+</div>
+</div>
+

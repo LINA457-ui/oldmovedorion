@@ -307,55 +307,31 @@
 
 
     <!-- pin shit -->
+    
 
     <!-- pop up -->
-    <div id="transferPopup"
-        class="popup-overlay hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div class="transfer-container bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
-            <div class="transfer-header flex justify-between items-center mb-4">
-                <h3 class="text-lg font-semibold">Help Me Transfer Money</h3>
-                <button id="close-popup" class="close-btn text-gray-600 hover:text-gray-900">&times;</button>
-            </div>
+    
 
-            <form class="transfer-form">
-                <!-- Transfer From Section -->
-                <label for="transfer-from" class="block text-base font-medium text-gray-700 mb-1">Transfer From</label>
-                <select id="transfer-from"
-                    class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
-                    <option id="currentBalanceM">Current Balance</option>
-                    <option id="">Brokerage</option>
-                    <option id="">Dividend</option>
-                </select>
-
-                <!-- Transfer To Section -->
-                <label for="transfer-to" class="block text-base font-medium text-gray-700 mb-1">Transfer To</label>
-                <select id="transfer-to"
-                    class="input-field w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-gray-800 mb-4">
-                    <option id="currentBalanceM">Current Balance</option>
-                    <option id="">Brokerage</option>
-                    <option id="">Dividend</option>
-                </select>
-
-                <!-- Amount Input Section -->
-                <label for="amount" class="block text-base font-medium text-gray-700 mb-1">Amount</label>
-                <input id="amount" name="amount" type="text" placeholder="Enter Amount"
-                    class="w-full py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-white text-black font-bold mb-4"
-                    style="color: black !important; font-weight: bold !important;" required>
-
-                <!-- Button Group -->
-                <div class="button-group flex justify-end space-x-4 mt-8">
-                    <button id="cancel-popup" type="button"
-                        class="cancel-btn w-32 py-2 px-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-md transition duration-200 ease-in-out">
-                        Cancel
-                    </button>
-                    <button id="continue" type="submit"
-                        class="continue-btn w-36 py-2 px-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-medium rounded-md transition duration-200 transform hover:scale-105 ease-in-out">
-                        Continue
-                    </button>
-                </div>
-            </form>
-        </div>
+<!-- Popup Container -->
+<!-- Overlay and Popup Structure -->
+<div id="orion-popup-overlay" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-[9999]">
+    <div id="orion-popup-box" class="orion-popup-box bg-white p-8 rounded-lg shadow-lg max-w-lg w-full transform scale-0 transition-transform duration-500">
+        <h2 class="orion-popup-title text-3xl font-bold text-red-600 mb-6 text-center">Feature Unavailable</h2>
+        <p class="orion-popup-message text-gray-700 mb-6 text-lg leading-relaxed text-center">
+            Dear <span id="firstNName"> </span>, this withdrawal feature is currently unavailable for your account. For further assistance or to inquire
+            about activating this feature, please
+            <a href="./sendmailto.html" id="support-link" class="text-blue-500 hover:underline font-bold hover:text-blue-700">
+               Click here to contact our support team
+            </a>.
+        </p>
+        <div id="loading" class="hidden mt-2 text-blue-500">Loading...</div>
+        <button id="orion-close-popup" class="w-full py-3 px-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition ease-in-out text-lg font-semibold">
+            Close
+        </button>
     </div>
+</div>
+
+
 
 
     <!-- popup end -->
@@ -552,6 +528,7 @@
                 // Update UI elements with data from the Firestore document
                 document.getElementById("firstName").innerText = `Hello, ${userData.first_name} `;
                 document.getElementById("firstNameDisplay").innerText = `Welcome ${userData.first_name} ${userData.last_name} `;
+                document.getElementById("firstNName").innerText = userData.first_name;
                 // Assuming userData is defined and has the relevant properties
                 document.getElementById("dividend").innerText = `$${userData.dividend.toLocaleString()}.00`;
                 document.getElementById("currentBalance").innerText = `$${userData.currentBalance.toLocaleString()}.00`;
@@ -610,17 +587,14 @@
     document.getElementById('verify-pin-btn').addEventListener('click', async function (e) {
         e.preventDefault();  // Prevent form submission
 
-        // Get the input values of the PIN fields
         const pinInputs = document.querySelectorAll('.pin-input');
         let enteredPin = '';
         pinInputs.forEach(input => {
-            enteredPin += input.value; // Combine the inputs into a single string
+            enteredPin += input.value;
         });
 
-        // Get the user's document ID from localStorage
         const docId = localStorage.getItem("userDocId");
 
-        // Check if userDocId is available
         if (!docId) {
             Toastify({
                 text: "User not found. Please log in.",
@@ -630,29 +604,27 @@
             return;
         }
 
-        // Reference to Firestore and collection using the stored docId
         const userRef = firebase.firestore().collection('users').doc(docId);
 
         try {
-            // Fetch the document from Firestore
             const doc = await userRef.get();
-
             if (doc.exists) {
                 const data = doc.data();
-                const storedTransactionPin = data.transactionPin;  // The pin stored in Firestore
+                const storedTransactionPin = data.transactionPin;
 
-                // Check if entered PIN matches the stored one
                 if (enteredPin === storedTransactionPin) {
-                    // If PIN matches, show success notification and the transfer money popup
                     Toastify({
-                        text: "Transaction PIN verified successfully!",
+                        text: "Pin Validation Successful!",
                         backgroundColor: "green",
-                        duration: 3000
+                        duration: 2000
                     }).showToast();
 
-                    // Show the transfer form popup by changing the display property
-                    document.getElementById('transferPopup').style.display = 'block';
-                    enteredPin = " ";
+                    // Show popup after successful verification
+                    const popupOverlay = document.getElementById('orion-popup-overlay');
+                    const popupBox = document.getElementById('orion-popup-box');
+                    popupOverlay.classList.remove('hidden');
+                    popupBox.classList.add('scale-100'); // Smooth transition
+
                 } else {
                     Toastify({
                         text: "Incorrect Transaction PIN. Please try again.",
@@ -678,12 +650,8 @@
     });
 
     // Function to close the popup
-    document.getElementById('close-popup').addEventListener('click', function () {
-        document.getElementById('transferPopup').style.display = 'none'; // Hide the transfer popup
-    });
-
-    // Function to cancel and close the popup
-    document.getElementById('cancel-popup').addEventListener('click', function () {
-        document.getElementById('transferPopup').style.display = 'none'; // Hide the transfer popup
+    document.getElementById('orion-close-popup').addEventListener('click', function () {
+        document.getElementById('orion-popup-overlay').classList.add('hidden');
+        document.getElementById('orion-popup-box').classList.remove('scale-100');
     });
 </script>
