@@ -206,14 +206,14 @@
         </section>
 
         <!-- Stock Pie Chart Section -->
-        <section class="bg-white p-6 rounded-lg shadow transition-transform transform hover:scale-105">
+        <section class="bg-green-100 p-6 rounded-lg shadow transition-transform transform hover:scale-105">
             <div class="stock-chart-container">
                 <canvas id="stockPieChart" class="stock-chart"></canvas>
             </div>
         </section>
 
         <!-- Investment Section -->
-        <section class="bg-white p-6 rounded-lg shadow transition-transform transform hover:scale-105">
+        <section class="bg-yellow-100 p-6 rounded-lg shadow transition-transform transform hover:scale-105">
             <h3 class="text-xl font-semibold mb-4 text-gray-800">Investment Opportunities</h3>
             <p class="text-gray-600 mb-4">Start with <span class="font-semibold">$600</span> when you invest in a new
                 Orion account.</p>
@@ -221,25 +221,36 @@
         </section>
 
         <!-- Quick Access Section -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6">
+            <!-- Alerts -->
             <div
-                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
-                <p class="text-xl font-semibold text-purple-800">10</p>
-                <p class="text-gray-700">Alerts</p>
+              class="bg-purple-100 p-4 rounded-lg text-center transition duration-300 hover:shadow-lg transform hover:scale-105 hover:bg-purple-200">
+              <p class="text-2xl font-bold text-purple-800">10</p>
+              <p class="text-gray-700 font-medium">Alerts</p>
             </div>
+          
+            <!-- Transfer -->
             <div
-                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
-                <p class="text-xl font-semibold text-purple-800">Transfer</p>
+              class="bg-blue-100 p-4 rounded-lg text-center transition duration-300 hover:shadow-lg transform hover:scale-105 hover:bg-blue-200">
+              <p class="text-2xl font-bold text-blue-800">Transfer</p>
+              <p class="text-gray-700 font-medium">Transactions</p>
             </div>
+          
+            <!-- Inbox -->
             <div
-                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
-                <p class="text-xl font-semibold text-purple-800">Inbox</p>
+              class="bg-green-100 p-4 rounded-lg text-center transition duration-300 hover:shadow-lg transform hover:scale-105 hover:bg-green-200">
+              <p class="text-2xl font-bold text-green-800">Inbox</p>
+              <p class="text-gray-700 font-medium">Messages</p>
             </div>
+          
+            <!-- Offers -->
             <div
-                class="bg-purple-100 p-4 rounded-lg text-center transition duration-200 hover:shadow-lg transform hover:scale-105">
-                <p class="text-xl font-semibold text-purple-800">Offers</p>
+              class="bg-yellow-100 p-4 rounded-lg text-center transition duration-300 hover:shadow-lg transform hover:scale-105 hover:bg-yellow-200">
+              <p class="text-2xl font-bold text-yellow-800">Offers</p>
+              <p class="text-gray-700 font-medium">Promotions</p>
             </div>
-        </section>
+          </section>
+          
 
         <!-- Advisory Section -->
         <section class="bg-white p-6 rounded-lg shadow transition-transform transform hover:scale-105 mb-12">
