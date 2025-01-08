@@ -227,6 +227,22 @@
 
             <tbody class="text-gray-600 text-sm">
               <tr class="border-b border-gray-200">
+                <td id="tenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="tenMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="tenMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="tenMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- dec -->
+              <tr class="border-b border-gray-200">
+                <td id="nineMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="nineMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="nineMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="nineMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- nove -->
+              <tr class="border-b border-gray-200">
                 <td id="eightMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
                 <td id="eightMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
@@ -494,6 +510,16 @@
         document.getElementById("eightMonthDescription").innerText = userData.eightMonthDescription;
         document.getElementById("eightMonthDeposit").innerText = `$${userData.eightMonthDeposit.toLocaleString()}.00`;
         document.getElementById("eightMonthBalance").innerText = `$${userData.eightMonthBalance.toLocaleString()}.00`;
+        // nine
+        document.getElementById("nineMonthDate").innerText = userData.nineMonthDate;
+        document.getElementById("nineMonthDescription").innerText = userData.nineMonthDescription;
+        document.getElementById("nineMonthDeposit").innerText = `$${userData.nineMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("nineMonthBalance").innerText = `$${userData.nineMonthBalance.toLocaleString()}.00`;
+        // ten
+        document.getElementById("tenMonthDate").innerText = userData.tenMonthDate;
+        document.getElementById("tenMonthDescription").innerText = userData.tenMonthDescription;
+        document.getElementById("tenMonthDeposit").innerText = `$${userData.tenMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("tenMonthBalance").innerText = `$${userData.tenMonthBalance.toLocaleString()}.00`;
 
 
 
