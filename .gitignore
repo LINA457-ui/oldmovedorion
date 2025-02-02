@@ -1,10 +1,3 @@
 .env
-/assets/js/script.js
-# Ignore script.js inside assets/js folder
 assets/js/script.js
 
-# Ignore all JS files inside assets/js
-assets/js/*.js  # If you want to ignore all JS files in the folder
-
-# Ignore entire assets/js folder (optional)
-assets/js/
