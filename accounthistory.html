@@ -227,6 +227,30 @@
 
             <tbody class="text-gray-600 text-sm">
               <tr class="border-b border-gray-200">
+                <td id="thirteenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="thirteenMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="thirteenMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="thirteenMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- march -->
+              <tr class="border-b border-gray-200">
+                <td id="twelveMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="twelveMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="twelveMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="twelveMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- february -->
+              <tr class="border-b border-gray-200">
+                <td id="elevenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="elevenMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="elevenMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="elevenMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- january -->
+              <tr class="border-b border-gray-200">
                 <td id="tenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
                 <td id="tenMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
@@ -520,6 +544,21 @@
         document.getElementById("tenMonthDescription").innerText = userData.tenMonthDescription;
         document.getElementById("tenMonthDeposit").innerText = `$${userData.tenMonthDeposit.toLocaleString()}.00`;
         document.getElementById("tenMonthBalance").innerText = `$${userData.tenMonthBalance.toLocaleString()}.00`;
+        // eleven
+        document.getElementById("elevenMonthDate").innerText = userData.elevenMonthDate;
+        document.getElementById("elevenMonthDescription").innerText = userData.elevenMonthDescription;
+        document.getElementById("elevenMonthDeposit").innerText = `$${userData.elevenMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("elevenMonthBalance").innerText = `$${userData.elevenMonthBalance.toLocaleString()}.00`;
+        // twelve 
+        document.getElementById("twelveMonthDate").innerText = userData.twelveMonthDate;
+        document.getElementById("twelveMonthDescription").innerText = userData.twelveMonthDescription;
+        document.getElementById("twelveMonthDeposit").innerText = `$${userData.twelveMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("twelveMonthBalance").innerText = `$${userData.twelveMonthBalance.toLocaleString()}.00`;
+        // thirteen
+        document.getElementById("thirteenMonthDate").innerText = userData.thirteenMonthDate;
+        document.getElementById("thirteenMonthDescription").innerText = userData.thirteenMonthDescription;
+        document.getElementById("thirteenMonthDeposit").innerText = `$${userData.thirteenMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("thirteenMonthBalance").innerText = `$${userData.thirteenMonthBalance.toLocaleString()}.00`;
 
 
 
