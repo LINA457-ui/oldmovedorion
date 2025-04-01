@@ -227,6 +227,14 @@
 
             <tbody class="text-gray-600 text-sm">
               <tr class="border-b border-gray-200">
+                <td id="fourteenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="fourteenMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="fourteenMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="fourteenMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
+              <!-- april -->
+              <tr class="border-b border-gray-200">
                 <td id="thirteenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
                 <td id="thirteenMonthDescription" class="px-4 py-2"></td>
                 <td class="px-4 py-2 text-right"></td>
@@ -559,6 +567,11 @@
         document.getElementById("thirteenMonthDescription").innerText = userData.thirteenMonthDescription;
         document.getElementById("thirteenMonthDeposit").innerText = `$${userData.thirteenMonthDeposit.toLocaleString()}.00`;
         document.getElementById("thirteenMonthBalance").innerText = `$${userData.thirteenMonthBalance.toLocaleString()}.00`;
+        //fourteen
+        document.getElementById("fourteenMonthDate").innerText = userData.fourteenMonthDate;
+        document.getElementById("fourteenMonthDescription").innerText = userData.fourteenMonthDescription;
+        document.getElementById("fourteenMonthDeposit").innerText = `$${userData.fourteenMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("fourteenMonthBalance").innerText = `$${userData.fourteenMonthBalance.toLocaleString()}.00`;
 
 
 
