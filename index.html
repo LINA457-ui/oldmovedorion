@@ -11,75 +11,201 @@
 </head>
 </head>
 
-<body class="bg-[#F4E76E]">
+<body class="bg-[#6B818C]">
     <!-- Header Section -->
-    <header class="bg-[#EAF2E3] shadow-md relative">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center  ">
-            <div class="flex items-center">
-                <img src="./assets/images/logo.png" alt="Logo" class="h-11 w-22 mr-2">
-            </div>
-            <nav class="hidden md:flex space-x-6 text-gray-700 relative ">
-                <div class="group relative  ">
-                    <a href="#" class="hover:text-black transition-colors">Why Orion</a>
-                    <div class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Our Vision</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Testimonials</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Case Studies</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Partnerships</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">FAQs</a>
-                    </div>
-                </div>
-                <div class="group relative">
-                    <a href="#" class="hover:text-black transition-colors">Trading</a>
-                    <div class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Market Overview</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Stock Trading</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Forex Trading</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Crypto Trading</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Trading Strategies</a>
-                    </div>
-                </div>
-                <div class="group relative">
-                    <a href="#" class="hover:text-black transition-colors">Services</a>
-                    <div class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Portfolio Management</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Financial Advisory</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Market Research</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Investment Plans</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Risk Assessment</a>
-                    </div>
-                </div>
-                <div class="group relative">
-                    <a href="#" class="hover:text-black transition-colors">Careers</a>
-                    <div class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Job Openings</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Internships</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Company Culture</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Employee Benefits</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Join Us</a>
-                    </div>
-                </div>
-                <div class="group relative">
-                    <a href="#" class="hover:text-black transition-colors">About Us</a>
-                    <div class="absolute left-0 top-full bg-white shadow-lg hidden group-hover:flex flex-col p-2 w-48 z-10">
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Our Story</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Meet the Team</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Press Releases</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact Us</a>
-                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Privacy Policy</a>
-                    </div>
-                </div>
-            </nav>
-            <div class="flex space-x-4">
-                <a href="./signin.html">
-                    <button class="bg-green-700 md:block border border-gray-300 px-4 py-2 text-white hover:text-black rounded hover:bg-[#D5A021] transition">Log In</button>
-                </a>
-                <a href="./application.html">
-                    <button class="bg-[#0091f9] text-white px-4 py-2 rounded hover:bg-[#070707] transition">Open Account</button>
-                </a>
-            </div>
+    <header class="fixed top-0 left-0 w-full bg-[#EAF2E3] shadow-lg z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img src="./assets/images/logo.png" alt="Logo" class="h-12 w-24 mr-3 transition-transform duration-300 hover:scale-105">
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 text-black font-medium relative">
+      <div class="group relative">
+        <a href="#" class="hover:text-teal-300 transition-colors duration-200 flex items-center">
+          Why Orion
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full bg-white shadow-xl rounded-lg hidden group-hover:flex flex-col p-4 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Our Vision</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Testimonials</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Case Studies</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Partnerships</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">FAQs</a>
         </div>
-    </header>
+      </div>
+      <div class="group relative">
+        <a href="#" class="hover:text-teal-300 transition-colors duration-200 flex items-center">
+          Trading
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full bg-white shadow-xl rounded-lg hidden group-hover:flex flex-col p-4 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Market Overview</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Stock Trading</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Forex Trading</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Crypto Trading</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Trading Strategies</a>
+        </div>
+      </div>
+      <div class="group relative">
+        <a href="#" class="hover:text-teal-300 transition-colors duration-200 flex items-center">
+          Services
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full bg-white shadow-xl rounded-lg hidden group-hover:flex flex-col p-4 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Portfolio Management</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Financial Advisory</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Market Research</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Investment Plans</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Risk Assessment</a>
+        </div>
+      </div>
+      <div class="group relative">
+        <a href="#" class="hover:text-teal-300 transition-colors duration-200 flex items-center">
+          Careers
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full bg-white shadow-xl rounded-lg hidden group-hover:flex flex-col p-4 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Job Openings</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Internships</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Company Culture</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Employee Benefits</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Join Us</a>
+        </div>
+      </div>
+      <div class="group relative">
+        <a href="#" class="hover:text-teal-300 transition-colors duration-200 flex items-center">
+          About Us
+          <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <div class="absolute left-0 top-full bg-white shadow-xl rounded-lg hidden group-hover:flex flex-col p-4 w-56 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Our Story</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Meet the Team</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Press Releases</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Contact Us</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md">Privacy Policy</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Buttons -->
+    <div class="hidden md:flex space-x-4">
+      <a href="./signin.html">
+        <button class="px-5 py-2.5 text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-all duration-300 transform hover:scale-105">Log In</button>
+      </a>
+      <a href="./application.html">
+        <button class="px-5 py-2.5 text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105">Open Account</button>
+      </a>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <button class="md:hidden text-white focus:outline-none" id="mobile-menu-btn">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden bg-navy-800 text-white" id="mobile-menu">
+    <div class="container mx-auto px-6 py-4 space-y-4">
+      <div>
+        <button class="w-full text-left font-semibold flex justify-between items-center" data-toggle="why-orion">Why Orion
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="hidden flex-col space-y-2 pl-4" data-content="why-orion">
+          <a href="#" class="block py-1 hover:text-teal-300">Our Vision</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Testimonials</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Case Studies</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Partnerships</a>
+          <a href="#" class="block py-1 hover:text-teal-300">FAQs</a>
+        </div>
+      </div>
+      <div>
+        <button class="w-full text-left font-semibold flex justify-between items-center" data-toggle="trading">Trading
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="hidden flex-col space-y-2 pl-4" data-content="trading">
+          <a href="#" class="block py-1 hover:text-teal-300">Market Overview</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Stock Trading</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Forex Trading</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Crypto Trading</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Trading Strategies</a>
+        </div>
+      </div>
+      <div>
+        <button class="w-full text-left font-semibold flex justify-between items-center" data-toggle="services">Services
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="hidden flex-col space-y-2 pl-4" data-content="services">
+          <a href="#" class="block py-1 hover:text-teal-300">Portfolio Management</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Financial Advisory</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Market Research</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Investment Plans</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Risk Assessment</a>
+        </div>
+      </div>
+      <div>
+        <button class="w-full text-left font-semibold flex justify-between items-center" data-toggle="careers">Careers
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="hidden flex-col space-y-2 pl-4" data-content="careers">
+          <a href="#" class="block py-1 hover:text-teal-300">Job Openings</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Internships</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Company Culture</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Employee Benefits</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Join Us</a>
+        </div>
+      </div>
+      <div>
+        <button class="w-full text-left font-semibold flex justify-between items-center" data-toggle="about">About Us
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="hidden flex-col space-y-2 pl-4" data-content="about">
+          <a href="#" class="block py-1 hover:text-teal-300">Our Story</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Meet the Team</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Press Releases</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Contact Us</a>
+          <a href="#" class="block py-1 hover:text-teal-300">Privacy Policy</a>
+        </div>
+      </div>
+      <div class="flex flex-col space-y-2">
+        <a href="./signin.html">
+          <button class="w-full py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-all duration-300">Log In</button>
+        </a>
+        <a href="./application.html">
+          <button class="w-full py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 transition-all duration-300">Open Account</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Add padding to the body to prevent content from being hidden under the fixed header -->
+<main class="pt-20">
+  <!-- Your main content goes here -->
+</main>
     
 
 
@@ -245,7 +371,7 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-[#020887] py-12">
+    <footer class="bg-[#04395E] py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-center">
             <div class="text-center lg:text-left">
                 <h2 class="text-3xl font-semibold text-white mb-4">Not Sure Where to Begin?</h2>

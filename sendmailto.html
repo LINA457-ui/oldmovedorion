@@ -1,77 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Orion Investment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #0d1b2a; /* Dark background for elegance */
-            color: #e0e6ed; /* Soft white text */
-        }
-
-        .orion-brand {
-            color: #3b82f6; /* Orion blue color for branding */
-        }
-
-        .form-container {
-            background: #515b69; /* Dark background for the form container */
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #3b82f6; /* Orion brand blue */
-        }
-
-        .form-text {
-            color: #cbd5e1;
-        }
-
-        iframe {
-            border-radius: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        iframe:hover {
-            transform: scale(1.01);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Orion Investment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --navy-900: #1E3A8A;
+      --teal-300: #2DD4BF;
+      --indigo-600: #4F46E5;
+      --indigo-500: #6366F1;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #F9FAFB, #E5E7EB);
+      color: #1F2937;
+    }
+    header {
+      background-color: var(--navy-900);
+    }
+    nav a:hover {
+      color: var(--teal-300);
+    }
+    .form-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      max-width: 40rem;
+      width: 100%;
+    }
+    .form-title {
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      text-align: center;
+    }
+    .form-text {
+      color: #6B7280;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .btn-secondary {
+      background: #E5E7EB;
+      color: #374151;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover {
+      background: #D1D5DB;
+      transform: scale(1.05);
+    }
+    iframe {
+      border-radius: 8px;
+      width: 100%;
+      min-height: 500px;
+      max-height: 80vh;
+      border: none;
+      transition: box-shadow 0.3s ease;
+    }
+    iframe:hover {
+      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.2);
+    }
+    footer {
+      background-color: var(--navy-900);
+      z-index: 50;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-scroll {
+      animation: scroll 15s linear infinite;
+    }
+    @media (max-width: 640px) {
+      .form-container {
+        padding: 1.5rem;
+      }
+      .form-title {
+        font-size: 1.5rem;
+      }
+      iframe {
+        min-height: 450px;
+      }
+    }
+  </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 bg-gray-900">
-    <!-- Form Container -->
-    <div class="form-container w-full max-w-2xl mx-auto">
-        
-        <!-- Back to Dashboard Button -->
-        <button onclick="goToDashboard()"
-            class="mb-6 py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-300">
-            ← Back to Dashboard
-        </button>
-
-        <h2 class="form-title orion-brand text-center mb-4">Contact Orion Investment</h2>
-        <p class="text-center form-text mb-6">We’re here to assist you. Fill out the form below, and our team will reach out to you shortly.</p>
-
-        <!-- Embedded Google Form -->
-        <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLScMEBW7iWYpemwxARhKKoXVTNx6_97o7YJVsOxcSJSSb9VnnA/viewform?embedded=true"
-            class="w-full h-[650px] border-none shadow-lg"
-            loading="lazy">Loading…</iframe>
+<body>
+  <!-- Header -->
+  <header class="p-4 flex items-center justify-between text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <h1 class="text-xl font-semibold">Orion Investment</h1>
+    <div class="flex items-center space-x-4">
+      
+      
     </div>
-
-    <script>
-        // JavaScript function to navigate to the dashboard
-        function goToDashboard() {
-            window.location.href = './dashboard.html'; // Replace with the actual dashboard URL
-        }
-    </script>
+  </header>
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg p-8 rounded-lg flex justify-center space-x-8 text-gray-700 fixed top-24 left-0 right-0 z-40 h-20">
+    <a href="#" class="hover:text-purple-600 font-medium transition duration-200">Accounts</a>
+    <a href="./card.html" class="hover:text-purple-600 font-medium transition duration-200">Card</a>
+    <a href="./accounthistory.html" class="hover:text-purple-600 font-medium transition duration-200">Transaction History</a>
+    <a href="./investment.html" class="hover:text-purple-600 font-medium transition duration-200">Investment</a>
+    <a href="./accountprofile.html" class="hover:text-purple-600 font-medium transition duration-200">Account Profile</a>
+  </nav>
+  <!-- Main Content -->
+  <main class="container mx-auto mt-28 px-4 py-8 flex items-center justify-center min-h-screen">
+    <div class="form-container">
+      <button onclick="goToDashboard()" class="btn-secondary mb-6" aria-label="Back to Dashboard">
+        <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+      </button>
+      <h2 class="form-title mb-4">Contact Us</h2>
+      <p class="form-text mb-6">Reach out with any questions, and we’ll respond promptly.</p>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScMEBW7iWYpemwxARhKKoXVTNx6_97o7YJVsOxcSJSSb9VnnA/viewform?embedded=true"
+        class="shadow-sm"
+        loading="lazy"
+        title="Contact Orion Investment Form">Loading…</iframe>
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 bg-navy-900 text-white py-2 overflow-hidden z-50">
+    <div class="scrolling-text flex space-x-4 whitespace-nowrap animate-scroll">
+      <span class="text-sm md:text-base font-medium">Orion is guiding the future of financial technology with seamless transactions, innovative solutions, and security at the forefront.</span>
+      <span class="text-sm md:text-base font-medium">Join the stars with Orion, where your financial journey begins.</span>
+    </div>
+  </footer>
+  <script>
+    function goToDashboard() {
+      window.location.href = './dashboard.html';
+    }
+  </script>
 </body>
 </html>
