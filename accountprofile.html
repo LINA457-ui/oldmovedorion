@@ -130,11 +130,18 @@
               <i class="fas fa-arrow-left mr-2"></i> Back
             </button>
 
-            <div class="" >
+                        <div>
               <input type="file" id="imageUpload" accept="image/*">
               <button onclick="uploadImage()">Upload Image</button>
 
+              <div id="loader" style="display:none; margin-top:10px;">
+                <span>Uploading...</span>
+                <progress id="progressBar" value="0" max="100" style="width:100%;"></progress>
+              </div>
+
+              
             </div>
+
           </div>
 
           <!-- Profile Header -->
@@ -208,8 +215,7 @@
 
   </main>
   <button id="signout-button" class="sticky-signout-button">Sign Out</button>
-  <img id="dashboardLogo" src=""
-    alt="">
+  <img id="dashboardLogo" src="" alt="">
   </div>
 
   <script src="./assets/js/script.js"></script>
@@ -335,7 +341,7 @@
 
 
 <!-- IMAGE UPLOAD -->
-<script>
+<!-- <script>
   let selectedFile;
 
   // Select file on change
@@ -402,59 +408,75 @@
       console.log("No user is signed in.");
     }
   });
-</script>
-
-
-
-<!-- SIGNOUT SCRIPT -->
+</script> -->
 <script>
-  // Function to handle sign-out
-  const signout = document.getElementById("signout-button");
+  let selectedFile;
 
-  signout.addEventListener('click', (e) => {
-    e.preventDefault();
-    auth.signOut().then(() => {
-      // Sign-out successful.
-      showSignOutSuccess();
+  const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/djdst6ttd/image/upload';
+  const CLOUDINARY_UPLOAD_PRESET = 'investment_orion'; // replace with your actual preset
 
-      // Optionally, redirect to a login page or another page
-      window.location.href = "signin.html"; // Change this to your login page
-    }).catch((error) => {
-      // An error happened.
-      Toastify({
-        text: `Error signing out: ${error.message}`,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "linear-gradient(to right, #ff0000, #ff6347)",
-        close: true
-      }).showToast();
-    });
-  })
-
-</script>
-
-<script>
-
-  // Display Profile Image on Page Load
-  firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-          const userId = user.uid;
-
-          // Retrieve the profile image URL from Firestore
-          db.collection("Profile").doc(userId).get().then((doc) => {
-              if (doc.exists && doc.data().profileimage) {
-                  // Set the saved profile image URL as the src of the image element
-                  document.getElementById("dashboardLogo").src = doc.data().profileimage;
-              } else {
-                  console.log("No profile image found.");
-              }
-          }).catch((error) => {
-              console.error("Error retrieving profile image: ", error);
-          });
-
-      } else {
-          console.log("No user is signed in.");
-      }
+  // Load saved image on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedImage = localStorage.getItem("profileImageURL");
+    if (savedImage) {
+      document.getElementById("dashboardLogo").src = savedImage;
+    }
   });
+
+  // File change listener
+  document.getElementById("imageUpload").addEventListener("change", (event) => {
+    selectedFile = event.target.files[0];
+  });
+
+  function uploadImage() {
+    if (!selectedFile) {
+      alert("Please select an image to upload.");
+      return;
+    }
+
+    // Show loader
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("progressBar").value = 0;
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", CLOUDINARY_URL, true);
+
+    // Track progress
+    xhr.upload.addEventListener("progress", (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        document.getElementById("progressBar").value = percent;
+      }
+    });
+
+    xhr.onload = function () {
+      document.getElementById("loader").style.display = "none";
+
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        const originalUrl = response.secure_url;
+
+        // No transformation applied
+        document.getElementById("dashboardLogo").src = originalUrl;
+
+        // Save to localStorage
+        localStorage.setItem("profileImageURL", originalUrl);
+
+        console.log("Uploaded and saved:", originalUrl);
+      } else {
+        alert("Upload failed. Please try again.");
+      }
+    };
+
+    xhr.onerror = function () {
+      document.getElementById("loader").style.display = "none";
+      alert("Upload failed. Please check your internet connection.");
+    };
+
+    xhr.send(formData);
+  }
 </script>

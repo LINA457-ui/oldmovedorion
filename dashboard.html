@@ -201,253 +201,275 @@
   </footer>
   <button id="signout-buttonn" class="sticky-signout-button">Sign Out</button>
   <script src="./assets/js/script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // User Data Fetch
-      function fetchUserData() {
-        const docId = localStorage.getItem('userDocId');
-        if (!docId) {
-          console.log('No user ID found in localStorage.');
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // User Data Fetch
+    function fetchUserData() {
+      const docId = localStorage.getItem('userDocId');
+      if (!docId) {
+        console.log('No user ID found in localStorage.');
+        Toastify({
+          text: 'Please log in to continue.',
+          duration: 3000,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+          close: true,
+        }).showToast();
+        setTimeout(() => {
+          window.location.href = 'signin.html';
+        }, 2000);
+        return;
+      }
+      const docRef = db.collection('users').doc(docId);
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          document.getElementById('firstName').innerText = `Hello, ${userData.first_name || 'User'}`;
+          document.getElementById('firstNameDisplay').innerText = `Welcome ${userData.first_name || ''} ${userData.last_name || ''}`;
+          document.getElementById('currentBalance').innerText = `$${userData.currentBalance?.toLocaleString() || '0'}.00`;
+          document.getElementById('brokerage').innerText = `$${userData.brokerage?.toLocaleString() || '0'}.00`;
+          document.getElementById('dividend').innerText = `$${userData.dividend?.toLocaleString() || '0'}.00`;
+          const firstNName = document.getElementById('firstNName');
+          if (firstNName) firstNName.innerText = userData.first_name || 'User';
+        } else {
+          console.log('No such document!');
           Toastify({
-            text: 'Please log in to continue.',
+            text: 'User data not found.',
             duration: 3000,
             gravity: 'top',
             position: 'center',
-            backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+            backgroundColor: 'linear-gradient(to right, #F59E0B, #F97316)',
             close: true,
           }).showToast();
-          setTimeout(() => {
-            window.location.href = 'signin.html';
-          }, 2000);
-          return;
         }
-        const docRef = db.collection('users').doc(docId);
-        docRef.get().then((doc) => {
-          if (doc.exists) {
-            const userData = doc.data();
-            document.getElementById('firstName').innerText = `Hello, ${userData.first_name || 'User'}`;
-            document.getElementById('firstNameDisplay').innerText = `Welcome ${userData.first_name || ''} ${userData.last_name || ''}`;
-            document.getElementById('currentBalance').innerText = `$${userData.currentBalance?.toLocaleString() || '0'}.00`;
-            document.getElementById('brokerage').innerText = `$${userData.brokerage?.toLocaleString() || '0'}.00`;
-            document.getElementById('dividend').innerText = `$${userData.dividend?.toLocaleString() || '0'}.00`;
-            // Handle firstNName for popup if needed
-            const firstNName = document.getElementById('firstNName');
-            if (firstNName) firstNName.innerText = userData.first_name || 'User';
-          } else {
-            console.log('No such document!');
+      }).catch((error) => {
+        console.error('Error getting document:', error);
+        Toastify({
+          text: 'Error fetching user data.',
+          duration: 3000,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+          close: true,
+        }).showToast();
+      });
+    }
+
+    // Firebase Auth State Listener
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        fetchUserData();
+      } else {
+        console.log('No user is signed in.');
+        window.location.href = 'signin.html';
+      }
+    });
+
+    // Crypto Chart
+    const cryptoCtx = document.getElementById('cryptoChart').getContext('2d');
+    new Chart(cryptoCtx, {
+      type: 'line',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+          label: 'Crypto Prices',
+          data: [12000, 15000, 13000, 16000, 17000, 18000],
+          borderColor: '#2DD4BF',
+          backgroundColor: 'rgba(45, 212, 191, 0.2)',
+          fill: true,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { title: { display: true, text: 'Months', color: '#333' } },
+          y: { title: { display: true, text: 'Price (USD)', color: '#333' } },
+        },
+        plugins: { legend: { labels: { color: '#333' } } },
+      },
+    });
+
+    // Stock Pie Chart
+    const stockCtx = document.getElementById('stockPieChart').getContext('2d');
+    new Chart(stockCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Apple', 'Google', 'Microsoft', 'Amazon', 'Tesla', 'Facebook', 'Netflix'],
+        datasets: [{
+          data: [25, 15, 20, 10, 10, 10, 10],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'],
+          borderColor: '#ffffff',
+          borderWidth: 2,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: '#333',
+              boxWidth: 15,
+              padding: 10,
+              font: { size: 14, weight: 'bold' },
+            },
+          },
+          tooltip: {
+            callbacks: {
+              label: (context) => `${context.label}: ${context.raw}%`
+            }
+          },
+        },
+        layout: { padding: 20 },
+      },
+    });
+
+    // Signout Functionality
+    const signoutButtons = [document.getElementById('signout-button'), document.getElementById('signout-buttonn')];
+    signoutButtons.forEach((button) => {
+      if (button) {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          firebase.auth().signOut().then(() => {
             Toastify({
-              text: 'User data not found.',
+              text: 'You have successfully signed out.',
+              duration: 3000,
+              gravity: 'top',
+              position: 'right',
+              backgroundColor: 'linear-gradient(to right, #2DD4BF, #4F46E5)',
+              close: true,
+            }).showToast();
+            setTimeout(() => {
+              window.location.href = 'signin.html';
+            }, 2000);
+          }).catch((error) => {
+            Toastify({
+              text: `Error signing out: ${error.message}`,
               duration: 3000,
               gravity: 'top',
               position: 'center',
-              backgroundColor: 'linear-gradient(to right, #F59E0B, #F97316)',
+              backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
               close: true,
             }).showToast();
-          }
-        }).catch((error) => {
-          console.error('Error getting document:', error);
-          Toastify({
-            text: 'Error fetching user data.',
-            duration: 3000,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
-            close: true,
-          }).showToast();
+          });
         });
       }
-      // Firebase Auth State Listener
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          const userId = user.uid;
-          db.collection('Profile').doc(userId).get().then((doc) => {
-            if (doc.exists && doc.data().profileimage) {
-              document.getElementById('dashboardLogo').src = doc.data().profileimage;
-            } else {
-              console.log('No profile image found.');
-            }
-          }).catch((error) => {
-            console.error('Error retrieving profile image:', error);
-          });
-          fetchUserData();
-        } else {
-          console.log('No user is signed in.');
-          window.location.href = 'signin.html';
-        }
-      });
-      // Crypto Chart
-      const cryptoCtx = document.getElementById('cryptoChart').getContext('2d');
-      new Chart(cryptoCtx, {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-            label: 'Crypto Prices',
-            data: [12000, 15000, 13000, 16000, 17000, 18000],
-            borderColor: '#2DD4BF',
-            backgroundColor: 'rgba(45, 212, 191, 0.2)',
-            fill: true,
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: { title: { display: true, text: 'Months', color: '#333' } },
-            y: { title: { display: true, text: 'Price (USD)', color: '#333' } },
-          },
-          plugins: { legend: { labels: { color: '#333' } } },
-        },
-      });
-      // Stock Pie Chart
-      const stockCtx = document.getElementById('stockPieChart').getContext('2d');
-      new Chart(stockCtx, {
-        type: 'pie',
-        data: {
-          labels: ['Apple', 'Google', 'Microsoft', 'Amazon', 'Tesla', 'Facebook', 'Netflix'],
-          datasets: [{
-            data: [25, 15, 20, 10, 10, 10, 10],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'],
-            borderColor: '#ffffff',
-            borderWidth: 2,
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { color: '#333', boxWidth: 15, padding: 10, font: { size: 14, weight: 'bold' } } },
-            tooltip: { callbacks: { label: (context) => `${context.label}: ${context.raw}%` } },
-          },
-          layout: { padding: 20 },
-        },
-      });
-      // Signout Functionality
-      const signoutButtons = [document.getElementById('signout-button'), document.getElementById('signout-buttonn')];
-      signoutButtons.forEach((button) => {
-        if (button) {
-          button.addEventListener('click', (e) => {
-            e.preventDefault();
-            firebase.auth().signOut().then(() => {
-              Toastify({
-                text: 'You have successfully signed out.',
-                duration: 3000,
-                gravity: 'top',
-                position: 'right',
-                backgroundColor: 'linear-gradient(to right, #2DD4BF, #4F46E5)',
-                close: true,
-              }).showToast();
-              setTimeout(() => {
-                window.location.href = 'signin.html';
-              }, 2000);
-            }).catch((error) => {
-              Toastify({
-                text: `Error signing out: ${error.message}`,
-                duration: 3000,
-                gravity: 'top',
-                position: 'center',
-                backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
-                close: true,
-              }).showToast();
-            });
-          });
-        }
-      });
-      // PIN Popup Functionality
-      const openPopupBtn = document.getElementById('openPopupBtn');
-      const pinPopup = document.getElementById('popup');
-      const verifyPinBtn = document.getElementById('verify-pin-btn');
-      const cancelBtn = document.getElementById('cancel-btn');
-      const pinInputs = document.querySelectorAll('.pin-input');
-      openPopupBtn.addEventListener('click', () => {
-        pinPopup.classList.remove('hidden');
-        pinPopup.classList.add('flex');
-        pinInputs[0].focus();
-      });
-      cancelBtn.addEventListener('click', () => {
-        pinPopup.classList.add('hidden');
-        pinPopup.classList.remove('flex');
-        pinInputs.forEach(input => (input.value = ''));
-      });
-      pinInputs.forEach((input, index) => {
-        input.addEventListener('input', () => {
-          if (input.value.length === 1 && index < pinInputs.length - 1) {
-            pinInputs[index + 1].focus();
-          }
-        });
-      });
-      verifyPinBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        let enteredPin = '';
-        pinInputs.forEach(input => {
-          enteredPin += input.value;
-        });
-        const docId = localStorage.getItem('userDocId');
-        if (!docId) {
-          Toastify({
-            text: 'User not found. Please log in.',
-            duration: 3000,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
-            close: true,
-          }).showToast();
-          return;
-        }
-        const userRef = db.collection('users').doc(docId);
-        try {
-          const doc = await userRef.get();
-          if (doc.exists) {
-            const data = doc.data();
-            const storedTransactionPin = data.transactionPin;
-            if (enteredPin === storedTransactionPin) {
-              Toastify({
-                text: 'PIN Validation Successful!',
-                duration: 2000,
-                gravity: 'top',
-                position: 'right',
-                backgroundColor: 'linear-gradient(to right, #2DD4BF, #4F46E5)',
-                close: true,
-              }).showToast();
-              setTimeout(() => {
-                pinPopup.classList.add('hidden');
-                pinPopup.classList.remove('flex');
-                pinInputs.forEach(input => (input.value = ''));
-                window.location.href = './withdrawal.html';
-              }, 2000);
-            } else {
-              Toastify({
-                text: 'Incorrect Transaction PIN. Please try again.',
-                duration: 3000,
-                gravity: 'top',
-                position: 'center',
-                backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
-                close: true,
-              }).showToast();
-            }
-          } else {
-            Toastify({
-              text: 'No transaction PIN found for this user.',
-              duration: 3000,
-              gravity: 'top',
-              position: 'center',
-              backgroundColor: 'linear-gradient(to right, #F59E0B, #F97316)',
-              close: true,
-            }).showToast();
-          }
-        } catch (error) {
-          console.error('Error verifying transaction PIN:', error);
-          Toastify({
-            text: 'Something went wrong. Please try again.',
-            duration: 3000,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
-            close: true,
-          }).showToast();
+    });
+
+    // PIN Popup Functionality
+    const openPopupBtn = document.getElementById('openPopupBtn');
+    const pinPopup = document.getElementById('popup');
+    const verifyPinBtn = document.getElementById('verify-pin-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const pinInputs = document.querySelectorAll('.pin-input');
+
+    openPopupBtn.addEventListener('click', () => {
+      pinPopup.classList.remove('hidden');
+      pinPopup.classList.add('flex');
+      pinInputs[0].focus();
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      pinPopup.classList.add('hidden');
+      pinPopup.classList.remove('flex');
+      pinInputs.forEach(input => (input.value = ''));
+    });
+
+    pinInputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < pinInputs.length - 1) {
+          pinInputs[index + 1].focus();
         }
       });
     });
-  </script>
-</body>
-</html>
+
+    verifyPinBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      let enteredPin = '';
+      pinInputs.forEach(input => {
+        enteredPin += input.value;
+      });
+
+      const docId = localStorage.getItem('userDocId');
+      if (!docId) {
+        Toastify({
+          text: 'User not found. Please log in.',
+          duration: 3000,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+          close: true,
+        }).showToast();
+        return;
+      }
+
+      const userRef = db.collection('users').doc(docId);
+      try {
+        const doc = await userRef.get();
+        if (doc.exists) {
+          const data = doc.data();
+          const storedTransactionPin = data.transactionPin;
+          if (enteredPin === storedTransactionPin) {
+            Toastify({
+              text: 'PIN Validation Successful!',
+              duration: 2000,
+              gravity: 'top',
+              position: 'right',
+              backgroundColor: 'linear-gradient(to right, #2DD4BF, #4F46E5)',
+              close: true,
+            }).showToast();
+            setTimeout(() => {
+              pinPopup.classList.add('hidden');
+              pinPopup.classList.remove('flex');
+              pinInputs.forEach(input => (input.value = ''));
+              window.location.href = './withdrawal.html';
+            }, 2000);
+          } else {
+            Toastify({
+              text: 'Incorrect Transaction PIN. Please try again.',
+              duration: 3000,
+              gravity: 'top',
+              position: 'center',
+              backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+              close: true,
+            }).showToast();
+          }
+        } else {
+          Toastify({
+            text: 'No transaction PIN found for this user.',
+            duration: 3000,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: 'linear-gradient(to right, #F59E0B, #F97316)',
+            close: true,
+          }).showToast();
+        }
+      } catch (error) {
+        console.error('Error verifying transaction PIN:', error);
+        Toastify({
+          text: 'Something went wrong. Please try again.',
+          duration: 3000,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #EF4444, #F97316)',
+          close: true,
+        }).showToast();
+      }
+    });
+  });
+</script>
+
+<!-- Show Cloudinary Image Saved in localStorage -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedImage = localStorage.getItem("profileImageURL");
+    if (savedImage) {
+      document.getElementById("dashboardLogo").src = savedImage;
+    } else {
+      console.log("No image found in localStorage.");
+    }
+  });
+</script>
