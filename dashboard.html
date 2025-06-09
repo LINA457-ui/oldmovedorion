@@ -464,12 +464,15 @@
 
 <!-- Show Cloudinary Image Saved in localStorage -->
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const savedImage = localStorage.getItem("profileImageURL");
-    if (savedImage) {
-      document.getElementById("dashboardLogo").src = savedImage;
-    } else {
-      console.log("No image found in localStorage.");
-    }
-  });
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    const userId = user.uid;
+    db.collection('Profile').doc(userId).get().then((doc) => {
+      if (doc.exists && doc.data().profileimage) {
+        document.getElementById("dashboardLogo").src = doc.data().profileimage;
+      }
+    });
+  }
+});
+
 </script>
