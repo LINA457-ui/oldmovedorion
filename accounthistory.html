@@ -226,6 +226,13 @@
             </thead>
 
             <tbody class="text-gray-600 text-sm">
+              <tr class="border-b border-gray-200">
+                <td id="seventeenthMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
+                <td id="seventeenthMonthDescription" class="px-4 py-2"></td>
+                <td class="px-4 py-2 text-right"></td>
+                <td id="seventeenthMonthDeposit" class="px-4 py-2 text-right"></td>
+                <td id="seventeenthMonthBalance" class="px-4 py-2 text-right"></td>
+              </tr>
                <!-- june -->
               <tr class="border-b border-gray-200">
                 <td id="sixteenMonthDate" class="px-4 py-2 whitespace-nowrap"></td>
@@ -613,12 +620,16 @@
         document.getElementById("sixteenMonthDescription").innerText = userData.sixteenMonthDescription;
         document.getElementById("sixteenMonthDeposit").innerText = `$${userData.sixteenMonthDeposit.toLocaleString()}.00`;
         document.getElementById("sixteenMonthBalance").innerText = `$${userData.sixteenMonthBalance.toLocaleString()}.00`;
+        // seventeenth month
+        document.getElementById("seventeenthMonthDate").innerText = userData.seventeenthMonthDate;
+        document.getElementById("seventeenthMonthDescription").innerText = userData.seventeenthMonthDescription;
+        document.getElementById("seventeenthMonthDeposit").innerText = `$${userData.seventeenthMonthDeposit.toLocaleString()}.00`;
+        document.getElementById("seventeenthMonthBalance").innerText = `$${userData.seventeenthMonthBalance.toLocaleString()}.00`;    
         
 
 
 
-         
-   fifteenn
+        
 
         // Assuming userData is defined and has the relevant properties
       } else {
