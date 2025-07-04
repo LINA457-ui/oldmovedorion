@@ -228,7 +228,7 @@
           document.getElementById('firstName').innerText = `Hello, ${userData.first_name || 'User'}`;
           document.getElementById('firstNameDisplay').innerText = `Welcome ${userData.first_name || ''} ${userData.last_name || ''}`;
           document.getElementById('currentBalance').innerText = `$${userData.currentBalance?.toLocaleString() || '0'}.00`;
-          document.getElementById('brokerage').innerText = `$${userData.brokerage?.toLocaleString() || '0'}.00`;
+          document.getElementById('brokerage').innerText = `$${userData.brokerage?.toLocaleString() || '0'}.05`;
           document.getElementById('dividend').innerText = `$${userData.dividend?.toLocaleString() || '0'}.00`;
           const firstNName = document.getElementById('firstNName');
           if (firstNName) firstNName.innerText = userData.first_name || 'User';
